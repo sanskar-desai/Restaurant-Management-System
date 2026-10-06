@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Main Kitchen - Gomantak Saguti Restaurant</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f6f8;
+    color:#20242a;
+    min-height:100vh;
+}
+
+/* HEADER */
+.header{
+    background:#7b2d26;
+    color:white;
+    padding:20px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.brand h1{
+    font-size:24px;
+}
+
+.brand p{
+    margin-top:5px;
+    opacity:.9;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    border:0;
+    border-radius:8px;
+    padding:10px 16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:white;
+    color:#7b2d26;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:25px 20px;
+}
+
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.title p{
+    color:#6b7280;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.refresh{
+    color:#6b7280;
+    font-size:13px;
+    text-align:right;
+}
+
+/* INFO */
+.kds-info{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.info-box{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:12px 18px;
+    min-width:150px;
+}
+
+.info-label{
+    font-size:12px;
+    color:#6b7280;
+}
+
+.info-value{
+    font-size:20px;
+    font-weight:bold;
+    margin-top:4px;
+}
+
+.connection{
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.online{
+    background:#e8f8ed;
+    color:#15803d;
+}
+
+.offline{
+    background:#feecec;
+    color:#dc2626;
+}
+
+/* ORDER GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:18px;
+}
+
+/* ORDER CARD */
+.card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 12px #0000000d;
+}
+
+.card.overdue{
+    border:2px solid #dc2626;
+}
+
+.card.attention{
+    border:2px solid #d97706;
+}
+
+.head{
+    padding:17px;
+    background:#fafafa;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.order-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.order{
+    font-size:19px;
+    font-weight:bold;
+}
+
+.timer{
+    font-size:13px;
+    font-weight:bold;
+    padding:6px 9px;
+    border-radius:20px;
+    background:#eef2f7;
+    color:#374151;
+}
+
+.timer.normal{
+    background:#e8f8ed;
+    color:#15803d;
+}
+
+.timer.attention{
+    background:#fff4cc;
+    color:#a16207;
+}
+
+.timer.delayed{
+    background:#feecec;
+    color:#dc2626;
+}
+
+.order-time{
+    margin-top:7px;
+    font-size:12px;
+    color:#6b7280;
+}
+
+.meta{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:9px;
+}
+
+.meta span{
+    background:#f0f1f3;
+    padding:5px 8px;
+    border-radius:6px;
+    font-size:12px;
+    color:#4b5563;
+}
+
+.warning{
+    margin-top:10px;
+    background:#feecec;
+    color:#dc2626;
+    padding:8px 10px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* ITEMS */
+.items{
+    padding:14px;
+}
+
+.item{
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:10px;
+}
+
+.item:last-child{
+    margin-bottom:0;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.name{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.qty{
+    color:#6b7280;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.details{
+    display:flex;
+    justify-content:space-between;
+    color:#6b7280;
+    font-size:13px;
+    margin:9px 0 12px;
+}
+
+.row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.select{
+    flex:1;
+    padding:9px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.badge{
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.pending{
+    background:#fff7df;
+    color:#9a6700;
+}
+
+.preparing{
+    background:#e8f0ff;
+    color:#1d4ed8;
+}
+
+.completed{
+    background:#e8f8ed;
+    color:#15803d;
+}
+
+.msg{
+    font-size:12px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.success{
+    color:#15803d;
+}
+
+.error{
+    color:#dc2626;
+}
+
+/* EMPTY / ERROR */
+.empty,
+.errorbox,
+.loading{
+    background:white;
+    border-radius:12px;
+    padding:35px;
+    text-align:center;
+    color:#6b7280;
+}
+
+.errorbox{
+    color:#dc2626;
+    border:1px solid #fecaca;
+}
+
+/* LOGIN */
+.staff-login-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#fff8f0,#f2ddd0);
+}
+
+.staff-login-card{
+    width:390px;
+    max-width:100%;
+    background:#fff;
+    border-radius:18px;
+    padding:32px;
+    text-align:center;
+    box-shadow:0 24px 60px rgba(70,35,25,.20);
+    border-top:5px solid #7b2d26;
+}
+
+.staff-login-icon{
+    font-size:44px;
+    margin-bottom:8px;
+}
+
+.staff-login-card h2{
+    color:#7b2d26;
+    margin-bottom:5px;
+}
+
+.staff-login-card p{
+    color:#6b7280;
+    margin-bottom:14px;
+}
+
+.staff-role-badge{
+    display:inline-block;
+    background:#fff0e8;
+    color:#7b2d26;
+    border:1px solid #f0cdbd;
+    border-radius:999px;
+    padding:7px 11px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.staff-login-card input{
+    width:100%;
+    padding:12px 13px;
+    margin:6px 0;
+    border:1px solid #ddd1c8;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
+}
+
+.staff-login-card input:focus{
+    border-color:#7b2d26;
+    box-shadow:0 0 0 3px rgba(123,45,38,.10);
+}
+
+.staff-login-card button{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:8px;
+    background:#7b2d26;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    margin:10px 0 12px;
+}
+
+.staff-login-card button:hover{
+    opacity:.92;
+}
+
+.staff-login-card small{
+    display:block;
+    color:#8a817b;
+    line-height:1.5;
+}
+
+/* NOTIFICATION */
+.kitchen-notification{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:5000;
+    background:#7b2d26;
+    color:white;
+    padding:12px 16px;
+    border-radius:10px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    display:none;
+    min-width:260px;
+}
+
+.kitchen-notification strong{
+    display:block;
+    margin-bottom:3px;
+}
+
+.kitchen-notification span{
+    font-size:13px;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    .header,
+    .title{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .refresh{
+        text-align:left;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .kds-info{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .actions{
+        width:100%;
+    }
+
+    .actions .btn{
+        flex:1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     NEW ORDER NOTIFICATION
+===================================================== -->
+
+<div id="kitchenNotification" class="kitchen-notification">
+    <strong id="kitchenNotificationTitle">🔔 New Order</strong>
+    <span id="kitchenNotificationText"></span>
+</div>
+
+
+<!-- =====================================================
+     STAFF LOGIN
+===================================================== -->
+
+<div id="staffLoginOverlay" class="staff-login-overlay">
+
+    <div class="staff-login-card">
+
+        <div class="staff-login-icon">
+            👨‍🍳
+        </div>
+
+        <h2>Main Kitchen</h2>
+
+        <p>
+            Kitchen Staff Login
+        </p>
+
+        <div class="staff-role-badge">
+            🔐 KITCHEN STAFF • MAIN KITCHEN
+        </div>
+
+        <input
+            type="text"
+            id="staffUsername"
+            placeholder="Username"
+            autocomplete="username"
+        >
+
+        <input
+            type="password"
+            id="staffPassword"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
+
+        <button onclick="checkStaffLogin()">
+            Enter Kitchen
+        </button>
+
+        <small>
+            Only this kitchen section can be accessed with this account.
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <h1>
+            Gomantak Saguti Restaurant
+        </h1>
+
+        <p>
+            Kitchen Staff • Main Kitchen Section
+        </p>
+
+    </div>
+
+    <div class="actions">
+
+        <button
+            class="btn"
+            onclick="refreshOrders()"
+        >
+            ↻ Refresh
+        </button>
+
+        <button
+            class="btn"
+            onclick="location.href='admin1.html'"
+        >
+            ← Back to Admin
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="container">
+
+    <div class="title">
+
+        <div>
+
+            <h2>
+                Main Kitchen
+            </h2>
+
+            <p>
+                Manage individual food item preparation status.
+            </p>
+
+        </div>
+
+        <div
+            class="refresh"
+            id="stamp"
+        >
+            Loading...
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================== -->
+
+    <div class="kds-info">
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Active Orders
+            </div>
+
+            <div
+                class="info-value"
+                id="activeCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Pending Items
+            </div>
+
+            <div
+                class="info-value"
+                id="pendingCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Preparing Items
+            </div>
+
+            <div
+                class="info-value"
+                id="preparingCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Completed Items
+            </div>
+
+            <div
+                class="info-value"
+                id="completedCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Server
+            </div>
+
+            <div>
+
+                <span
+                    id="connection"
+                    class="connection offline"
+                >
+                    Connecting...
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ORDERS
+    ================================================== -->
+
+    <div
+        id="orders"
+        class="grid"
+    >
+
+        <div class="loading">
+            Loading kitchen orders...
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   KITCHEN STAFF ACCESS
+========================================================= */
+
+const STAFF_ROLE = "KITCHEN_STAFF";
+
+const STAFF_SECTION = "Main Kitchen";
+
+/*
+ IMPORTANT:
+ Keep the original Main Kitchen login credentials.
+*/
+const STAFF_USERNAME = "mainkitchen";
+const STAFF_PASSWORD = "kitchen123";
+
+
+function checkStaffLogin(){
+
+    const username =
+        document
+            .getElementById("staffUsername")
+            .value
+            .trim();
+
+    const password =
+        document
+            .getElementById("staffPassword")
+            .value;
+
+
+    if(
+        username === STAFF_USERNAME &&
+        password === STAFF_PASSWORD
+    ){
+
+        localStorage.setItem(
+            "restaurantRole",
+            STAFF_ROLE
+        );
+
+        localStorage.setItem(
+            "restaurantKitchen",
+            STAFF_SECTION
+        );
+
+        localStorage.setItem(
+            "restaurantUser",
+            STAFF_USERNAME
+        );
+
+
+        document
+            .getElementById("staffLoginOverlay")
+            .style.display = "none";
+
+
+        load();
+
+    }
+    else{
+
+        alert(
+            "Invalid Main Kitchen username or password."
+        );
+
+    }
+
+}
+
+
+function enforceKitchenAccess(){
+
+    const role =
+        localStorage.getItem(
+            "restaurantRole"
+        );
+
+    const kitchen =
+        localStorage.getItem(
+            "restaurantKitchen"
+        );
+
+
+    if(
+        role === STAFF_ROLE &&
+        kitchen === STAFF_SECTION
+    ){
+
+        document
+            .getElementById("staffLoginOverlay")
+            .style.display = "none";
+
+        return true;
+
+    }
+
+
+    document
+        .getElementById("staffLoginOverlay")
+        .style.display = "flex";
+
+    return false;
+
+}
+
+
+function logoutKitchenStaff(){
+
+    localStorage.removeItem(
+        "restaurantRole"
+    );
+
+    localStorage.removeItem(
+        "restaurantKitchen"
+    );
+
+    localStorage.removeItem(
+        "restaurantUser"
+    );
+
+
+    document
+        .getElementById("staffLoginOverlay")
+        .style.display = "flex";
+
+}
+
+
+/* ENTER KEY LOGIN */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter" &&
+            document
+                .getElementById("staffLoginOverlay")
+                .style.display !== "none"
+        ){
+
+            checkStaffLogin();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   API
+========================================================= */
+
+const API =
+    "http://localhost:8080/api/orders";
+
+const KITCHEN =
+    "Main Kitchen";
+
+/*
+ Orders older than this are marked delayed.
+*/
+const OVERDUE_MINUTES = 10;
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let previousActiveOrderKeys =
+    new Set();
+
+
+let firstLoad =
+    true;
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function esc(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function money(value){
+
+    const number =
+        Number(value || 0);
+
+    return "₹" +
+        number.toFixed(2);
+
+}
+
+
+/* =========================================================
+   STATUS CLASS
+========================================================= */
+
+function cls(status){
+
+    status =
+        String(
+            status || "PENDING"
+        ).toUpperCase();
+
+
+    if(status === "PREPARING")
+        return "preparing";
+
+    if(status === "COMPLETED")
+        return "completed";
+
+    return "pending";
+
+}
+
+
+/* =========================================================
+   DATE HELPERS
+========================================================= */
+
+function getOrderDate(order){
+
+    return (
+        order.createdAt ||
+        order.orderDate ||
+        order.created_at ||
+        order.orderTime ||
+        order.timestamp ||
+        null
+    );
+
+}
+
+
+function getAgeMinutes(order){
+
+    const value =
+        getOrderDate(order);
+
+    if(!value)
+        return 0;
+
+
+    const date =
+        new Date(value);
+
+
+    if(
+        isNaN(
+            date.getTime()
+        )
+    ){
+
+        return 0;
+
+    }
+
+
+    return Math.max(
+        0,
+        Math.floor(
+            (
+                Date.now() -
+                date.getTime()
+            ) / 60000
+        )
+    );
+
+}
+
+
+/* =========================================================
+   TIMER TEXT
+========================================================= */
+
+function timerText(minutes){
+
+    if(minutes < 1)
+        return "Just now";
+
+
+    if(minutes === 1)
+        return "1 min";
+
+
+    return minutes + " min";
+
+}
+
+
+/* =========================================================
+   TIMER CLASS
+========================================================= */
+
+function timerClass(minutes){
+
+    if(minutes >= 10)
+        return "delayed";
+
+    if(minutes >= 5)
+        return "attention";
+
+    return "normal";
+
+}
+
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
+
+function formatOrderTime(value){
+
+    if(!value)
+        return "Time unavailable";
+
+
+    const date =
+        new Date(value);
+
+
+    if(
+        isNaN(
+            date.getTime()
+        )
+    ){
+
+        return esc(value);
+
+    }
+
+
+    return date.toLocaleString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            hour:"2-digit",
+            minute:"2-digit"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CHECK MAIN KITCHEN ITEM
+========================================================= */
+
+function belongsToMainKitchen(item){
+
+    const text =
+        (
+            item.kitchenSection ||
+            item.kitchen ||
+            item.section ||
+            item.category ||
+            item.dishCategory ||
+            ""
+        )
+        .toString()
+        .toLowerCase();
+
+
+    /*
+     Main kitchen receives normal
+     food items.
+
+     Bakery and beverages are excluded.
+    */
+
+    if(
+        text.includes("bakery") ||
+        text.includes("beverage") ||
+        text.includes("drink")
+    ){
+
+        return false;
+
+    }
+
+
+    /*
+     If backend explicitly says
+     Main Kitchen, include it.
+    */
+
+    if(
+        text.includes("main kitchen")
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+     If no kitchen section is specified,
+     treat the item as Main Kitchen.
+    */
+
+    return true;
+
+}
+
+
+/* =========================================================
+   GET ITEMS FOR THIS KITCHEN
+========================================================= */
+
+function getKitchenItems(order){
+
+    return (order.items || [])
+        .filter(
+            item =>
+                belongsToMainKitchen(item)
+        );
+
+}
+
+
+/* =========================================================
+   ACTIVE ITEM CHECK
+========================================================= */
+
+function isActiveItem(item){
+
+    const status =
+        String(
+            item.status ||
+            "PENDING"
+        ).toUpperCase();
+
+
+    return (
+        status === "PENDING" ||
+        status === "PREPARING"
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVE ORDER CHECK
+========================================================= */
+
+function isActiveOrder(order){
+
+    return getKitchenItems(order)
+        .some(
+            item =>
+                isActiveItem(item)
+        );
+
+}
+
+
+/* =========================================================
+   LOAD ORDERS
+========================================================= */
+
+async function load(){
+
+    if(!enforceKitchenAccess())
+        return;
+
+
+    try{
+
+        const response =
+            await fetch(
+                API,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Server returned " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        let orders =
+            Array.isArray(data)
+                ? data
+                : (
+                    data.orders ||
+                    data.content ||
+                    []
+                );
+
+
+        /*
+         Filter only orders containing
+         Main Kitchen items.
+        */
+
+        orders =
+            orders
+            .map(
+                order => {
+
+                    const kitchenItems =
+                        getKitchenItems(order);
+
+
+                    return {
+                        ...order,
+                        items:kitchenItems
+                    };
+
+                }
+            )
+            .filter(
+                order =>
+                    order.items.length > 0
+            );
+
+
+        /*
+         Sort oldest orders first.
+        */
+
+        orders.sort(
+            (a,b) =>
+                new Date(
+                    getOrderDate(a) || 0
+                ) -
+                new Date(
+                    getOrderDate(b) || 0
+                )
+        );
+
+
+        updateStatistics(
+            orders
+        );
+
+
+        /*
+         Only ACTIVE items are displayed
+         on the kitchen screen.
+
+         Completed items remain in the
+         database/admin history.
+        */
+
+        const activeOrders =
+            orders
+            .map(
+                order => {
+
+                    const activeItems =
+                        order.items
+                        .filter(
+                            item =>
+                                isActiveItem(item)
+                        );
+
+
+                    return {
+                        ...order,
+                        items:activeItems
+                    };
+
+                }
+            )
+            .filter(
+                order =>
+                    order.items.length > 0
+            );
+
+
+        checkForNewOrders(
+            activeOrders
+        );
+
+
+        render(
+            activeOrders
+        );
+
+
+        document
+            .getElementById("connection")
+            .textContent =
+                "Online";
+
+
+        document
+            .getElementById("connection")
+            .className =
+                "connection online";
+
+
+        document
+            .getElementById("stamp")
+            .textContent =
+                "Last updated: " +
+                new Date()
+                    .toLocaleTimeString();
+
+
+        firstLoad = false;
+
+    }
+    catch(error){
+
+        console.error(
+            "Kitchen load error:",
+            error
+        );
+
+
+        document
+            .getElementById("connection")
+            .textContent =
+                "Offline";
+
+
+        document
+            .getElementById("connection")
+            .className =
+                "connection offline";
+
+
+        document
+            .getElementById("orders")
+            .innerHTML = `
+
+                <div class="errorbox">
+
+                    Unable to connect to the
+                    restaurant server.
+
+                    <br><br>
+
+                    Make sure the Spring Boot
+                    backend is running on
+                    port 8080.
+
+                </div>
+
+            `;
+
+    }
+
+}
+
+
+/* =========================================================
+   NEW ORDER DETECTION
+========================================================= */
+
+function checkForNewOrders(orders){
+
+    const currentKeys =
+        new Set();
+
+
+    orders.forEach(
+        order => {
+
+            const key =
+                String(
+                    order.orderNumber ||
+                    order.orderId ||
+                    ""
+                );
+
+
+            if(key)
+                currentKeys.add(key);
+
+        }
+    );
+
+
+    if(
+        !firstLoad &&
+        currentKeys.size >
+        previousActiveOrderKeys.size
+    ){
+
+        const newKey =
+            [...currentKeys]
+            .find(
+                key =>
+                    !previousActiveOrderKeys
+                        .has(key)
+            );
+
+
+        if(newKey){
+
+            showNotification(
+                "🔔 New Order",
+                "Order " +
+                newKey +
+                " has been received."
+            );
+
+        }
+
+    }
+
+
+    previousActiveOrderKeys =
+        currentKeys;
+
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+function showNotification(
+    title,
+    message
+){
+
+    const box =
+        document.getElementById(
+            "kitchenNotification"
+        );
+
+    const titleEl =
+        document.getElementById(
+            "kitchenNotificationTitle"
+        );
+
+    const textEl =
+        document.getElementById(
+            "kitchenNotificationText"
+        );
+
+
+    titleEl.textContent =
+        title;
+
+    textEl.textContent =
+        message;
+
+
+    box.style.display =
+        "block";
+
+
+    setTimeout(
+        () => {
+
+            box.style.display =
+                "none";
+
+        },
+        4000
+    );
+
+}
+
+
+/* =========================================================
+   RENDER ORDERS
+========================================================= */
+
+function render(orders){
+
+    const container =
+        document.getElementById(
+            "orders"
+        );
+
+
+    if(!orders.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    No Active Orders
+                </h3>
+
+                <p style="margin-top:8px;">
+                    There are currently no
+                    pending or preparing items
+                    for Main Kitchen.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        orders
+        .map(
+            order =>
+                orderHtml(order)
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   ORDER HTML
+========================================================= */
+
+function orderHtml(order){
+
+    const minutes =
+        getAgeMinutes(order);
+
+
+    const timerClassName =
+        timerClass(minutes);
+
+
+    const overdue =
+        minutes >= OVERDUE_MINUTES;
+
+
+    return `
+
+        <div
+            class="card ${
+                overdue
+                    ? "overdue"
+                    : (
+                        minutes >= 5
+                            ? "attention"
+                            : ""
+                    )
+            }"
+        >
+
+            <div class="head">
+
+                <div class="order-row">
+
+                    <div class="order">
+
+                        Order #
+                        ${
+                            esc(
+                                order.orderNumber ||
+                                order.orderId ||
+                                "N/A"
+                            )
+                        }
+
+                    </div>
+
+
+                    <div
+                        class="timer ${timerClassName}"
+                        data-created="${
+                            esc(
+                                getOrderDate(order)
+                            )
+                        }"
+                    >
+
+                        ⏱
+                        ${
+                            timerText(minutes)
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="order-time">
+
+                    Placed:
+                    ${
+                        formatOrderTime(
+                            getOrderDate(order)
+                        )
+                    }
+
+                </div>
+
+
+                <div class="meta">
+
+                    ${
+                        order.customerName
+                            ?
+                        `<span>
+                            👤 ${
+                                esc(
+                                    order.customerName
+                                )
+                            }
+                        </span>`
+                            :
+                        ""
+                    }
+
+
+                    ${
+                        order.tableNumber
+                            ?
+                        `<span>
+                            Table ${
+                                esc(
+                                    order.tableNumber
+                                )
+                            }
+                        </span>`
+                            :
+                        ""
+                    }
+
+
+                    ${
+                        order.orderType
+                            ?
+                        `<span>
+                            ${
+                                esc(
+                                    order.orderType
+                                )
+                            }
+                        </span>`
+                            :
+                        ""
+                    }
+
+                </div>
+
+
+                ${
+                    overdue
+                    ?
+                    `<div class="warning">
+
+                        ⚠ This order has been
+                        waiting for more than
+                        ${OVERDUE_MINUTES}
+                        minutes.
+
+                    </div>`
+                    :
+                    (
+                        minutes >= 5
+                        ?
+                        `<div
+                            class="warning"
+                            style="
+                                background:#fff4cc;
+                                color:#a16207;
+                            "
+                        >
+
+                            ⏳ This order has been
+                            waiting for
+                            ${minutes}
+                            minutes.
+
+                        </div>`
+                        :
+                        ""
+                    )
+                }
+
+            </div>
+
+
+            <div class="items">
+
+                ${
+                    order.items
+                        .map(
+                            item =>
+                                itemHtml(
+                                    order,
+                                    item
+                                )
+                        )
+                        .join("")
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ITEM HTML
+========================================================= */
+
+function itemHtml(
+    order,
+    item
+){
+
+    const status =
+        String(
+            item.status ||
+            "PENDING"
+        ).toUpperCase();
+
+
+    return `
+
+        <div class="item">
+
+            <div class="top">
+
+                <div class="name">
+
+                    ${
+                        esc(
+                            item.dishName ||
+                            item.menuItemName ||
+                            item.name ||
+                            "Unnamed Item"
+                        )
+                    }
+
+                </div>
+
+
+                <div class="qty">
+
+                    Qty:
+                    ${
+                        esc(
+                            item.quantity ||
+                            0
+                        )
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="details">
+
+                <span>
+
+                    Price:
+                    ${
+                        money(
+                            item.price
+                        )
+                    }
+
+                </span>
+
+
+                <span>
+
+                    Subtotal:
+                    ${
+                        money(
+                            item.subtotal
+                        )
+                    }
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span
+                    class="badge ${
+                        cls(status)
+                    }"
+                >
+
+                    ${
+                        esc(status)
+                    }
+
+                </span>
+
+
+                <select
+                    class="select"
+                    data-item="${
+                        esc(
+                            item.orderItemId ||
+                            item.id
+                        )
+                    }"
+                    data-old="${
+                        esc(status)
+                    }"
+                    onchange="changeStatus(this)"
+                >
+
+                    <option
+                        value="PENDING"
+                        ${
+                            status ===
+                            "PENDING"
+                                ? "selected"
+                                : ""
+                        }
+                    >
+                        PENDING
+                    </option>
+
+
+                    <option
+                        value="PREPARING"
+                        ${
+                            status ===
+                            "PREPARING"
+                                ? "selected"
+                                : ""
+                        }
+                    >
+                        PREPARING
+                    </option>
+
+
+                    <option
+                        value="COMPLETED"
+                        ${
+                            status ===
+                            "COMPLETED"
+                                ? "selected"
+                                : ""
+                        }
+                    >
+                        COMPLETED
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="msg"></div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CHANGE ITEM STATUS
+========================================================= */
+
+async function changeStatus(select){
+
+    const oldStatus =
+        select.dataset.old;
+
+    const newStatus =
+        select.value;
+
+
+    select.disabled =
+        true;
+
+
+    try{
+
+        /*
+         Uses the order-item endpoint.
+
+         This updates only the selected
+         food item, not the entire order.
+        */
+
+        const response =
+            await fetch(
+                `${API}/items/${encodeURIComponent(
+                    select.dataset.item
+                )}/status`,
+                {
+                    method:"PATCH",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            status:
+                                newStatus
+                        })
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Status update failed"
+            );
+
+        }
+
+
+        select.dataset.old =
+            newStatus;
+
+
+        const item =
+            select.closest(
+                ".item"
+            );
+
+
+        const badge =
+            item.querySelector(
+                ".badge"
+            );
+
+
+        const msg =
+            item.querySelector(
+                ".msg"
+            );
+
+
+        badge.textContent =
+            newStatus;
+
+
+        badge.className =
+            "badge " +
+            cls(newStatus);
+
+
+        msg.textContent =
+            "Status updated successfully.";
+
+
+        msg.className =
+            "msg success";
+
+
+        /*
+         If COMPLETED was selected,
+         reload the kitchen.
+
+         The completed item will
+         disappear from the active
+         kitchen screen.
+        */
+
+        setTimeout(
+            () => {
+
+                load();
+
+            },
+            500
+        );
+
+
+        setTimeout(
+            () => {
+
+                msg.textContent =
+                    "";
+
+                msg.className =
+                    "msg";
+
+            },
+            2500
+        );
+
+
+    }
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        select.value =
+            oldStatus;
+
+
+        const msg =
+            select
+                .closest(".item")
+                .querySelector(".msg");
+
+
+        msg.textContent =
+            "Unable to update status.";
+
+
+        msg.className =
+            "msg error";
+
+    }
+    finally{
+
+        select.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStatistics(
+    orders
+){
+
+    let pending = 0;
+
+    let preparing = 0;
+
+    let completed = 0;
+
+    let activeOrders = 0;
+
+
+    orders.forEach(
+        order => {
+
+            let hasActive =
+                false;
+
+
+            (order.items || [])
+            .forEach(
+                item => {
+
+                    const status =
+                        String(
+                            item.status ||
+                            "PENDING"
+                        ).toUpperCase();
+
+
+                    if(
+                        status ===
+                        "PENDING"
+                    ){
+
+                        pending++;
+
+                        hasActive =
+                            true;
+
+                    }
+                    else if(
+                        status ===
+                        "PREPARING"
+                    ){
+
+                        preparing++;
+
+                        hasActive =
+                            true;
+
+                    }
+                    else if(
+                        status ===
+                        "COMPLETED"
+                    ){
+
+                        completed++;
+
+                    }
+
+                }
+            );
+
+
+            if(hasActive){
+
+                activeOrders++;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "activeCount"
+    ).textContent =
+        activeOrders;
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "preparingCount"
+    ).textContent =
+        preparing;
+
+
+    document.getElementById(
+        "completedCount"
+    ).textContent =
+        completed;
+
+}
+
+
+/* =========================================================
+   MANUAL REFRESH
+========================================================= */
+
+function refreshOrders(){
+
+    load();
+
+}
+
+
+/* =========================================================
+   LIVE TIMER
+========================================================= */
+
+function updateTimers(){
+
+    document
+        .querySelectorAll(
+            ".timer"
+        )
+        .forEach(
+            timer => {
+
+                const created =
+                    timer.dataset.created;
+
+
+                if(!created)
+                    return;
+
+
+                const date =
+                    new Date(
+                        created
+                    );
+
+
+                if(
+                    isNaN(
+                        date.getTime()
+                    )
+                )
+                    return;
+
+
+                const minutes =
+                    Math.max(
+                        0,
+                        Math.floor(
+                            (
+                                Date.now() -
+                                date.getTime()
+                            ) / 60000
+                        )
+                    );
+
+
+                timer.textContent =
+                    "⏱ " +
+                    timerText(
+                        minutes
+                    );
+
+
+                /*
+                 Update timer colour
+                 */
+
+                timer.classList.remove(
+                    "normal",
+                    "attention",
+                    "delayed"
+                );
+
+
+                timer.classList.add(
+                    timerClass(
+                        minutes
+                    )
+                );
+
+
+                /*
+                 Update parent card
+                 */
+
+                const card =
+                    timer.closest(
+                        ".card"
+                    );
+
+
+                if(card){
+
+                    card.classList.remove(
+                        "attention",
+                        "overdue"
+                    );
+
+
+                    if(
+                        minutes >=
+                        OVERDUE_MINUTES
+                    ){
+
+                        card.classList.add(
+                            "overdue"
+                        );
+
+                    }
+                    else if(
+                        minutes >= 5
+                    ){
+
+                        card.classList.add(
+                            "attention"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   START APPLICATION
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        /*
+         Check login first.
+        */
+
+        const allowed =
+            enforceKitchenAccess();
+
+
+        if(!allowed){
+
+            /*
+             Do not load orders until
+             staff logs in.
+            */
+
+            return;
+
+        }
+
+
+        /*
+         Initial load.
+        */
+
+        load();
+
+
+        /*
+         Refresh orders every 5 seconds.
+        */
+
+        setInterval(
+            () => {
+
+                load();
+
+            },
+            5000
+        );
+
+
+        /*
+         Update waiting timer every second.
+        */
+
+        setInterval(
+            () => {
+
+                updateTimers();
+
+            },
+            1000
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>

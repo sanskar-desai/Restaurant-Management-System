@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bakery Kitchen - Gomantak Saguti Restaurant</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f6f8;
+    color:#20242a;
+    min-height:100vh;
+}
+
+.header{
+    background:#7b2d26;
+    color:white;
+    padding:20px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.brand h1{
+    font-size:24px;
+}
+
+.brand p{
+    margin-top:5px;
+    opacity:.9;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    border:0;
+    border-radius:8px;
+    padding:10px 16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:white;
+    color:#7b2d26;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:25px 20px;
+}
+
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.title p{
+    color:#6b7280;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.refresh{
+    color:#6b7280;
+    font-size:13px;
+    text-align:right;
+}
+
+.kds-info{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.info-box{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:12px 18px;
+    min-width:150px;
+}
+
+.info-label{
+    font-size:12px;
+    color:#6b7280;
+}
+
+.info-value{
+    font-size:20px;
+    font-weight:bold;
+    margin-top:4px;
+}
+
+.connection{
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.online{
+    background:#e8f8ed;
+    color:#15803d;
+}
+
+.offline{
+    background:#feecec;
+    color:#dc2626;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 12px #0000000d;
+}
+
+.card.overdue{
+    border:2px solid #dc2626;
+}
+
+.card.attention{
+    border:2px solid #d97706;
+}
+
+.head{
+    padding:17px;
+    background:#fafafa;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.order-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.order{
+    font-size:19px;
+    font-weight:bold;
+}
+
+.timer{
+    font-size:13px;
+    font-weight:bold;
+    padding:6px 9px;
+    border-radius:20px;
+    background:#eef2f7;
+    color:#374151;
+}
+
+.timer.normal{
+    background:#e8f8ed;
+    color:#15803d;
+}
+
+.timer.attention{
+    background:#fff4cc;
+    color:#a16207;
+}
+
+.timer.delayed{
+    background:#feecec;
+    color:#dc2626;
+}
+
+.order-time{
+    margin-top:7px;
+    font-size:12px;
+    color:#6b7280;
+}
+
+.meta{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:9px;
+}
+
+.meta span{
+    background:#f0f1f3;
+    padding:5px 8px;
+    border-radius:6px;
+    font-size:12px;
+    color:#4b5563;
+}
+
+.warning{
+    margin-top:10px;
+    background:#feecec;
+    color:#dc2626;
+    padding:8px 10px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.items{
+    padding:14px;
+}
+
+.item{
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:10px;
+}
+
+.item:last-child{
+    margin-bottom:0;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.name{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.qty{
+    color:#6b7280;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.details{
+    display:flex;
+    justify-content:space-between;
+    color:#6b7280;
+    font-size:13px;
+    margin:9px 0 12px;
+}
+
+.row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.select{
+    flex:1;
+    padding:9px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.badge{
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.pending{
+    background:#fff7df;
+    color:#9a6700;
+}
+
+.preparing{
+    background:#e8f0ff;
+    color:#1d4ed8;
+}
+
+.completed{
+    background:#e8f8ed;
+    color:#15803d;
+}
+
+.msg{
+    font-size:12px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.success{
+    color:#15803d;
+}
+
+.error{
+    color:#dc2626;
+}
+
+.empty,
+.errorbox,
+.loading{
+    background:white;
+    border-radius:12px;
+    padding:35px;
+    text-align:center;
+    color:#6b7280;
+}
+
+.errorbox{
+    color:#dc2626;
+    border:1px solid #fecaca;
+}
+
+.staff-login-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#fff8f0,#f2ddd0);
+}
+
+.staff-login-card{
+    width:390px;
+    max-width:100%;
+    background:#fff;
+    border-radius:18px;
+    padding:32px;
+    text-align:center;
+    box-shadow:0 24px 60px rgba(70,35,25,.20);
+    border-top:5px solid #7b2d26;
+}
+
+.staff-login-icon{
+    font-size:44px;
+    margin-bottom:8px;
+}
+
+.staff-login-card h2{
+    color:#7b2d26;
+    margin-bottom:5px;
+}
+
+.staff-login-card p{
+    color:#6b7280;
+    margin-bottom:14px;
+}
+
+.staff-role-badge{
+    display:inline-block;
+    background:#fff0e8;
+    color:#7b2d26;
+    border:1px solid #f0cdbd;
+    border-radius:999px;
+    padding:7px 11px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.staff-login-card input{
+    width:100%;
+    padding:12px 13px;
+    margin:6px 0;
+    border:1px solid #ddd1c8;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
+}
+
+.staff-login-card input:focus{
+    border-color:#7b2d26;
+    box-shadow:0 0 0 3px rgba(123,45,38,.10);
+}
+
+.staff-login-card button{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:8px;
+    background:#7b2d26;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    margin:10px 0 12px;
+}
+
+.staff-login-card button:hover{
+    opacity:.92;
+}
+
+.staff-login-card small{
+    display:block;
+    color:#8a817b;
+    line-height:1.5;
+}
+
+.kitchen-notification{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:5000;
+    background:#7b2d26;
+    color:white;
+    padding:12px 16px;
+    border-radius:10px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    display:none;
+    min-width:260px;
+}
+
+.kitchen-notification strong{
+    display:block;
+    margin-bottom:3px;
+}
+
+.kitchen-notification span{
+    font-size:13px;
+}
+
+@media(max-width:700px){
+
+    .header,
+    .title{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .refresh{
+        text-align:left;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .kds-info{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .actions{
+        width:100%;
+    }
+
+    .actions .btn{
+        flex:1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="kitchenNotification" class="kitchen-notification">
+    <strong id="kitchenNotificationTitle">🔔 New Order</strong>
+    <span id="kitchenNotificationText"></span>
+</div>
+
+<!-- LOGIN -->
+
+<div id="staffLoginOverlay" class="staff-login-overlay">
+
+    <div class="staff-login-card">
+
+        <div class="staff-login-icon">
+            🧁
+        </div>
+
+        <h2>Bakery Kitchen</h2>
+
+        <p>
+            Kitchen Staff Login
+        </p>
+
+        <div class="staff-role-badge">
+            🔐 KITCHEN STAFF • BAKERY
+        </div>
+
+        <input
+            type="text"
+            id="staffUsername"
+            placeholder="Username"
+            autocomplete="username"
+        >
+
+        <input
+            type="password"
+            id="staffPassword"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
+
+        <button onclick="checkStaffLogin()">
+            Enter Kitchen
+        </button>
+
+        <small>
+            Only bakery kitchen staff can access this section.
+        </small>
+
+    </div>
+
+</div>
+
+
+<header class="header">
+
+    <div class="brand">
+
+        <h1>
+            Gomantak Saguti Restaurant
+        </h1>
+
+        <p>
+            Kitchen Staff • Bakery Section
+        </p>
+
+    </div>
+
+    <div class="actions">
+
+        <button
+            class="btn"
+            onclick="refreshOrders()"
+        >
+            ↻ Refresh
+        </button>
+
+        <button
+            class="btn"
+            onclick="logoutKitchenStaff()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="title">
+
+        <div>
+
+            <h2>
+                Bakery Kitchen
+            </h2>
+
+            <p>
+                Manage bakery item preparation status.
+            </p>
+
+        </div>
+
+        <div
+            class="refresh"
+            id="stamp"
+        >
+            Loading...
+        </div>
+
+    </div>
+
+
+    <div class="kds-info">
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Active Orders
+            </div>
+
+            <div
+                class="info-value"
+                id="activeCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Pending Items
+            </div>
+
+            <div
+                class="info-value"
+                id="pendingCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Preparing Items
+            </div>
+
+            <div
+                class="info-value"
+                id="preparingCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Completed Items
+            </div>
+
+            <div
+                class="info-value"
+                id="completedCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                Server
+            </div>
+
+            <div>
+
+                <span
+                    id="connection"
+                    class="connection offline"
+                >
+                    Connecting...
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="orders"
+        class="grid"
+    >
+
+        <div class="loading">
+            Loading bakery orders...
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   STAFF LOGIN
+========================================================= */
+
+var STAFF_ROLE =
+    "KITCHEN_STAFF";
+
+var STAFF_SECTION =
+    "Bakery";
+
+/* Original Bakery credentials */
+var STAFF_USERNAME =
+    "bakery";
+
+var STAFF_PASSWORD =
+    "bakery123";
+
+
+function checkStaffLogin(){
+
+    var username =
+        document
+            .getElementById("staffUsername")
+            .value
+            .trim();
+
+    var password =
+        document
+            .getElementById("staffPassword")
+            .value;
+
+
+    if(
+        username === STAFF_USERNAME &&
+        password === STAFF_PASSWORD
+    ){
+
+        localStorage.setItem(
+            "restaurantRole",
+            STAFF_ROLE
+        );
+
+        localStorage.setItem(
+            "restaurantKitchen",
+            STAFF_SECTION
+        );
+
+        localStorage.setItem(
+            "restaurantUser",
+            STAFF_USERNAME
+        );
+
+        document
+            .getElementById(
+                "staffLoginOverlay"
+            )
+            .style.display =
+                "none";
+
+        load();
+
+    }
+    else{
+
+        alert(
+            "Invalid Bakery username or password."
+        );
+
+    }
+
+}
+
+
+function enforceKitchenAccess(){
+
+    var role =
+        localStorage.getItem(
+            "restaurantRole"
+        );
+
+    var kitchen =
+        localStorage.getItem(
+            "restaurantKitchen"
+        );
+
+
+    if(
+        role === STAFF_ROLE &&
+        kitchen === STAFF_SECTION
+    ){
+
+        document
+            .getElementById(
+                "staffLoginOverlay"
+            )
+            .style.display =
+                "none";
+
+        return true;
+
+    }
+
+
+    document
+        .getElementById(
+            "staffLoginOverlay"
+        )
+        .style.display =
+            "flex";
+
+    return false;
+
+}
+
+
+function logoutKitchenStaff(){
+
+    localStorage.removeItem(
+        "restaurantRole"
+    );
+
+    localStorage.removeItem(
+        "restaurantKitchen"
+    );
+
+    localStorage.removeItem(
+        "restaurantUser"
+    );
+
+    document
+        .getElementById(
+            "staffLoginOverlay"
+        )
+        .style.display =
+            "flex";
+
+}
+
+
+/* ENTER KEY */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter" &&
+            document
+                .getElementById(
+                    "staffLoginOverlay"
+                )
+                .style.display !== "none"
+        ){
+
+            checkStaffLogin();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   API
+========================================================= */
+
+const API =
+    "http://localhost:8080/api/orders";
+
+const KITCHEN =
+    "Bakery";
+
+const OVERDUE_MINUTES =
+    10;
+
+
+/* =========================================================
+   BAKERY FILTER
+========================================================= */
+
+function bakery(i){
+
+    var n =
+        (
+            i.dishName ||
+            i.name ||
+            i.menuItemName ||
+            i.category ||
+            ""
+        )
+        .toString()
+        .toLowerCase();
+
+
+    return (
+        n.includes("cake") ||
+        n.includes("bread") ||
+        n.includes("bun") ||
+        n.includes("pastry") ||
+        n.includes("puff") ||
+        n.includes("cookie") ||
+        n.includes("muffin") ||
+        n.includes("brownie") ||
+        n.includes("croissant") ||
+        n.includes("donut") ||
+        n.includes("doughnut") ||
+        n.includes("bakery") ||
+        n.includes("dessert") ||
+        n.includes("sweet")
+    );
+
+}
+
+
+/* =========================================================
+   BEVERAGE FILTER
+========================================================= */
+
+function beverage(i){
+
+    var n =
+        (
+            i.dishName ||
+            i.name ||
+            i.menuItemName ||
+            i.category ||
+            ""
+        )
+        .toString()
+        .toLowerCase();
+
+
+    return (
+        n.includes("juice") ||
+        n.includes("shake") ||
+        n.includes("tea") ||
+        n.includes("coffee") ||
+        n.includes("drink") ||
+        n.includes("water") ||
+        n.includes("soda") ||
+        n.includes("cola") ||
+        n.includes("lassi") ||
+        n.includes("milk")
+    );
+
+}
+
+
+/* =========================================================
+   SECTION FILTER
+========================================================= */
+
+function belongs(i){
+
+    if(KITCHEN === "Bakery")
+        return bakery(i);
+
+    if(KITCHEN === "Beverages")
+        return beverage(i);
+
+    return !bakery(i) &&
+           !beverage(i);
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function esc(v){
+
+    return String(
+        v ?? ""
+    ).replace(
+        /[&<>"']/g,
+        x => ({
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+        }[x])
+    );
+
+}
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function money(v){
+
+    return "₹" +
+        Number(
+            v || 0
+        ).toFixed(2);
+
+}
+
+
+/* =========================================================
+   STATUS CLASS
+========================================================= */
+
+function cls(s){
+
+    s =
+        String(
+            s ||
+            "PENDING"
+        ).toUpperCase();
+
+
+    if(s === "PREPARING")
+        return "preparing";
+
+
+    if(s === "COMPLETED")
+        return "completed";
+
+
+    return "pending";
+
+}
+
+
+/* =========================================================
+   ORDER DATE
+========================================================= */
+
+function getOrderDate(o){
+
+    if(o.createdAt)
+        return new Date(
+            o.createdAt
+        );
+
+    if(o.orderDate)
+        return new Date(
+            o.orderDate
+        );
+
+    return new Date();
+
+}
+
+
+function formatOrderTime(o){
+
+    const d =
+        getOrderDate(o);
+
+
+    if(
+        isNaN(
+            d.getTime()
+        )
+    )
+        return "Time unavailable";
+
+
+    return d.toLocaleTimeString(
+        [],
+        {
+            hour:"2-digit",
+            minute:"2-digit",
+            second:"2-digit"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WAITING TIME
+========================================================= */
+
+function getAgeMinutes(o){
+
+    const d =
+        getOrderDate(o);
+
+
+    if(
+        isNaN(
+            d.getTime()
+        )
+    )
+        return 0;
+
+
+    return Math.max(
+        0,
+        Math.floor(
+            (
+                Date.now() -
+                d.getTime()
+            ) / 60000
+        )
+    );
+
+}
+
+
+function timerText(minutes){
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+    const mins =
+        minutes % 60;
+
+
+    if(hours > 0)
+        return (
+            hours +
+            "h " +
+            mins +
+            "m"
+        );
+
+
+    return mins +
+        " min";
+
+}
+
+
+function timerClass(minutes){
+
+    if(minutes >= 10)
+        return "delayed";
+
+    if(minutes >= 5)
+        return "attention";
+
+    return "normal";
+
+}
+
+
+/* =========================================================
+   LOAD
+========================================================= */
+
+async function load(){
+
+    if(!enforceKitchenAccess())
+        return;
+
+
+    const box =
+        document.getElementById(
+            "orders"
+        );
+
+
+    try{
+
+        const response =
+            await fetch(
+                API,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok)
+            throw new Error(
+                "Server error"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        document.getElementById(
+            "connection"
+        ).textContent =
+            "● Online";
+
+
+        document.getElementById(
+            "connection"
+        ).className =
+            "connection online";
+
+
+        const sectionOrders =
+            data
+            .map(
+                o => ({
+                    ...o,
+                    items:
+                        (
+                            o.items ||
+                            []
+                        ).filter(
+                            belongs
+                        )
+                })
+            )
+            .filter(
+                o =>
+                    o.items.length
+            );
+
+
+        /*
+         Keep completed items for
+         statistics, but remove them
+         from the active KDS display.
+        */
+
+        updateStatistics(
+            sectionOrders
+        );
+
+
+        const orders =
+            sectionOrders
+            .map(
+                o => ({
+                    ...o,
+                    items:
+                        (
+                            o.items ||
+                            []
+                        ).filter(
+                            i =>
+                                String(
+                                    i.status ||
+                                    "PENDING"
+                                ).toUpperCase()
+                                !==
+                                "COMPLETED"
+                        )
+                })
+            )
+            .filter(
+                o =>
+                    o.items.length
+            );
+
+
+        /*
+         FIFO:
+         Oldest order first.
+        */
+
+        orders.sort(
+            (a,b) =>
+                getOrderDate(a) -
+                getOrderDate(b)
+        );
+
+
+        if(!orders.length){
+
+            box.innerHTML = `
+
+                <div class="empty">
+
+                    <h3>
+                        No Active Bakery Orders
+                    </h3>
+
+                    <p style="margin-top:8px;">
+                        There are currently no
+                        pending or preparing
+                        bakery items.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+        else{
+
+            box.innerHTML =
+                orders
+                .map(
+                    o =>
+                        orderHtml(o)
+                )
+                .join("");
+
+        }
+
+
+        document.getElementById(
+            "stamp"
+        ).textContent =
+            "Last refreshed: " +
+            new Date()
+                .toLocaleTimeString();
+
+
+    }
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        document.getElementById(
+            "connection"
+        ).textContent =
+            "● Offline";
+
+
+        document.getElementById(
+            "connection"
+        ).className =
+            "connection offline";
+
+
+        box.innerHTML = `
+
+            <div class="errorbox">
+
+                Unable to connect to
+                the restaurant server.
+
+                <br><br>
+
+                Make sure Spring Boot is
+                running on port 8080.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   ORDER HTML
+========================================================= */
+
+function orderHtml(o){
+
+    const minutes =
+        getAgeMinutes(o);
+
+
+    const timer =
+        timerClass(minutes);
+
+
+    return `
+
+        <div
+            class="card ${
+                minutes >= 10
+                    ? "overdue"
+                    : (
+                        minutes >= 5
+                            ? "attention"
+                            : ""
+                    )
+            }"
+        >
+
+            <div class="head">
+
+                <div class="order-row">
+
+                    <div class="order">
+
+                        Order #
+                        ${
+                            esc(
+                                o.orderNumber ||
+                                o.orderId ||
+                                "N/A"
+                            )
+                        }
+
+                    </div>
+
+
+                    <div
+                        class="timer ${timer}"
+                        data-created="${
+                            esc(
+                                o.createdAt ||
+                                o.orderDate ||
+                                ""
+                            )
+                        }"
+                    >
+
+                        ⏱
+                        ${
+                            timerText(
+                                minutes
+                            )
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="order-time">
+
+                    Placed:
+                    ${
+                        formatOrderTime(o)
+                    }
+
+                </div>
+
+
+                <div class="meta">
+
+                    ${
+                        o.customerName
+                        ?
+                        `<span>
+                            👤 ${
+                                esc(
+                                    o.customerName
+                                )
+                            }
+                        </span>`
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        o.tableNumber
+                        ?
+                        `<span>
+                            Table ${
+                                esc(
+                                    o.tableNumber
+                                )
+                            }
+                        </span>`
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        o.orderType
+                        ?
+                        `<span>
+                            ${
+                                esc(
+                                    o.orderType
+                                )
+                            }
+                        </span>`
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                ${
+                    minutes >= 10
+                    ?
+                    `<div class="warning">
+                        ⚠ This bakery order has
+                        been waiting for more than
+                        10 minutes.
+                    </div>`
+                    :
+                    (
+                        minutes >= 5
+                        ?
+                        `<div
+                            class="warning"
+                            style="
+                                background:#fff4cc;
+                                color:#a16207;
+                            "
+                        >
+                            ⏳ This order has been
+                            waiting for
+                            ${minutes}
+                            minutes.
+                        </div>`
+                        :
+                        ""
+                    )
+                }
+
+            </div>
+
+
+            <div class="items">
+
+                ${
+                    o.items
+                    .map(
+                        i =>
+                            itemHtml(
+                                o,
+                                i
+                            )
+                    )
+                    .join("")
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ITEM HTML
+========================================================= */
+
+function itemHtml(o,i){
+
+    const status =
+        String(
+            i.status ||
+            "PENDING"
+        ).toUpperCase();
+
+
+    return `
+
+        <div class="item">
+
+            <div class="top">
+
+                <div class="name">
+
+                    ${
+                        esc(
+                            i.dishName ||
+                            i.menuItemName ||
+                            i.name ||
+                            "Unnamed Item"
+                        )
+                    }
+
+                </div>
+
+
+                <div class="qty">
+
+                    Qty:
+                    ${
+                        esc(
+                            i.quantity ||
+                            0
+                        )
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="details">
+
+                <span>
+                    Price:
+                    ${money(i.price)}
+                </span>
+
+                <span>
+                    Subtotal:
+                    ${money(i.subtotal)}
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span
+                    class="badge ${cls(status)}"
+                >
+                    ${esc(status)}
+                </span>
+
+
+                <select
+                    class="select"
+                    data-item="${esc(
+                        i.orderItemId
+                    )}"
+                    data-old="${esc(
+                        status
+                    )}"
+                    onchange="changeStatus(this)"
+                >
+
+                    <option
+                        value="PENDING"
+                        ${
+                            status === "PENDING"
+                                ? "selected"
+                                : ""
+                        }
+                    >
+                        PENDING
+                    </option>
+
+
+                    <option
+                        value="PREPARING"
+                        ${
+                            status === "PREPARING"
+                                ? "selected"
+                                : ""
+                        }
+                    >
+                        PREPARING
+                    </option>
+
+
+                    <option
+                        value="COMPLETED"
+                        ${
+                            status === "COMPLETED"
+                                ? "selected"
+                                : ""
+                        }
+                    >
+                        COMPLETED
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="msg"></div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CHANGE STATUS
+========================================================= */
+
+async function changeStatus(select){
+
+    const oldStatus =
+        select.dataset.old;
+
+    const newStatus =
+        select.value;
+
+
+    select.disabled = true;
+
+
+    try{
+
+        const response =
+            await fetch(
+                `${API}/items/${encodeURIComponent(
+                    select.dataset.item
+                )}/status`,
+                {
+                    method:"PATCH",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            status:
+                                newStatus
+                        })
+                }
+            );
+
+
+        if(!response.ok){
+
+            const errorText =
+                await response.text();
+
+            console.error(
+                errorText
+            );
+
+            throw new Error(
+                "Status update failed"
+            );
+
+        }
+
+
+        select.dataset.old =
+            newStatus;
+
+
+        const item =
+            select.closest(
+                ".item"
+            );
+
+
+        const badge =
+            item.querySelector(
+                ".badge"
+            );
+
+
+        const msg =
+            item.querySelector(
+                ".msg"
+            );
+
+
+        badge.textContent =
+            newStatus;
+
+
+        badge.className =
+            "badge " +
+            cls(newStatus);
+
+
+        msg.textContent =
+            "Status updated successfully.";
+
+
+        msg.className =
+            "msg success";
+
+
+        setTimeout(
+            () => {
+
+                msg.textContent =
+                    "";
+
+                msg.className =
+                    "msg";
+
+            },
+            2500
+        );
+
+
+        /*
+         COMPLETED items disappear
+         from active KDS after refresh.
+        */
+
+        setTimeout(
+            load,
+            500
+        );
+
+
+    }
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        select.value =
+            oldStatus;
+
+
+        const msg =
+            select
+                .closest(".item")
+                .querySelector(".msg");
+
+
+        msg.textContent =
+            "Unable to update status.";
+
+
+        msg.className =
+            "msg error";
+
+    }
+    finally{
+
+        select.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStatistics(
+    orders
+){
+
+    let pending = 0;
+
+    let preparing = 0;
+
+    let completed = 0;
+
+    let activeOrders = 0;
+
+
+    orders.forEach(
+        order => {
+
+            let hasActive =
+                false;
+
+
+            (
+                order.items ||
+                []
+            ).forEach(
+                item => {
+
+                    const status =
+                        String(
+                            item.status ||
+                            "PENDING"
+                        ).toUpperCase();
+
+
+                    if(
+                        status ===
+                        "PENDING"
+                    ){
+
+                        pending++;
+
+                        hasActive =
+                            true;
+
+                    }
+                    else if(
+                        status ===
+                        "PREPARING"
+                    ){
+
+                        preparing++;
+
+                        hasActive =
+                            true;
+
+                    }
+                    else if(
+                        status ===
+                        "COMPLETED"
+                    ){
+
+                        completed++;
+
+                    }
+
+                }
+            );
+
+
+            if(hasActive)
+                activeOrders++;
+
+        }
+    );
+
+
+    document.getElementById(
+        "activeCount"
+    ).textContent =
+        activeOrders;
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "preparingCount"
+    ).textContent =
+        preparing;
+
+
+    document.getElementById(
+        "completedCount"
+    ).textContent =
+        completed;
+
+}
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+function refreshOrders(){
+
+    load();
+
+}
+
+
+/* =========================================================
+   LIVE TIMER
+========================================================= */
+
+function updateTimers(){
+
+    document
+        .querySelectorAll(
+            ".timer"
+        )
+        .forEach(
+            timer => {
+
+                const created =
+                    timer.dataset.created;
+
+
+                if(!created)
+                    return;
+
+
+                const date =
+                    new Date(created);
+
+
+                if(
+                    isNaN(
+                        date.getTime()
+                    )
+                )
+                    return;
+
+
+                const minutes =
+                    Math.max(
+                        0,
+                        Math.floor(
+                            (
+                                Date.now() -
+                                date.getTime()
+                            ) / 60000
+                        )
+                    );
+
+
+                timer.textContent =
+                    "⏱ " +
+                    timerText(
+                        minutes
+                    );
+
+
+                timer.classList.remove(
+                    "normal",
+                    "attention",
+                    "delayed"
+                );
+
+
+                timer.classList.add(
+                    timerClass(
+                        minutes
+                    )
+                );
+
+
+                const card =
+                    timer.closest(
+                        ".card"
+                    );
+
+
+                if(card){
+
+                    card.classList.remove(
+                        "attention",
+                        "overdue"
+                    );
+
+
+                    if(minutes >= 10){
+
+                        card.classList.add(
+                            "overdue"
+                        );
+
+                    }
+                    else if(minutes >= 5){
+
+                        card.classList.add(
+                            "attention"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        if(!enforceKitchenAccess())
+            return;
+
+
+        load();
+
+
+        /*
+         Refresh orders every 5 seconds.
+        */
+
+        setInterval(
+            load,
+            5000
+        );
+
+
+        /*
+         Update timer every second.
+        */
+
+        setInterval(
+            updateTimers,
+            1000
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>

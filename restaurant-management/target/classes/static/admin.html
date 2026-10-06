@@ -1,0 +1,3408 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - Gomantak Saguti Restaurant</title>
+
+<style>
+
+/* ================================
+   GLOBAL SETTINGS - LUXURY THEME
+================================ */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+:root{
+    --background: #FFF8F0;
+    --header: #6B1E2D;
+    --primary: #C65D3B;
+    --accent: #D4A373;
+    --card: #FFFFFF;
+    --text: #3D2B1F;
+    --light-text: #75645A;
+    --border: #E8D8C8;
+    --danger: #C0392B;
+    --shadow: rgba(107, 30, 45, 0.15);
+}
+
+/* ================================
+   MODERN FOOD APP THEME
+================================ */
+
+body.modern-theme{
+    --background: #FFF1E6;
+    --header: #E85D04;
+    --primary: #FF7B00;
+    --accent: #FFB703;
+    --card: #FFFFFF;
+    --text: #3A2A20;
+    --light-text: #7A6255;
+    --border: #FFD6B3;
+    --danger: #E63946;
+    --shadow: rgba(232, 93, 4, 0.15);
+}
+
+/* ================================
+   BODY
+================================ */
+
+body{
+    background:
+    radial-gradient(circle at 10% 10%, rgba(255,183,3,0.12) 0 2px, transparent 3px),
+    linear-gradient(135deg, #FFF8F0, #F8E8DA 55%, #F2D8C8);
+    background-size: 34px 34px, auto;
+    color: var(--text);
+    min-height: 100vh;
+    transition: 0.4s ease;
+}
+
+/* ================================
+   LOGIN PAGE
+================================ */
+
+#loginSection{
+    min-height:100vh;
+    width:100%;
+    box-sizing:border-box;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    padding:40px 20px;
+    background:
+        radial-gradient(circle at 8% 12%, rgba(198,93,59,.18) 0 110px, transparent 111px),
+        radial-gradient(circle at 92% 88%, rgba(123,46,42,.16) 0 150px, transparent 151px),
+        linear-gradient(135deg,#fffaf5 0%,#f8e9dc 50%,#edd3c1 100%);
+}
+
+#loginSection::before,
+#loginSection::after{
+    content:"";
+    position:absolute;
+    border:1px solid rgba(123,46,42,.12);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+#loginSection::before{
+    width:520px;
+    height:520px;
+    top:-300px;
+    right:-190px;
+}
+
+#loginSection::after{
+    width:420px;
+    height:420px;
+    bottom:-250px;
+    left:-180px;
+}
+
+.login-box{
+    width:430px;
+    max-width:100%;
+    box-sizing:border-box;
+    position:relative;
+    z-index:2;
+    padding:38px 38px 30px;
+    border-radius:24px;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid #eadbd0;
+    border-top:6px solid #7b2e2a;
+    box-shadow:0 22px 60px rgba(76,43,31,.18);
+    animation:loginAnimation .55s ease-out;
+}
+
+.login-brand{
+    width:78px;
+    height:78px;
+    margin:0 auto 17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:22px;
+    background:linear-gradient(145deg,#7b2e2a,#c65d3b);
+    box-shadow:0 12px 25px rgba(123,46,42,.24);
+    font-size:37px;
+}
+
+.login-brand span{
+    display:block;
+}
+
+.login-box h2{
+    margin:0;
+    color:#7b2e2a;
+    font-size:27px;
+    line-height:1.2;
+    font-weight:800;
+}
+
+.login-subtitle{
+    margin:9px 0 22px;
+    color:#786860;
+    font-size:14px;
+}
+
+.role-login-note{
+    margin:0 0 20px;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fff6ef;
+    border:1px solid #f0ddd0;
+    color:#7b2e2a;
+    font-size:13px;
+    line-height:1.45;
+}
+
+.role-login-note span{
+    color:#806f66;
+    font-size:12px;
+}
+
+.login-field{
+    position:relative;
+    width:100%;
+    margin-bottom:13px;
+}
+
+.login-field-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:16px;
+    opacity:.72;
+    pointer-events:none;
+}
+
+.login-box input{
+    display:block;
+    width:100%;
+    height:48px;
+    box-sizing:border-box;
+    margin:0;
+    padding:0 14px 0 44px;
+    border:1px solid #ddcec3;
+    border-radius:11px;
+    background:#fffaf7;
+    color:#342924;
+    font-size:15px;
+    outline:none;
+    transition:border-color .2s,box-shadow .2s,background .2s;
+}
+
+.login-box input:focus{
+    border-color:#c65d3b;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(198,93,59,.11);
+}
+
+.login-box input::placeholder{
+    color:#9a8b82;
+}
+
+.login-box button{
+    display:block;
+    width:100%;
+    height:49px;
+    margin:18px 0 0;
+    border:0;
+    border-radius:11px;
+    background:linear-gradient(135deg,#7b2e2a,#b94f32);
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.1px;
+    cursor:pointer;
+    box-shadow:0 9px 20px rgba(123,46,42,.22);
+    transition:transform .2s,box-shadow .2s;
+}
+
+.login-box button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 13px 26px rgba(123,46,42,.28);
+}
+
+.login-box button:active{
+    transform:translateY(0);
+}
+
+.login-footer{
+    margin-top:20px;
+    padding-top:15px;
+    border-top:1px solid #eee1d8;
+    color:#918078;
+    font-size:11px;
+}
+
+@keyframes loginAnimation{
+    from{opacity:0;transform:translateY(18px) scale(.98);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+@media(max-width:520px){
+    #loginSection{padding:24px 14px;}
+    .login-box{padding:32px 22px 25px;border-radius:20px;}
+    .login-box h2{font-size:23px;}
+    .login-brand{width:70px;height:70px;font-size:33px;}
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+button{
+    padding: 10px 18px;
+
+    margin: 5px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    transition:
+    0.3s ease;
+}
+
+button:hover{
+    transform: translateY(-2px);
+
+    box-shadow:
+    0 8px 18px
+    var(--shadow);
+}
+
+button:active{
+    transform: translateY(0);
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.header{
+    width: 100%;
+
+    min-height: 96px;
+
+    background:
+    linear-gradient(
+        90deg,
+        var(--header),
+        #8A3042
+    );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 18px 5%;
+
+    color: white;
+
+    box-shadow:
+    0 4px 15px var(--shadow);
+}
+
+.header h1{
+    font-size: 28px;
+    letter-spacing: .2px;
+    line-height: 1.25;
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-area{
+    position: relative;
+    margin-left: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+    flex-shrink: 0;
+}
+
+.notification-button{
+    position: relative;
+    width: 66px;
+    height: 66px;
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 16px;
+    background: #fff;
+    color: var(--header);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,.16);
+    transition: .2s;
+}
+
+.notification-button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.20);
+}
+
+.notification-count{
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: #b3261e;
+    color: #fff;
+    font: 700 11px Arial,sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+.theme-button{
+    background: var(--accent);
+    color: var(--text);
+}
+
+.theme-button:hover{
+    background: white;
+    color: var(--header);
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.nav{
+    width: 100%;
+
+    padding: 14px;
+
+    background: var(--card);
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 5px 18px rgba(107,30,45,.07);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.nav button{
+    background: transparent;
+
+    color: var(--text);
+
+    border:
+    1px solid var(--border);
+}
+
+.nav button:hover{
+    background: var(--primary);
+    color: white;
+}
+
+/* ================================
+   SUB NAVIGATION
+================================ */
+
+.subnav{
+    width: 92%;
+
+    max-width: 1000px;
+
+    margin: 28px auto;
+
+    padding: 12px;
+
+    background: var(--card);
+
+    border-radius: 10px;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    box-shadow:
+    0 8px 25px var(--shadow);
+}
+
+.subnav button{
+    background: #F7ECE3;
+
+    color: var(--text);
+
+    margin: 2px;
+}
+
+.subnav button:hover{
+    background: var(--accent);
+}
+
+.subnav button.active-tab{
+    background: var(--header);
+
+    color: white;
+}
+
+/* ================================
+   ORDERS
+================================ */
+
+#ordersContent{
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding-bottom: 40px;
+}
+
+.order-box,
+.item-box{
+
+    background: var(--card);
+
+    margin-bottom: 20px;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    border-left:
+    6px solid var(--primary);
+
+    box-shadow:
+    0 8px 25px var(--shadow);
+
+    line-height: 1.75;
+
+    animation:
+    cardAnimation 0.5s ease;
+
+    transition: 0.3s;
+}
+
+@keyframes cardAnimation{
+
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.order-box:hover,
+.item-box:hover{
+
+    transform:
+    translateY(-5px);
+
+}
+
+.order-title{
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    color: var(--header);
+
+    margin-bottom: 12px;
+
+}
+
+.order-items{
+
+    background: #FFF6EF;
+
+    padding: 15px;
+
+    border-radius: 7px;
+
+    margin: 12px 0;
+
+    border-left:
+    3px solid var(--accent);
+
+}
+
+/* ================================
+   MENU SETTINGS
+================================ */
+
+.menu-heading{
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    font-size: 30px;
+
+    color: var(--header);
+
+}
+
+.add-menu-form{
+
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 25px auto;
+
+    padding: 22px;
+
+    background: var(--card);
+
+    border-radius: 10px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    justify-content: center;
+
+    box-shadow:
+    0 8px 25px var(--shadow);
+}
+
+.add-menu-form input,
+.add-menu-form select{
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    border:
+    1px solid var(--border);
+
+    color: var(--text);
+
+    background: white;
+
+    outline: none;
+
+    font-size: 14px;
+
+}
+
+.add-menu-form input:focus,
+.add-menu-form select:focus{
+
+    border-color:
+    var(--primary);
+
+}
+
+/* ================================
+   TABLE
+================================ */
+
+.table-container{
+
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    overflow-x: auto;
+
+    border-radius: 10px;
+
+    box-shadow:
+    0 8px 25px var(--shadow);
+}
+
+table{
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: var(--card);
+    overflow: hidden;
+}
+
+th{
+
+    background:
+    var(--header);
+
+    color: white;
+
+    padding: 16px 15px;
+
+    font-size: 15px;
+}
+
+td{
+
+    padding: 15px 14px;
+
+    text-align: center;
+
+    border-bottom:
+    1px solid var(--border);
+}
+
+tr:hover{
+
+    background:
+    #FFF6EF;
+
+}
+
+.delete-btn{
+
+    background:
+    var(--danger);
+
+    color: white;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media(max-width:700px){
+
+    .header{
+
+        padding: 15px;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 10px;
+
+    }
+
+    .header h1{
+
+        font-size: 21px;
+
+    }
+
+    .login-box{
+
+        padding: 30px 20px;
+
+    }
+
+    .add-menu-form{
+
+        flex-direction: column;
+
+    }
+
+    .add-menu-form input,
+    .add-menu-form select{
+
+        width: 100%;
+
+    }
+
+    .subnav{
+
+        width: 95%;
+
+    }
+
+}
+
+/* ================================
+    DASHBOARD ENHANCEMENTS
+================================ */
+.admin-shell{display:flex;min-height:calc(100vh - 96px)}
+.admin-main>.nav{display:none}
+.sidebar{width:245px;flex:0 0 245px;background:rgba(255,255,255,.92);border-right:1px solid var(--border);padding:22px 14px;display:flex;flex-direction:column;gap:7px;box-shadow:4px 0 18px rgba(107,30,45,.06)}
+.sidebar-title{padding:0 12px 18px;color:var(--header);font-size:14px;font-weight:bold;text-transform:uppercase;letter-spacing:1px}.sidebar button{width:100%;margin:0;text-align:left;background:transparent;color:var(--text);border-radius:8px;padding:12px 14px;font-size:14px}.sidebar button:hover,.sidebar button.active{background:var(--header);color:#fff;transform:translateX(3px)}.sidebar .logout-link{margin-top:auto;color:var(--danger)}
+.admin-main{min-width:0;flex:1;padding-bottom:40px}.admin-main>.header{margin:0}.dashboard-page{width:92%;max-width:1200px;margin:30px auto}.page-intro{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:22px}.page-intro h2{color:var(--header);font-size:30px}.page-intro p{color:var(--light-text);margin-top:6px}.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;margin-bottom:26px}.stat-card{background:var(--card);border:1px solid var(--border);border-top:4px solid var(--primary);border-radius:12px;padding:18px;box-shadow:0 10px 24px var(--shadow);transition:.25s}.stat-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px var(--shadow)}.stat-icon{font-size:24px}.stat-label{color:var(--light-text);font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-top:12px}.stat-value{font-size:28px;font-weight:bold;color:var(--header);margin-top:5px}.panel-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;box-shadow:0 10px 24px var(--shadow)}.panel-card h3{color:var(--header);margin-bottom:15px}.quick-grid{display:grid;grid-template-columns:minmax(300px,0.8fr) minmax(0,1.7fr);gap:18px;width:100%}.quick-grid>.panel-card{min-width:0;width:100%;box-sizing:border-box}.quick-grid .panel-card h3{margin-top:0;margin-bottom:18px}.recent-order-item{display:flex;flex-direction:column;gap:7px;padding:12px 0;border-bottom:1px solid var(--border)}.recent-order-item:last-child{border-bottom:none}.recent-order-top{display:flex;justify-content:space-between;align-items:center;gap:10px;min-width:0}.recent-order-id{font-weight:700;color:var(--header);white-space:nowrap}.recent-order-customer{color:var(--text);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;text-align:right}.recent-order-status{align-self:flex-start}.recent-order-item .status-badge{white-space:nowrap}.revenue-stat-card{position:relative}.revenue-period-select{margin-top:8px;padding:5px 8px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);font-size:11px;font-weight:600;cursor:pointer;outline:none}.revenue-period-select:focus{border-color:var(--primary)}.empty-state{text-align:center;color:var(--light-text);padding:35px 15px}.orders-toolbar{width:92%;max-width:1100px;margin:26px auto 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.orders-toolbar input,.orders-toolbar select,.menu-filter input,.menu-filter select{padding:12px;border:1px solid var(--border);border-radius:7px;background:var(--card);color:var(--text);outline:none}.orders-toolbar input{flex:1;min-width:220px}.filter-chip{background:#f7ece3;color:var(--text);margin:0}.filter-chip.active{background:var(--header);color:#fff}.status-badge,.payment-badge{display:inline-block;padding:5px 9px;border-radius:999px;font:700 12px Arial,sans-serif}.status-received{background:#fff0c9;color:#8a5a00}.status-preparing{background:#ffe0c9;color:#a14312}.status-completed{background:#d8f3df;color:#16723b}.status-delivery{background:#dce9ff;color:#24569b}.payment-badge{background:#eee8ff;color:#5c3d91}.payment-paid{background:#d8f3df;color:#16723b}.payment-pending{background:#fff4d9;color:#8a5a00}.payment-failed{background:#fdeaea;color:#a52c2c}.payment-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:10px}.payment-controls select{padding:7px 9px;border:1px solid var(--border);border-radius:7px;background:var(--card);color:var(--text)}.order-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0;color:var(--light-text);font-size:13px}.status-select{padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);font-weight:bold;transition:.2s}.status-select-received{background:#fff0c9!important;color:#8a5a00!important;border-color:#e8c86b!important}.status-select-preparing{background:#ffe0c9!important;color:#a14312!important;border-color:#efaa83!important}.status-select-completed{background:#d8f3df!important;color:#16723b!important;border-color:#8bd3a3!important}.status-select-delivery{background:#dce9ff!important;color:#24569b!important;border-color:#9bbbe8!important}.status-select option{font-weight:bold;color:#222;background:#fff}.status-select option[value='1']{background:#fff0c9;color:#8a5a00}.status-select option[value='2']{background:#ffe0c9;color:#a14312}.status-select option[value='3']{background:#d8f3df;color:#16723b}.status-select option[value='4']{background:#dce9ff;color:#24569b}.menu-filter{width:90%;max-width:1000px;margin:20px auto 0;display:flex;gap:10px;flex-wrap:wrap}.menu-filter input{flex:1;min-width:220px}.action-btn{background:var(--header);padding:8px 12px;font-size:12px}.edit-btn{background:#557a57}.toast{position:fixed;right:22px;top:22px;z-index:300;background:#26352b;color:white;padding:14px 18px;border-left:4px solid var(--accent);border-radius:7px;box-shadow:0 12px 26px rgba(0,0,0,.2);animation:toastIn .3s ease}.toast.error{border-left-color:var(--danger)}@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}.chart-row{display:flex;align-items:center;gap:12px;margin:14px 0;font-size:13px}.chart-row span:first-child{width:110px}.chart-bar{height:12px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:20px;min-width:4px}.data-table{width:100%;box-shadow:none;border:1px solid var(--border);border-radius:8px;overflow:hidden}.data-table th,.data-table td{text-align:left}.data-table th{font-size:12px;text-transform:uppercase;letter-spacing:.4px}.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.settings-note{color:var(--light-text);line-height:1.7}.hidden-page{display:none!important}
+
+/* ================================
+   EASY ORDER STATUS DISPLAY
+================================ */
+.status-guide{width:92%;max-width:1100px;margin:18px auto 22px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 5px 16px var(--shadow);color:var(--light-text);font-size:13px}.status-guide strong{color:var(--text)}.status-guide span{display:inline-flex;align-items:center;gap:5px;margin-left:12px;font-weight:bold}.item-status-row{display:grid;grid-template-columns:minmax(220px,1fr) 150px 170px;gap:14px;align-items:center;padding:13px 4px;border-bottom:1px solid var(--border)}.item-status-row:last-child{border-bottom:0}.item-info strong{display:block;color:var(--text);font-size:15px}.item-info small{display:block;color:var(--light-text);margin-top:3px}.item-qty{font-size:13px;color:var(--light-text)}.status-action{display:flex;align-items:center;gap:8px}.status-action .status-select{width:100%;padding:10px}.status-action-label{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--light-text);font-weight:bold;margin-bottom:4px}.item-status-box{background:rgba(255,255,255,.55);border:1px solid var(--border);border-radius:8px;padding:5px 8px}.quantity-controls{display:flex!important;align-items:center;gap:7px;margin-top:10px;visibility:visible!important;opacity:1!important}.quantity-btn{display:inline-flex!important;align-items:center;justify-content:center;visibility:visible!important;width:34px;height:34px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);font-size:18px;font-weight:bold;cursor:pointer;line-height:1}.quantity-btn:hover:not(:disabled){background:var(--header);color:#fff}.quantity-btn:disabled{opacity:.45;cursor:not-allowed}.quantity-value{display:inline-block!important;min-width:32px;text-align:center;font-weight:bold;font-size:16px;visibility:visible!important}.remove-item-btn{display:inline-flex!important;align-items:center;justify-content:center;visibility:visible!important;margin-left:4px;padding:7px 9px;border:0;border-radius:6px;background:#b44b4b;color:#fff;font-weight:bold;cursor:pointer}.remove-item-btn:hover:not(:disabled){opacity:.88}.remove-item-btn:disabled{opacity:.45;cursor:not-allowed}.modification-label{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--light-text);font-weight:bold;margin-top:8px}.order-items-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.order-items-title span{font-size:12px;color:var(--light-text);font-weight:normal}
+.analytics-stat-grid{grid-template-columns:repeat(5,1fr);gap:16px}
+.analytics-stat-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#fff 0%,#fff8f2 100%)}
+.analytics-stat-card::after{content:"";position:absolute;right:-28px;top:-32px;width:92px;height:92px;border-radius:50%;background:rgba(255,183,3,.12)}
+.analytics-stat-card .stat-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#fff0e4;box-shadow:0 5px 12px rgba(232,93,4,.08)}
+.analytics-stat-card .stat-value{position:relative;z-index:1}
+.analytics-stat-card .stat-label{font-weight:700}
+.analytics-status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.analytics-status-card{position:relative;border:1px solid var(--border);border-radius:12px;padding:18px;background:linear-gradient(145deg,#fff,#fff9f5);text-align:left;box-shadow:0 6px 16px rgba(107,30,45,.06);overflow:hidden}
+.analytics-status-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--primary)}
+.analytics-status-card:nth-child(2)::before{background:#e58b38}.analytics-status-card:nth-child(3)::before{background:#48a868}.analytics-status-card:nth-child(4)::before{background:#4f7fc4}
+.analytics-status-card .status-number{font-size:28px;font-weight:800;color:var(--header);margin-top:8px}
+.analytics-status-card small{color:var(--light-text)}
+.analytics-bar-row{display:grid;grid-template-columns:145px 1fr 48px;gap:12px;align-items:center;margin:14px 0;font-size:13px}
+.analytics-bar-row>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.analytics-bar-track{height:12px;background:#f0e4d9;border-radius:20px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.06)}
+.analytics-bar-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:20px;min-width:4px;transition:width .6s ease}
+.analytics-day-row{display:grid;grid-template-columns:70px 1fr 82px;gap:12px;align-items:center;margin:14px 0;font-size:13px}
+.analytics-day-row>span{font-weight:700;color:var(--text)}
+.analytics-day-row b{text-align:right;color:var(--header)}
+.analytics-empty{text-align:center;color:var(--light-text);padding:35px 10px;background:#fffaf6;border-radius:10px;border:1px dashed var(--border)}
+.analytics-rank{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,var(--header),var(--primary));color:#fff;font-weight:800;margin-right:8px;box-shadow:0 3px 8px rgba(107,30,45,.18)}
+.analytics-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.analytics-heading h3{margin:0!important}
+.analytics-heading span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--light-text);background:#fff3e8;border:1px solid var(--border);padding:5px 9px;border-radius:999px}
+.analytics-period-box{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.75);padding:7px;border:1px solid var(--border);border-radius:12px;box-shadow:0 5px 14px rgba(107,30,45,.05)}
+.analytics-period-box select{border:0!important;background:transparent!important;padding:9px 10px!important;box-shadow:none!important;font-weight:700}
+.analytics-refresh-btn{border-radius:9px!important;margin:0!important}
+.analytics-hero{background:linear-gradient(135deg,var(--header),#8f3549 55%,var(--primary));color:#fff;border-radius:16px;padding:22px 24px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 14px 32px rgba(107,30,45,.20);position:relative;overflow:hidden}
+.analytics-hero::after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-55px;top:-80px;background:rgba(255,255,255,.09)}
+.analytics-hero h3{font-size:21px;margin-bottom:6px;color:#fff}
+.analytics-hero p{color:rgba(255,255,255,.82);font-size:13px;line-height:1.6;max-width:650px}
+.analytics-hero-badge{position:relative;z-index:1;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);padding:10px 14px;border-radius:10px;font-weight:700;white-space:nowrap}
+.analytics-panel{min-height:260px}
+@media(max-width:1050px){.analytics-stat-grid{grid-template-columns:repeat(3,1fr)}.analytics-status-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.analytics-stat-grid{grid-template-columns:repeat(2,1fr)}.analytics-status-grid{grid-template-columns:1fr}.analytics-hero{display:block;padding:18px}.analytics-hero-badge{display:inline-block;margin-top:12px}.analytics-bar-row{grid-template-columns:105px 1fr 40px}.analytics-day-row{grid-template-columns:60px 1fr 70px}.analytics-period-box{width:100%;justify-content:space-between}.analytics-period-box select{flex:1}}
+@media(max-width:760px){.status-guide{width:94%}.item-status-row{grid-template-columns:1fr;gap:8px}.status-action{max-width:260px}.order-items-title{display:block}.order-items-title span{display:block;margin-top:3px}}
+
+@media(max-width:1050px){.stat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.admin-shell{display:block}.sidebar{width:100%;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;border-right:0;border-bottom:1px solid var(--border)}.sidebar-title,.sidebar .logout-link{display:none}.sidebar button{padding:10px 6px;text-align:center;font-size:11px}.admin-main>.header{min-height:86px}.admin-main>.header h1{font-size:20px}.dashboard-page{width:94%;margin:22px auto}.page-intro{display:block}.page-intro h2{font-size:25px}.stat-grid{grid-template-columns:repeat(2,1fr);gap:10px}.stat-card{padding:14px}.stat-value{font-size:23px}.quick-grid,.analytics-grid{grid-template-columns:1fr}.orders-toolbar{width:94%}.orders-toolbar input{min-width:100%}.order-box,.item-box{padding:18px}.table-container{width:94%}.add-menu-form{width:94%}}
+
+
+.auto-refresh-controls {
+    width: 92%;
+    max-width: 1100px;
+    margin: 10px auto 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.auto-refresh-indicator {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--light-text);
+    font-size: 13px;
+}
+.auto-refresh-indicator.active { color: #237a45; }
+.auto-refresh-toggle {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 7px 13px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.auto-refresh-toggle:hover { transform: translateY(-1px); }
+.auto-refresh-toggle.on { border-color: #8bd3a3; color: #237a45; }
+.auto-refresh-toggle.off { border-color: #d6a1a1; color: #9b3d3d; }
+@media(max-width:760px){ .auto-refresh-controls{width:94%;} }
+
+/* WHOLE ORDER DELETE BUTTON */
+.delete-order-btn {
+    float: right;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #d9534f;
+    background: transparent;
+    color: #d9534f;
+    border-radius: 7px;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.delete-order-btn:hover {
+    background: #d9534f;
+    color: #fff;
+}
+
+/* QUANTITY EDITING - VISIBILITY FIX */
+.quantity-controls {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.quantity-controls .quantity-btn,
+.quantity-controls .quantity-value,
+.quantity-controls .remove-item-btn {
+    visibility: visible !important;
+}
+
+/* =========================================================
+   MENU AVAILABILITY
+========================================================= */
+.availability-badge { display:inline-block; padding:5px 9px; border-radius:999px; font:700 11px Arial,sans-serif; margin-left:6px; }
+.availability-available { background:#d8f3df; color:#16723b; }
+.availability-out { background:#ffe0e0; color:#a12626; }
+.availability-btn { border:0; border-radius:6px; padding:8px 10px; cursor:pointer; font-weight:700; margin:2px; }
+.availability-btn.available { background:#ffe0e0; color:#a12626; }
+.availability-btn.out { background:#d8f3df; color:#16723b; }
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+.notification-panel{position:absolute;right:0;top:78px;width:360px;max-width:calc(100vw - 28px);background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.18);z-index:250;display:none;overflow:hidden}
+.notification-panel.open{display:block}
+.notification-panel-head{padding:15px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.notification-panel-head h3{margin:0;color:var(--header);font-size:16px}
+.notification-clear{border:0;background:transparent;color:var(--primary);font-weight:700;cursor:pointer;font-size:12px}
+.notification-list{max-height:360px;overflow:auto}
+.notification-item{padding:13px 15px;border-bottom:1px solid var(--border);display:flex;gap:11px;align-items:flex-start}
+.notification-item:last-child{border-bottom:0}
+.notification-icon{width:34px;height:34px;border-radius:10px;background:#fff0df;display:flex;align-items:center;justify-content:center;flex:0 0 34px}
+.notification-item strong{display:block;color:var(--header);font-size:13px;margin-bottom:3px}
+.notification-item p{margin:0;color:var(--light-text);font-size:12px;line-height:1.45}
+.notification-time{display:block;color:#999;font-size:10px;margin-top:5px}
+.notification-empty{padding:28px 16px;text-align:center;color:var(--light-text);font-size:13px}
+.notification-pulse{animation:notificationPulse .7s ease}
+@keyframes notificationPulse{40%{transform:scale(1.12)}}
+@media(max-width:700px){.notification-area{position:static;margin-left:0;gap:10px}.notification-button{width:48px;height:48px;font-size:23px}.notification-panel{right:14px;top:70px}.header{flex-wrap:wrap}.header h1{width:100%;font-size:20px}.theme-button{padding:10px 14px}}
+
+/* ================================
+   AUDIT / HISTORY
+================================ */
+.audit-toolbar{width:94%;max-width:1180px;margin:18px auto;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.audit-toolbar-left{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.audit-filter{padding:10px 12px;border:1px solid var(--border);border-radius:9px;background:#fff;color:var(--text);font-size:13px}
+.audit-table-wrap{width:94%;max-width:1180px;margin:0 auto 30px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:auto;box-shadow:0 10px 30px var(--shadow)}
+.audit-table{width:100%;border-collapse:collapse;min-width:760px}
+.audit-table th{background:#fff3e5;color:var(--header);padding:13px 14px;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+.audit-table td{padding:13px 14px;border-bottom:1px solid #f0e5dc;color:var(--text);font-size:13px;vertical-align:top}
+.audit-table tr:last-child td{border-bottom:0}
+.audit-action{display:inline-block;padding:5px 9px;border-radius:999px;background:#f7eadf;color:var(--header);font-weight:700;font-size:11px}
+.audit-empty{padding:45px;text-align:center;color:var(--light-text)}
+.audit-count{font-size:13px;color:var(--light-text);font-weight:700}
+@media(max-width:760px){.audit-toolbar{width:94%}.audit-table-wrap{width:94%}}
+
+
+
+/* ================================
+   TABLE MANAGEMENT
+================================ */
+.table-management-grid{width:94%;max-width:1180px;margin:18px auto 30px;display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:start}
+.table-form-card,.tables-list-card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 30px var(--shadow);padding:20px}
+.table-form-card h3,.tables-list-card h3{margin:0 0 6px;color:var(--header)}
+.table-form-note{margin:0 0 18px;color:var(--light-text);font-size:12px;line-height:1.5}
+.table-form-group{margin-bottom:13px}
+.table-form-group label{display:block;margin-bottom:6px;color:var(--text);font-size:12px;font-weight:700}
+.table-form-group input,.table-form-group select{width:100%;height:43px;padding:0 12px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--text);outline:none}
+.table-form-group input:focus,.table-form-group select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(198,93,59,.10)}
+.table-form-actions{display:flex;gap:9px;margin-top:16px}
+.table-form-actions button{flex:1}
+.table-cancel-btn{background:#f3ece7!important;color:var(--text)!important;border:1px solid var(--border)!important}
+.table-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 18px}
+.table-summary-card{padding:14px;border-radius:12px;border:1px solid var(--border);background:#fffaf6}
+.table-summary-card strong{display:block;font-size:22px;color:var(--header)}
+.table-summary-card span{font-size:11px;color:var(--light-text);font-weight:700}
+.table-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px}
+.restaurant-table-card{border:1px solid var(--border);border-radius:14px;padding:16px;background:#fff;box-shadow:0 5px 16px rgba(0,0,0,.06)}
+.restaurant-table-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.restaurant-table-number{font-size:21px;font-weight:800;color:var(--header)}
+.restaurant-table-status{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:800}
+.table-status-available{background:#e8f7ee;color:#217a46}
+.table-status-occupied{background:#fdeaea;color:#a52c2c}
+.table-status-reserved{background:#fff4d9;color:#9a6b00}
+.restaurant-table-info{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px}
+.restaurant-table-info div{padding:9px;border-radius:9px;background:#fff8f2}
+.restaurant-table-info span{display:block;font-size:10px;color:var(--light-text);margin-bottom:3px}
+.restaurant-table-info strong{font-size:12px;color:var(--text)}
+.restaurant-table-actions{display:flex;gap:7px;flex-wrap:wrap}
+.restaurant-table-actions button{border:0;border-radius:8px;padding:8px 9px;cursor:pointer;font-size:11px;font-weight:700}
+.table-edit-btn{background:#f4e8dc;color:#6b1e2d}
+.table-delete-btn{background:#fce8e5;color:#a52c2c}
+.table-status-select{flex:1;min-width:100px;padding:8px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);font-size:11px}
+.tables-empty{padding:45px 15px;text-align:center;color:var(--light-text)}
+@media(max-width:850px){.table-management-grid{grid-template-columns:1fr}.table-summary-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.table-summary-grid{grid-template-columns:1fr}.table-cards{grid-template-columns:1fr}}
+
+
+/* ================================
+   TABLE RESERVATIONS
+================================ */
+.reservation-summary-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0; }
+.reservation-summary-card { background:#fff; border:1px solid #e5e5e5; border-radius:14px; padding:16px; text-align:center; }
+.reservation-summary-card strong { display:block; font-size:25px; }
+.reservation-summary-card span { font-size:12px; font-weight:700; color:#777; }
+.reservation-filters { display:flex; gap:10px; flex-wrap:wrap; margin:15px 0; }
+.reservation-filters input, .reservation-filters select { padding:10px 12px; border:1px solid #ddd; border-radius:9px; }
+.reservation-table-wrap { overflow-x:auto; }
+.reservation-table { width:100%; border-collapse:collapse; min-width:980px; }
+.reservation-table th, .reservation-table td { padding:12px 10px; border-bottom:1px solid #eee; text-align:left; vertical-align:top; }
+.reservation-status-select { padding:7px 9px; border-radius:8px; border:1px solid #ddd; }
+.reservation-empty { text-align:center; padding:35px; color:#777; }
+@media(max-width:800px){ .reservation-summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOGIN SECTION -->
+
+<div id="loginSection">
+
+<div class="login-box">
+
+    <div class="login-brand"><span>🍽️</span></div>
+
+    <h2>Gomantak Saguti Restaurant</h2>
+
+    <p class="login-subtitle">Restaurant Management System</p>
+
+    <div class="role-login-note">🔐 <b>Admin Access</b><br><span>Manage orders, menu, analytics and restaurant operations</span></div>
+
+    <div class="login-field">
+        <span class="login-field-icon">👤</span>
+        <input type="text" id="loginUsername" placeholder="Username" autocomplete="username">
+    </div>
+
+    <div class="login-field">
+        <span class="login-field-icon">🔒</span>
+        <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
+    </div>
+
+    <button onclick="checkLogin()">
+        🔐 Login to Dashboard
+    </button>
+
+    <div class="login-footer">
+        Authorized Admin Panel • Gomantak Saguti Restaurant
+    </div>
+
+</div>
+
+</div>
+
+<!-- DASHBOARD SECTION -->
+
+<div id="dashboardSection"
+style="display:none;">
+
+<div class="admin-shell">
+<aside class="sidebar">
+    <div class="sidebar-title">Gomantak Saguti Restaurant Admin</div>
+    <button class="side-link active" onclick="showDashboardPage()">🏠 Dashboard</button>
+    <button class="side-link" onclick="showOrdersPage()">📦 Orders</button>
+    <button class="side-link" onclick="showMenuSettingsPage()">🍽️ Menu Management</button>
+    <button class="side-link" onclick="showCustomersPage()">👥 Customers</button>
+    <button class="side-link" onclick="showAnalyticsPage()">📊 Analytics</button>
+    <button class="side-link" onclick="showAuditPage()">📋 Audit History</button>
+    <button class="side-link" onclick="showTableManagementPage()">🪑 Table Management</button>
+    <button class="side-link" onclick="showTableReservationsPage()">📅 Table Reservations</button>
+    <button class="side-link" onclick="showSettingsPage()">⚙️ Settings</button>
+    <button class="side-link logout-link" onclick="logoutAdmin()">🚪 Logout</button>
+</aside>
+<main class="admin-main">
+
+<!-- HEADER -->
+
+<div class="header">
+    <h1>🍽️ Gomantak Saguti Restaurant Management Dashboard</h1>
+    <div class="notification-area">
+        <button type="button" class="notification-button" id="notificationButton" onclick="toggleNotifications()" aria-label="Notifications">🔔<span class="notification-count" id="notificationCount" style="display:none;">0</span></button>
+        <div class="notification-panel" id="notificationPanel">
+            <div class="notification-panel-head"><h3>Notifications</h3><button type="button" class="notification-clear" onclick="clearNotifications()">Clear all</button></div>
+            <div class="notification-list" id="notificationList"><div class="notification-empty">No new notifications.</div></div>
+        </div>
+        <button class="theme-button" onclick="toggleTheme()">🎨 Switch Theme</button>
+    </div>
+</div>
+
+
+<!-- NAVIGATION -->
+
+<div class="nav">
+
+    <button
+    onclick="showOrdersPage()">
+
+        📦 Orders
+
+    </button>
+
+    <button
+    onclick="showMenuSettingsPage()">
+
+        🍽️ Menu Settings
+
+    </button>
+
+</div>
+
+
+<!-- DASHBOARD HOME PAGE -->
+<div id="dashboardHome" class="dashboard-page">
+    <div class="page-intro"><div><h2>Good day, Admin</h2><p>Here is what is happening at Gomantak Saguti Restaurant today.</p></div><button class="action-btn" onclick="refreshAdminDashboard()">🔄 Refresh</button></div>
+    <div class="stat-grid">
+        <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-label">Total Orders</div><div class="stat-value" id="statTotalOrders">0</div></div>
+        <div class="stat-card"><div class="stat-icon">🕒</div><div class="stat-label">Pending Orders</div><div class="stat-value" id="statPendingOrders">0</div></div>
+        <div class="stat-card"><div class="stat-icon">👨‍🍳</div><div class="stat-label">Preparing Orders</div><div class="stat-value" id="statPreparingOrders">0</div></div>
+        <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-label">Completed Orders</div><div class="stat-value" id="statCompletedOrders">0</div></div>
+        <div class="stat-card revenue-stat-card">
+            <div class="stat-icon">₹</div>
+            <div class="stat-label" id="statRevenueLabel">Revenue — Today</div>
+            <select id="dashboardRevenuePeriod" class="revenue-period-select" onchange="refreshDashboard()" aria-label="Revenue period">
+                <option value="today" selected>Today</option>
+                <option value="7">Last 7 Days</option>
+                <option value="month">This Month</option>
+                <option value="all">All Time</option>
+            </select>
+            <div class="stat-value" id="statRevenue">₹0.00</div>
+        </div>
+    </div>
+    <div class="quick-grid">
+        <div class="panel-card">
+            <h3>Recent Orders</h3>
+            <div id="recentOrders"></div>
+        </div>
+        <div class="panel-card">
+            <h3>Kitchen Overview</h3>
+            <div id="homeCategorySummary"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ORDERS PAGE -->
+
+<div id="ordersPage">
+
+    <div class="page-intro dashboard-page" style="margin-bottom:0"><div><h2>Order Management</h2><p>Monitor every order and update kitchen progress.</p></div></div>
+
+    <div class="auto-refresh-controls">
+        <div id="orderAutoRefreshIndicator" class="auto-refresh-indicator">🟢 <b>Auto-refresh ON</b> · Updates every 5 seconds</div>
+        <button type="button" id="autoRefreshToggleButton" class="auto-refresh-toggle on" onclick="toggleOrderAutoRefresh()">⏸ Turn Auto-refresh OFF</button>
+    </div>
+    <div class="orders-toolbar">
+        <input type="search" id="orderSearch" placeholder="Search order ID, customer name, or phone" oninput="refreshOrders()">
+        <select id="orderStatusFilter" onchange="refreshOrders()">
+            <option value="All">All Statuses</option><option value="1">Order Received</option><option value="2">Preparing</option><option value="3">Completed</option><option value="4">Getting to You</option>
+        </select>
+        <select id="paymentFilter" onchange="refreshOrders()"><option value="All">All Payments</option><option value="PENDING">Pending</option><option value="PAID">Paid</option><option value="FAILED">Failed</option></select>
+    </div>
+
+    <div class="subnav">
+
+        <button
+        class="tab-btn active-tab"
+        onclick="showOrderTab('All', this)">
+
+            📋 All Orders
+
+        </button>
+
+        <button
+        class="tab-btn"
+        onclick="showOrderTab('Main Kitchen', this)">
+
+            🍛 Main Kitchen
+
+        </button>
+
+        <button
+        class="tab-btn"
+        onclick="showOrderTab('Bakery', this)">
+
+            🥐 Bakery
+
+        </button>
+
+        <button
+        class="tab-btn"
+        onclick="showOrderTab('Beverages', this)">
+
+            🥤 Beverages
+
+        </button>
+
+    </div>
+
+    <div class="status-guide"><strong>How to read order status:</strong><span>🟡 Order Received</span><span>🟠 Preparing</span><span>🟢 Completed</span></div>
+
+    <div id="ordersContent"></div>
+
+</div>
+
+
+<!-- MENU SETTINGS PAGE -->
+
+<div id="menuSettingsPage"
+style="display:none;">
+
+    <h2 class="menu-heading">
+
+        🍽️ Menu Settings
+
+    </h2>
+
+    <div class="menu-filter">
+        <input type="search" id="menuSearch" placeholder="Search menu items" oninput="loadMenuSettingsTable()">
+        <select id="menuCategoryFilter" onchange="loadMenuSettingsTable()">
+            <option value="All">All Categories</option>
+            <option value="Non-Vegetarian Starters">Non-Vegetarian Starters</option>
+            <option value="Vegetarian Starters">Vegetarian Starters</option>
+            <option value="Vegetarian Main Course">Vegetarian Main Course</option>
+            <option value="Non-Vegetarian Main Course">Non-Vegetarian Main Course</option>
+            <option value="Indian Breads">Indian Breads</option>
+            <option value="Rice & Noodles">Rice & Noodles</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Main Kitchen">Main Kitchen</option>
+            <option value="Bakery">Bakery</option>
+        </select>
+    </div>
+
+
+    <div class="add-menu-form">
+
+        <input
+        type="text"
+        id="newDishName"
+        placeholder="Dish Name">
+
+
+        <input
+        type="number"
+        id="newDishPrice"
+        placeholder="Price">
+
+
+        <select id="newDishCategory">
+            <option value="Main Kitchen">Main Kitchen</option>
+            <option value="Bakery">Bakery</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Non-Vegetarian Starters - Seafood">Non-Vegetarian Starters - Seafood</option>
+            <option value="Non-Vegetarian Starters - Meat">Non-Vegetarian Starters - Meat</option>
+            <option value="Vegetarian Starters">Vegetarian Starters</option>
+            <option value="Vegetarian Main Course">Vegetarian Main Course</option>
+            <option value="Non-Vegetarian Main Course - Seafood">Non-Vegetarian Main Course - Seafood</option>
+            <option value="Non-Vegetarian Main Course - Meat">Non-Vegetarian Main Course - Meat</option>
+            <option value="Indian Breads">Indian Breads</option>
+            <option value="Rice & Noodles - Vegetarian">Rice & Noodles - Vegetarian</option>
+            <option value="Rice & Noodles - Non-Vegetarian">Rice & Noodles - Non-Vegetarian</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Beverages">Beverages</option>
+        </select>
+
+
+        <button onclick="addMenuItem()">
+
+            ➕ Add Item
+
+        </button>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table id="menuSettingsTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>Dish Name</th>
+
+                    <th>Price</th>
+
+                    <th>Category</th>
+
+                    <th>Availability</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody
+            id="menuSettingsBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- CUSTOMERS PAGE -->
+<div id="customersPage" class="dashboard-page hidden-page">
+    <div class="page-intro"><div><h2>Customers</h2><p>Customer relationships built from your existing orders.</p></div></div>
+    <div class="panel-card"><div class="table-container" style="width:100%;margin:0;box-shadow:none"><table class="data-table"><thead><tr><th>Customer</th><th>Phone</th><th>Orders</th><th>Total Spent</th></tr></thead><tbody id="customersBody"></tbody></table></div></div>
+</div>
+
+<!-- ANALYTICS PAGE -->
+<div id="analyticsPage" class="dashboard-page hidden-page">
+    <div class="page-intro">
+        <div>
+            <h2>Analytics</h2>
+            <p>Understand restaurant performance at a glance using your real order data.</p>
+        </div>
+        <div class="analytics-period-box">
+            <span style="font-size:18px">📅</span>
+            <select id="analyticsPeriod" class="status-select" onchange="loadAnalytics()">
+                <option value="all">All Orders</option>
+                <option value="today">Today</option>
+                <option value="7">Last 7 Days</option>
+                <option value="30">Last 30 Days</option>
+            </select>
+            <button class="action-btn analytics-refresh-btn" onclick="refreshAnalyticsData()">🔄 Refresh</button>
+        </div>
+    </div>
+
+    <div class="analytics-hero">
+        <div>
+            <h3>📊 Restaurant Performance Overview</h3>
+            <p>Track sales, customer orders, popular dishes and kitchen activity without leaving the admin dashboard.</p>
+        </div>
+        <div class="analytics-hero-badge">LIVE ORDER DATA</div>
+    </div>
+
+    <div class="stat-grid analytics-stat-grid">
+        <div class="stat-card analytics-stat-card"><div class="stat-icon">📦</div><div class="stat-label">Orders</div><div class="stat-value" id="analyticsOrders">0</div></div>
+        <div class="stat-card analytics-stat-card"><div class="stat-icon">💰</div><div class="stat-label">Revenue</div><div class="stat-value" id="analyticsTotalRevenue">₹0</div></div>
+        <div class="stat-card analytics-stat-card"><div class="stat-icon">🧾</div><div class="stat-label">Average Order</div><div class="stat-value" id="analyticsAverageOrder">₹0</div></div>
+        <div class="stat-card analytics-stat-card"><div class="stat-icon">🍽️</div><div class="stat-label">Items Sold</div><div class="stat-value" id="analyticsItemsSold">0</div></div>
+        <div class="stat-card analytics-stat-card"><div class="stat-icon">🏆</div><div class="stat-label">Top Dish</div><div class="stat-value" id="analyticsTopDish" style="font-size:18px;line-height:1.35">—</div></div>
+    </div>
+
+    <div class="analytics-grid">
+        <div class="panel-card analytics-panel">
+            <div class="analytics-heading"><h3>📈 Revenue by Day</h3><span>Last 7 shown</span></div>
+            <div id="revenueByDayChart"></div>
+        </div>
+        <div class="panel-card analytics-panel">
+            <div class="analytics-heading"><h3>🍽️ Most Ordered Dishes</h3><span>Top 5</span></div>
+            <div id="popularDishesChart"></div>
+        </div>
+        <div class="panel-card analytics-panel">
+            <div class="analytics-heading"><h3>👨‍🍳 Kitchen Performance</h3><span>Items</span></div>
+            <div id="kitchenChart"></div>
+        </div>
+        <div class="panel-card analytics-panel">
+            <div class="analytics-heading"><h3>🛍️ Order Type Breakdown</h3><span>Orders</span></div>
+            <div id="orderTypeChart"></div>
+        </div>
+    </div>
+
+    <div class="panel-card" style="margin-top:18px">
+        <div class="analytics-heading"><h3>📊 Order Status Overview</h3><span>Current period</span></div>
+        <div id="analyticsStatusSummary" class="analytics-status-grid"></div>
+    </div>
+</div>
+
+<!-- AUDIT / HISTORY PAGE -->
+<div id="auditPage" style="display:none;">
+    <div class="page-intro dashboard-page" style="margin-bottom:0">
+        <div><h2>Audit / History</h2><p>Review important restaurant actions with date, time and user information.</p></div>
+    </div>
+    <div class="audit-toolbar">
+        <div class="audit-toolbar-left">
+            <select id="auditFilter" class="audit-filter" onchange="renderAuditHistory()">
+                <option value="All">All Actions</option>
+                <option value="Order">Orders</option>
+                <option value="Kitchen">Kitchen</option>
+                <option value="Menu">Menu</option>
+                <option value="Table">Tables</option>
+                    <option value="Reservation">Reservations</option><option value="Payment">Payments</option>
+                <option value="Login">Login</option>
+            </select>
+            <span class="audit-count" id="auditCount">0 records</span>
+        </div>
+        <button class="delete-order-btn" type="button" onclick="clearAuditHistory()">🗑️ Clear History</button>
+    </div>
+    <div class="audit-table-wrap">
+        <table class="audit-table">
+            <thead><tr><th>Date & Time</th><th>Action</th><th>User</th><th>Details</th></tr></thead>
+            <tbody id="auditHistoryBody"><tr><td colspan="4" class="audit-empty">No history available.</td></tr></tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- TABLE MANAGEMENT PAGE -->
+<div id="tablesPage" class="dashboard-page hidden-page">
+    <div class="page-intro">
+        <div>
+            <h2>Table Management</h2>
+            <p>Manage restaurant tables and keep their seating status up to date.</p>
+        </div>
+        <button class="action-btn" type="button" onclick="resetTableForm(); document.getElementById('tableNumber').focus();">＋ Add Table</button>
+    </div>
+
+    <div class="table-management-grid">
+        <div class="table-form-card">
+            <h3 id="tableFormTitle">➕ Add New Table</h3>
+            <p class="table-form-note">Create a table with its number, seating capacity and restaurant section.</p>
+
+            <input type="hidden" id="editingTableId" value="">
+
+            <div class="table-form-group">
+                <label for="tableNumber">Table Number</label>
+                <input id="tableNumber" type="text" maxlength="20" placeholder="Example: T1">
+            </div>
+
+            <div class="table-form-group">
+                <label for="tableCapacity">Seating Capacity</label>
+                <input id="tableCapacity" type="number" min="1" max="100" placeholder="Example: 4">
+            </div>
+
+            <div class="table-form-group">
+                <label for="tableSection">Section / Area</label>
+                <input id="tableSection" type="text" maxlength="50" placeholder="Example: Indoor">
+            </div>
+
+            <div class="table-form-group">
+                <label for="tableStatus">Status</label>
+                <select id="tableStatus">
+                    <option value="AVAILABLE">Available</option>
+                    <option value="OCCUPIED">Occupied</option>
+                    <option value="RESERVED">Reserved</option>
+                </select>
+            </div>
+
+            <div class="table-form-actions">
+                <button class="action-btn" type="button" onclick="saveRestaurantTable()" id="saveTableButton">💾 Save Table</button>
+                <button class="action-btn table-cancel-btn" type="button" onclick="resetTableForm()">Cancel</button>
+            </div>
+        </div>
+
+        <div class="tables-list-card">
+            <h3>🪑 Restaurant Tables</h3>
+            <p class="table-form-note">Click edit to change table details. Status can be changed directly from each table card.</p>
+
+            <div class="table-summary-grid">
+                <div class="table-summary-card"><strong id="availableTableCount">0</strong><span>AVAILABLE</span></div>
+                <div class="table-summary-card"><strong id="occupiedTableCount">0</strong><span>OCCUPIED</span></div>
+                <div class="table-summary-card"><strong id="reservedTableCount">0</strong><span>RESERVED</span></div>
+            </div>
+
+            <div id="restaurantTablesContainer" class="table-cards">
+                <div class="tables-empty">Loading tables...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TABLE RESERVATIONS PAGE -->
+<div id="tableReservationsPage" class="dashboard-page hidden-page">
+    <div class="page-intro">
+        <div>
+            <h2>Table Reservations</h2>
+            <p>View customer bookings and manage reservation status.</p>
+        </div>
+        <button class="action-btn" type="button" onclick="loadTableReservations()">↻ Refresh</button>
+    </div>
+
+    <div class="reservation-summary-grid">
+        <div class="reservation-summary-card"><strong id="reservationConfirmedCount">0</strong><span>CONFIRMED</span></div>
+        <div class="reservation-summary-card"><strong id="reservationArrivedCount">0</strong><span>ARRIVED</span></div>
+        <div class="reservation-summary-card"><strong id="reservationCompletedCount">0</strong><span>COMPLETED</span></div>
+        <div class="reservation-summary-card"><strong id="reservationCancelledCount">0</strong><span>CANCELLED</span></div>
+    </div>
+
+    <div class="panel-card">
+        <div class="reservation-filters">
+            <input id="reservationDateFilter" type="date" onchange="renderTableReservations()">
+            <select id="reservationStatusFilter" onchange="renderTableReservations()">
+                <option value="ALL">All Statuses</option>
+                <option value="CONFIRMED">Confirmed</option>
+                <option value="ARRIVED">Arrived</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="CANCELLED">Cancelled</option>
+            </select>
+            <button class="action-btn" type="button" onclick="clearReservationFilters()">Clear Filters</button>
+        </div>
+
+        <div class="reservation-table-wrap">
+            <table class="reservation-table">
+                <thead>
+                    <tr>
+                        <th>Reservation</th>
+                        <th>Customer</th>
+                        <th>Table</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Guests</th>
+                        <th>Special Request</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableReservationsBody">
+                    <tr><td colspan="9" class="reservation-empty">Loading reservations...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- SETTINGS PAGE -->
+<div id="settingsPage" class="dashboard-page hidden-page">
+    <div class="page-intro"><div><h2>Settings</h2><p>Manage the visual preferences for this admin panel.</p></div></div>
+    <div class="panel-card"><h3>Appearance</h3><p class="settings-note">Use the theme switcher in the header to change the dashboard accent colors. Your existing restaurant theme remains active for this session.</p></div>
+</div>
+
+</div>
+
+</main></div>
+
+<script>
+
+/* ================================
+   ORIGINAL LOGIN DATA
+================================ */
+
+var correctUsername = "admin";
+var correctPassword = "admin123";
+
+
+/* ================================
+   ORIGINAL ORDER DATA
+================================ */
+
+var sampleOrders = [];
+
+const ORDER_API = "http://localhost:8080/api/orders";
+
+/* Admin-controlled automatic order refresh. */
+var orderAutoRefreshEnabled = true;
+var orderAutoRefreshTimer = null;
+var orderAutoRefreshRunning = false;
+var orderAutoRefreshGeneration = 0;
+var ORDER_AUTO_REFRESH_MS = 5000;
+
+/* ================================
+   NOTIFICATION STATE
+================================ */
+var adminNotifications = [];
+var notificationsInitialized = false;
+var previousOrderSnapshot = {};
+
+function escapeHtml(value){
+    return String(value == null ? "" : value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function saveAdminNotifications(){
+    try{ localStorage.setItem("gomantakAdminNotifications", JSON.stringify(adminNotifications.slice(0,25))); }catch(e){}
+}
+function loadAdminNotifications(){
+    try{ var saved=JSON.parse(localStorage.getItem("gomantakAdminNotifications")||"[]"); if(Array.isArray(saved)) adminNotifications=saved; }catch(e){ adminNotifications=[]; }
+    renderNotifications();
+}
+function addAdminNotification(title,message,icon){
+    adminNotifications.unshift({title:title,message:message,icon:icon||"🔔",time:new Date().toISOString()});
+    adminNotifications=adminNotifications.slice(0,25); saveAdminNotifications(); renderNotifications();
+    var b=document.getElementById("notificationButton"); if(b){b.classList.remove("notification-pulse");void b.offsetWidth;b.classList.add("notification-pulse");}
+}
+function renderNotifications(){
+    var list=document.getElementById("notificationList"), count=document.getElementById("notificationCount"); if(!list||!count)return;
+    if(!adminNotifications.length){list.innerHTML='<div class="notification-empty">No new notifications.</div>';count.style.display="none";return;}
+    count.textContent=adminNotifications.length>99?"99+":adminNotifications.length; count.style.display="flex";
+    list.innerHTML=adminNotifications.map(function(n){var d=new Date(n.time);var t=isNaN(d)?"":d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});return '<div class="notification-item"><div class="notification-icon">'+escapeHtml(n.icon)+'</div><div><strong>'+escapeHtml(n.title)+'</strong><p>'+escapeHtml(n.message)+'</p><span class="notification-time">'+escapeHtml(t)+'</span></div></div>';}).join("");
+}
+function toggleNotifications(){var p=document.getElementById("notificationPanel");if(p)p.classList.toggle("open");}
+function clearNotifications(){adminNotifications=[];saveAdminNotifications();renderNotifications();}
+document.addEventListener("click",function(e){var a=document.querySelector(".notification-area"),p=document.getElementById("notificationPanel");if(a&&p&&!a.contains(e.target))p.classList.remove("open");});
+
+function processAdminOrderNotifications(){
+    var current={};
+    sampleOrders.forEach(function(order){
+        var key=String(order.databaseOrderId||((order.orderId||"")+"|"+(order.orderDate||"")));
+        var items={};
+        (order.items||[]).forEach(function(item){items[String(item.orderItemId||item.itemId)]=String(item.statusStage||1);});
+        current[key]={orderNumber:order.orderId||("#"+order.databaseOrderId),customer:order.customerName||"Customer",status:String(order.statusStage),items:items};
+        if(notificationsInitialized&&!previousOrderSnapshot[key]) addAdminNotification("New order received",current[key].orderNumber+" from "+current[key].customer,"📦");
+        addAuditRecord("Order", "Order Created", current[key].orderNumber+" received from "+current[key].customer);
+        if(notificationsInitialized&&previousOrderSnapshot[key]&&previousOrderSnapshot[key].status!==current[key].status) addAdminNotification("Order status updated",current[key].orderNumber+" status changed to "+(stageNames[order.statusStage]||"updated"),"🔄");
+            addAuditRecord("Order", "Order Status Updated", current[key].orderNumber+" changed to "+(stageNames[order.statusStage]||"updated"));
+        if(notificationsInitialized&&previousOrderSnapshot[key]){
+            Object.keys(items).forEach(function(itemKey){
+                if(previousOrderSnapshot[key].items[itemKey]&&previousOrderSnapshot[key].items[itemKey]!==items[itemKey]){
+                    var changed=(order.items||[]).find(function(i){return String(i.orderItemId||i.itemId)===itemKey;});
+                    addAdminNotification("Kitchen status updated",(changed?changed.dishName:"Order item")+" in "+current[key].orderNumber+" was updated","👨‍🍳");
+                    addAuditRecord("Kitchen", "Kitchen Status Updated", (changed?changed.dishName:"Order item")+" in "+current[key].orderNumber+" was updated");
+                }
+            });
+        }
+    });
+    previousOrderSnapshot=current; notificationsInitialized=true;
+}
+
+
+/* ================================
+   LOAD ORDERS FROM DATABASE
+================================ */
+
+async function loadOrdersFromDatabase() {
+
+    try {
+
+        const response = await fetch(ORDER_API);
+
+        if (!response.ok) {
+            throw new Error("Failed to load orders. HTTP " + response.status);
+        }
+
+        const orders = await response.json();
+
+        const menuResponse = await fetch(MENU_API);
+        if (!menuResponse.ok) throw new Error("Failed to load menu categories. HTTP " + menuResponse.status);
+        const menuItems = await menuResponse.json();
+        const menuCategoryMap = {};
+        menuItems.forEach(function(menuItem) {
+            menuCategoryMap[String(menuItem.itemId)] = menuItem.category || "";
+        });
+
+        sampleOrders = orders.map(function(order) {
+
+            return {
+                orderId: order.orderNumber,
+                databaseOrderId: order.orderId,
+                customerName: order.customerName,
+                customerPhone: order.phone,
+                paymentStatus: String(order.paymentStatus || "PENDING").toUpperCase(),
+                paymentMethod: String(order.paymentMethod || "NOT_SELECTED").toUpperCase(),
+                bookingCharge: Number(order.bookingCharge || 0),
+                reservationNumber: order.reservationNumber || "",
+                paymentTime: order.paymentTime || null,
+                orderDate: order.createdAt || order.orderDate,
+                orderType: order.orderType || "Unknown",
+                foodSubtotal: Number(order.foodSubtotal || 0),
+                roomCharge: Number(order.roomCharge || 0),
+                gst: Number(order.gst || 0),
+                totalAmount: Number(order.totalAmount || 0),
+
+                /* Convert backend status to dashboard stage */
+                statusStage: convertBackendStatus(order.status),
+
+                items: (order.items || []).map(function(item) {
+
+                    return {
+                        itemId: item.itemId,
+                        dishName: item.dishName,
+                        category: getOrderItemSection(menuCategoryMap[String(item.itemId)], item.dishName),
+                        quantity: item.quantity,
+                        price: item.price,
+
+                        /* IMPORTANT: use the individual order-item status */
+                        orderItemId: item.orderItemId,
+                        statusStage: convertBackendStatus(item.status)
+                    };
+
+                })
+            };
+
+        });
+
+        processAdminOrderNotifications();
+        refreshDashboard();
+        refreshOrders();
+
+        console.log("Orders loaded from database:", sampleOrders);
+
+    }
+    catch (error) {
+
+        console.error("Error loading orders:", error);
+
+        showToast(
+            "Unable to load orders from database.",
+            true
+        );
+
+    }
+
+}
+
+
+/* ================================
+   CONVERT BACKEND STATUS
+================================ */
+
+function getOrderItemSection(category, dishName) {
+    const value = String(category || "").toLowerCase();
+    const name = String(dishName || "").toLowerCase();
+    if (value.includes("beverage") || value.includes("drink")) return "Beverages";
+    if (value.includes("bakery") || value.includes("bread") || value.includes("dessert")) return "Bakery";
+    if (name.includes("cake") || name.includes("bread") || name.includes("pastry") || name.includes("dessert")) return "Bakery";
+    if (name.includes("juice") || name.includes("shake") || name.includes("tea") || name.includes("coffee") || name.includes("drink")) return "Beverages";
+    return "Main Kitchen";
+}
+
+function convertBackendStatus(status) {
+
+    if (!status) return 1;
+
+    status = status.toUpperCase();
+
+    if (status === "RECEIVED" ||
+        status === "PENDING") {
+        return 1;
+    }
+
+    if (status === "PREPARING") {
+        return 2;
+    }
+
+    if (status === "COMPLETED") {
+        return 3;
+    }
+
+    if (status === "GETTING_TO_YOU" ||
+        status === "DELIVERING") {
+        return 4;
+    }
+
+    return 1;
+}
+
+/* ================================
+   ORIGINAL MENU DATA
+================================ */
+
+var sampleDishes = [];
+
+
+var stageNames = [
+    "",
+    "Order Received",
+    "Preparing",
+    "Completed",
+    "Getting to You"
+];
+
+window.currentTab = "All";
+var currentPage = "dashboardHome";
+var currentStatusFilter = "All";
+var orderAutoRefreshTimer = null;
+var orderAutoRefreshRunning = false;
+var orderAutoRefreshGeneration = 0;
+var ORDER_AUTO_REFRESH_MS = 5000;
+
+function showToast(message, isError) {
+    var existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.className = 'toast' + (isError ? ' error' : '');
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(function() { toast.remove(); }, 2800);
+}
+
+function formatDate(dateValue) {
+    if (!dateValue) return "Date not available";
+    return new Date(dateValue).toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
+}
+
+function statusBadge(stage) {
+    var status = stageNames[stage] || "Order Received";
+    var classes = { "Order Received": "status-received", "Preparing": "status-preparing", "Completed": "status-completed", "Getting to You": "status-delivery" };
+    return "<span class='status-badge " + classes[status] + "'>" + status + "</span>";
+}
+
+function getStatusSelectClass(stage) {
+    switch (Number(stage)) {
+        case 1: return "status-select-received";
+        case 2: return "status-select-preparing";
+        case 3: return "status-select-completed";
+        case 4: return "status-select-delivery";
+        default: return "status-select-received";
+    }
+}
+
+function setStatusSelectColor(select) {
+    if (!select) return;
+    select.classList.remove(
+        "status-select-received",
+        "status-select-preparing",
+        "status-select-completed",
+        "status-select-delivery"
+    );
+    select.classList.add(getStatusSelectClass(select.value));
+}
+
+function statusSelect(orderIndex, itemIndex, selectedStage) {
+    var options = "";
+    for (var stage = 1; stage <= 4; stage++) {
+        options += "<option value='" + stage + "'" + (stage === Number(selectedStage) ? " selected" : "") + ">" + stageNames[stage] + "</option>";
+    }
+    var statusClass = getStatusSelectClass(selectedStage);
+    return "<select class='status-select " + statusClass + "' onchange='setStatusSelectColor(this);setItemStatus(" + orderIndex + "," + itemIndex + ",this.value)'>" + options + "</select>";
+}
+
+
+/* ================================
+   AUDIT / HISTORY
+================================ */
+var AUDIT_STORAGE_KEY = "gomantakSagutiAuditHistory";
+
+function getAuditHistory(){
+    try {
+        var data = JSON.parse(localStorage.getItem(AUDIT_STORAGE_KEY) || "[]");
+        return Array.isArray(data) ? data : [];
+    } catch(e){ return []; }
+}
+
+function addAuditRecord(category, action, details, user){
+    var history = getAuditHistory();
+    history.push({
+        time: new Date().toISOString(),
+        category: category || "Other",
+        action: action || "Action",
+        details: details || "",
+        user: user || localStorage.getItem("restaurantUser") || "Admin"
+    });
+    if(history.length > 500) history = history.slice(-500);
+    localStorage.setItem(AUDIT_STORAGE_KEY, JSON.stringify(history));
+}
+
+function renderAuditHistory(){
+    var body=document.getElementById("auditHistoryBody");
+    var count=document.getElementById("auditCount");
+    var filter=document.getElementById("auditFilter");
+    if(!body) return;
+    var selected=filter?filter.value:"All";
+    var history=getAuditHistory().slice().reverse();
+    if(selected!=="All") history=history.filter(function(x){return x.category===selected;});
+    if(count) count.textContent=history.length+" record"+(history.length===1?"":"s");
+    if(!history.length){body.innerHTML='<tr><td colspan="4" class="audit-empty">No history available for this filter.</td></tr>';return;}
+    body.innerHTML=history.map(function(x){
+        var d=new Date(x.time);
+        var when=isNaN(d.getTime())?x.time:d.toLocaleString([], {day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
+        return '<tr><td>'+escapeHtml(when)+'</td><td><span class="audit-action">'+escapeHtml(x.action)+'</span></td><td>'+escapeHtml(x.user||"Admin")+'</td><td>'+escapeHtml(x.details||"")+'</td></tr>';
+    }).join("");
+}
+
+function clearAuditHistory(){
+    if(!getAuditHistory().length){showToast("Audit history is already empty.");return;}
+    if(!confirm("Clear all audit history?\n\nThis removes the history saved in this browser.")) return;
+    localStorage.removeItem(AUDIT_STORAGE_KEY);
+    renderAuditHistory();
+    showToast("Audit history cleared.");
+}
+
+/* ================================
+   LOGIN FUNCTION
+================================ */
+
+function checkLogin(){
+
+    var enteredUsername = document.getElementById("loginUsername").value.trim();
+    var enteredPassword = document.getElementById("loginPassword").value;
+
+    if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
+        localStorage.setItem("restaurantRole", "ADMIN");
+        localStorage.setItem("restaurantUser", enteredUsername);
+
+        showToast("Welcome Admin 🍽️");
+        addAuditRecord("Login", "Admin Login", "Admin signed in to the dashboard", enteredUsername);
+
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("dashboardSection").style.display = "block";
+
+        showDashboardPage();
+    } else {
+        showToast("Admin username or password is incorrect", true);
+    }
+
+}
+
+
+/* ================================
+   THEME SWITCHER
+================================ */
+
+function toggleTheme(){
+
+    document.body.classList.toggle(
+    "modern-theme"
+    );
+
+}
+
+
+/* ================================
+   PAGE NAVIGATION
+================================ */
+
+function setActivePage(pageId) {
+    ["dashboardHome", "ordersPage", "menuSettingsPage", "customersPage", "analyticsPage", "auditPage", "tablesPage", "tableReservationsPage", "settingsPage"].forEach(function(id) {
+        var page = document.getElementById(id);
+        if (page) {
+            var isActive = id === pageId;
+            page.classList.toggle("hidden-page", !isActive);
+            page.style.display = isActive ? "block" : "none";
+        }
+    });
+    document.querySelectorAll(".side-link").forEach(function(button) { button.classList.remove("active"); });
+    var pageButtonMap = { dashboardHome: "showDashboardPage", ordersPage: "showOrdersPage", menuSettingsPage: "showMenuSettingsPage", customersPage: "showCustomersPage", analyticsPage: "showAnalyticsPage", auditPage: "showAuditPage", tablesPage: "showTableManagementPage", tableReservationsPage: "showTableReservationsPage", settingsPage: "showSettingsPage" };
+    var activeButton = document.querySelector(".side-link[onclick*=\"" + pageButtonMap[pageId] + "\"]");
+    if (activeButton) activeButton.classList.add("active");
+    currentPage = pageId;
+
+    /* Auto-refresh only runs on Orders when the admin has enabled it. */
+    if (pageId === "ordersPage") {
+        if (orderAutoRefreshEnabled) {
+            startOrderAutoRefresh();
+        } else {
+            stopOrderAutoRefresh();
+            updateAutoRefreshIndicator(false);
+        }
+    } else {
+        stopOrderAutoRefresh();
+    }
+}
+
+function toggleOrderAutoRefresh() {
+    if (orderAutoRefreshEnabled) {
+        // OFF: invalidate any already-running refresh callback first.
+        orderAutoRefreshEnabled = false;
+        orderAutoRefreshGeneration++;
+        stopOrderAutoRefresh();
+        updateAutoRefreshIndicator(false);
+        updateAutoRefreshToggleButton();
+        showToast("Auto-refresh turned OFF · manual refresh only");
+    } else {
+        // ON: start a fresh timer only when Orders is the active page.
+        orderAutoRefreshEnabled = true;
+        updateAutoRefreshIndicator(true);
+        updateAutoRefreshToggleButton();
+        if (currentPage === "ordersPage") {
+            startOrderAutoRefresh();
+        }
+        showToast("Auto-refresh turned ON · updates every 5 seconds");
+    }
+}
+
+function updateAutoRefreshToggleButton() {
+    var button = document.getElementById("autoRefreshToggleButton");
+    if (!button) return;
+
+    if (orderAutoRefreshEnabled) {
+        button.innerHTML = "⏸ Turn Auto-refresh OFF";
+        button.classList.add("on");
+        button.classList.remove("off");
+    } else {
+        button.innerHTML = "▶ Turn Auto-refresh ON";
+        button.classList.add("off");
+        button.classList.remove("on");
+    }
+}
+
+function startOrderAutoRefresh() {
+    if (!orderAutoRefreshEnabled || currentPage !== "ordersPage") return;
+    if (orderAutoRefreshTimer) clearInterval(orderAutoRefreshTimer);
+
+    var generationAtStart = ++orderAutoRefreshGeneration;
+    updateAutoRefreshIndicator(true);
+    updateAutoRefreshToggleButton();
+
+    orderAutoRefreshTimer = setInterval(async function() {
+        // These checks make OFF immediate, even if an older timer/callback exists.
+        if (!orderAutoRefreshEnabled || currentPage !== "ordersPage" ||
+            generationAtStart !== orderAutoRefreshGeneration || orderAutoRefreshRunning) {
+            return;
+        }
+
+        orderAutoRefreshRunning = true;
+        try {
+            await loadOrdersFromDatabase();
+            if (orderAutoRefreshEnabled && generationAtStart === orderAutoRefreshGeneration) {
+                updateAutoRefreshIndicator(true);
+            }
+        } catch (error) {
+            console.error("Automatic order refresh error:", error);
+            if (orderAutoRefreshEnabled && generationAtStart === orderAutoRefreshGeneration) {
+                updateAutoRefreshIndicator(false);
+            }
+        } finally {
+            orderAutoRefreshRunning = false;
+        }
+    }, ORDER_AUTO_REFRESH_MS);
+}
+
+function stopOrderAutoRefresh() {
+    orderAutoRefreshGeneration++;
+    if (orderAutoRefreshTimer) {
+        clearInterval(orderAutoRefreshTimer);
+        orderAutoRefreshTimer = null;
+    }
+    orderAutoRefreshRunning = false;
+}
+
+function updateAutoRefreshIndicator(isActive) {
+    var indicator = document.getElementById("orderAutoRefreshIndicator");
+    if (!indicator) return;
+
+    if (isActive && orderAutoRefreshEnabled) {
+        indicator.innerHTML = "🟢 <b>Auto-refresh ON</b> · Updates every 5 seconds";
+        indicator.classList.add("active");
+    } else {
+        indicator.innerHTML = "⚪ <b>Auto-refresh OFF</b> · Manual refresh only";
+        indicator.classList.remove("active");
+    }
+}
+
+function showDashboardPage(){
+
+    setActivePage("dashboardHome");
+
+    loadOrdersFromDatabase();
+
+}
+
+function showOrdersPage(){
+
+    setActivePage("ordersPage");
+
+    loadOrdersFromDatabase();
+
+}
+
+function showMenuSettingsPage(){
+    setActivePage("menuSettingsPage");
+    loadMenuSettingsTable();
+}
+
+function showCustomersPage(){ setActivePage("customersPage"); loadCustomers(); }
+function showAnalyticsPage(){ setActivePage("analyticsPage"); loadAnalytics(); }
+function showAuditPage(){ setActivePage("auditPage"); renderAuditHistory(); }
+function showTableManagementPage(){ setActivePage("tablesPage"); loadRestaurantTables(); }
+function showTableReservationsPage(){ setActivePage("tableReservationsPage"); loadTableReservations(); }
+function showSettingsPage(){ setActivePage("settingsPage"); }
+function logoutAdmin(){
+    localStorage.removeItem("restaurantRole");
+    localStorage.removeItem("restaurantUser");
+    document.getElementById("dashboardSection").style.display = "none";
+    document.getElementById("loginSection").style.display = "flex";
+    document.getElementById("loginUsername").value = "";
+    document.getElementById("loginPassword").value = "";
+    showToast("You have been logged out");
+}
+
+
+/* ================================
+   CALCULATE ORDER STATUS
+================================ */
+
+function calculateOrderStatus(order){
+
+    var lowestStage = 4;
+
+
+    for(
+        var i = 0;
+        i < order.items.length;
+        i++
+    ){
+
+        if(
+            order.items[i].statusStage
+            <
+            lowestStage
+        ){
+
+            lowestStage =
+            order.items[i].statusStage;
+
+        }
+
+    }
+
+
+    return lowestStage;
+
+}
+
+
+/* ================================
+   CALCULATE ORDER TOTAL
+================================ */
+
+function calculateOrderTotal(order){
+
+    if (typeof order.totalAmount === "number" && !isNaN(order.totalAmount)) {
+        return order.totalAmount;
+    }
+
+    var total = 0;
+
+    for (var i = 0; i < order.items.length; i++) {
+        total += Number(order.items[i].price || 0) * Number(order.items[i].quantity || 0);
+    }
+
+    return total;
+
+}
+
+
+/* ================================
+   DISPLAY ORDER TABS
+================================ */
+
+function showOrderTab(tabName, btnElement){
+    window.currentTab = tabName;
+    if (btnElement) {
+        document.querySelectorAll(".subnav button").forEach(function(button) { button.classList.remove("active-tab"); });
+        btnElement.classList.add("active-tab");
+    } else {
+        document.querySelectorAll(".subnav button").forEach(function(button) { button.classList.toggle("active-tab", button.textContent.indexOf(tabName) !== -1); });
+    }
+    refreshOrders();
+}
+
+function refreshOrders(){
+    var query = (document.getElementById("orderSearch").value || "").toLowerCase().trim();
+    var statusFilter = document.getElementById("orderStatusFilter").value;
+    var paymentFilter = document.getElementById("paymentFilter").value;
+    var content = "";
+    var visible = 0;
+
+    sampleOrders.forEach(function(order, orderIndex) {
+        var overallStage = calculateOrderStatus(order);
+        var matchesSearch = !query || String(order.orderId).toLowerCase().includes(query) || String(order.customerName).toLowerCase().includes(query) || String(order.customerPhone).includes(query);
+        var matchesStatus = statusFilter === "All" || String(overallStage) === statusFilter;
+        var matchesPayment = paymentFilter === "All" || order.paymentStatus === paymentFilter;
+        if (!matchesSearch || !matchesStatus || !matchesPayment) return;
+
+        if (window.currentTab === "All") {
+            visible++;
+            content += "<div class='order-box'>";
+            content += "<div class='order-title'>🧾 Order #" + order.orderId + " <button class='delete-order-btn' title='Delete whole order' onclick='deleteWholeOrder(" + orderIndex + ")'>🗑️ Delete Order</button></div>";
+            content += "<div class='order-meta'><span>👤 " + order.customerName + "</span><span>📞 " + order.customerPhone + "</span><span>🗓️ " + formatDate(order.orderDate) + "</span></div>";
+            var paymentClass = order.paymentStatus === "PAID" ? "payment-paid" : (order.paymentStatus === "FAILED" ? "payment-failed" : "payment-pending");
+            content += "<div class='order-meta'>" + statusBadge(overallStage) + " <span class='payment-badge " + paymentClass + "'>💳 " + escapeHtml(order.paymentStatus) + (order.paymentMethod && order.paymentMethod !== "NOT_SELECTED" ? " · " + escapeHtml(order.paymentMethod) : "") + "</span></div>";
+            content += "<div class='payment-controls'><label><b>Payment:</b></label>";
+            content += "<select id='paymentMethod-" + orderIndex + "'><option value='CASH'" + (order.paymentMethod === "CASH" ? " selected" : "") + ">Cash</option><option value='UPI'" + (order.paymentMethod === "UPI" ? " selected" : "") + ">UPI</option><option value='CARD'" + (order.paymentMethod === "CARD" ? " selected" : "") + ">Card</option></select>";
+            content += "<select id='paymentStatus-" + orderIndex + "'><option value='PENDING'" + (order.paymentStatus === "PENDING" ? " selected" : "") + ">Pending</option><option value='PAID'" + (order.paymentStatus === "PAID" ? " selected" : "") + ">Paid</option><option value='FAILED'" + (order.paymentStatus === "FAILED" ? " selected" : "") + ">Failed</option></select>";
+            content += "<button type='button' class='action-btn' onclick='updatePaymentStatus(" + orderIndex + ")'>Update Payment</button></div>";
+            content += "<div class='order-items'>";
+            content += "<div class='order-items-title'><b>🍽️ Order Items</b><span>Set the status beside each dish</span></div>";
+
+            order.items.forEach(function(item, itemIndex) {
+                var isCompleted = Number(item.statusStage) === 3;
+                var canDecrease = Number(item.quantity) > 1 && !isCompleted;
+                var itemSubtotal = Number(item.price || 0) * Number(item.quantity || 0);
+
+                content += "<div class='item-status-row'>";
+                content += "<div class='item-info'><strong>" + item.dishName + "</strong><small>Kitchen: " + item.category + "</small>";
+                content += "<div class='modification-label'>Modify quantity</div>";
+                content += "<div class='quantity-controls'>";
+                content += "<button class='quantity-btn' title='Decrease quantity' onclick='changeItemQuantity(" + orderIndex + "," + itemIndex + ",-1)'" + (canDecrease ? "" : " disabled") + ">−</button>";
+                content += "<span class='quantity-value'>" + item.quantity + "</span>";
+                content += "<button class='quantity-btn' title='Increase quantity' onclick='changeItemQuantity(" + orderIndex + "," + itemIndex + ",1)'" + (isCompleted ? " disabled" : "") + ">+</button>";
+                content += "<button class='remove-item-btn' title='Remove item' onclick='removeOrderItem(" + orderIndex + "," + itemIndex + ")'" + (isCompleted ? " disabled" : "") + ">🗑️</button>";
+                content += "</div></div>";
+                content += "<div class='item-qty'>Quantity: <b>× " + item.quantity + "</b><br>Price: ₹" + itemSubtotal.toFixed(2) + "</div>";
+                content += "<div class='status-action'><div style='width:100%'><div class='status-action-label'>Current status / change</div>" + statusSelect(orderIndex, itemIndex, item.statusStage) + "</div></div>";
+                content += "</div>";
+            });
+
+            content += "</div>";
+            content += "<div style='margin-top:14px;font-size:14px;line-height:1.8'>";
+            content += "<div><b>Food Subtotal:</b> ₹" + Number(order.foodSubtotal || 0).toFixed(2) + "</div>";
+            content += "<div><b>Room Charge:</b> ₹" + Number(order.roomCharge || 0).toFixed(2) + "</div>";
+            if (Number(order.bookingCharge || 0) > 0) {
+                content += "<div><b>Table Booking Charge:</b> ₹" + Number(order.bookingCharge).toFixed(2) + (order.reservationNumber ? " · " + escapeHtml(order.reservationNumber) : "") + "</div>";
+            }
+            content += "<div><b>GST:</b> ₹" + Number(order.gst || 0).toFixed(2) + "</div>";
+            content += "<div style='font-size:17px'><b>💰 Total Bill:</b> ₹" + Number(calculateOrderTotal(order) || 0).toFixed(2) + "</div>";
+            content += "</div>";
+            content += "</div>";
+        } else {
+            order.items.forEach(function(item, itemIndex) {
+                if (item.category !== window.currentTab) return;
+                visible++;
+                content += "<div class='item-box'>";
+                content += "<div class='order-title'>🧾 Order #" + order.orderId + " <button class='delete-order-btn' title='Delete whole order' onclick='deleteWholeOrder(" + orderIndex + ")'>🗑️ Delete Order</button><span style='float:right;font-size:12px;font-weight:normal;color:var(--light-text);margin-right:130px'>" + formatDate(order.orderDate) + "</span></div>";
+                var isCompleted = Number(item.statusStage) === 3;
+                var canDecrease = Number(item.quantity) > 1 && !isCompleted;
+                content += "<div class='item-status-row' style='padding:8px 0;border-bottom:0'>";
+                content += "<div class='item-info'><strong>🍽️ " + item.dishName + "</strong><small>Quantity: × " + item.quantity + " · Kitchen: " + item.category + "</small>";
+                content += "<div class='quantity-controls'>";
+                content += "<button class='quantity-btn' title='Decrease quantity' onclick='changeItemQuantity(" + orderIndex + "," + itemIndex + ",-1)'" + (canDecrease ? "" : " disabled") + ">−</button>";
+                content += "<span class='quantity-value'>" + item.quantity + "</span>";
+                content += "<button class='quantity-btn' title='Increase quantity' onclick='changeItemQuantity(" + orderIndex + "," + itemIndex + ",1)'" + (isCompleted ? " disabled" : "") + ">+</button>";
+                content += "<button class='remove-item-btn' title='Remove item' onclick='removeOrderItem(" + orderIndex + "," + itemIndex + ")'" + (isCompleted ? " disabled" : "") + ">🗑️</button>";
+                content += "</div></div>";
+                content += "<div>" + statusBadge(item.statusStage) + "</div>";
+                content += "<div class='status-action'><div style='width:100%'><div class='status-action-label'>Change status</div>" + statusSelect(orderIndex, itemIndex, item.statusStage) + "</div></div>";
+                content += "</div></div>";
+            });
+        }
+    });
+
+    document.getElementById("ordersContent").innerHTML = visible ? content : "<div class='empty-state'>No orders match your search or filters.</div>";
+}
+
+
+
+async function deleteWholeOrder(orderIndex) {
+
+    var order = sampleOrders[orderIndex];
+
+    if (!order || !order.databaseOrderId) {
+        showToast("Order ID is missing.", true);
+        return;
+    }
+
+    var orderLabel = order.orderId || ("#" + order.databaseOrderId);
+
+    if (!confirm("Delete whole order " + orderLabel + "?\n\nThis will permanently remove the order and all its items.")) {
+        return;
+    }
+
+    try {
+        var response = await fetch(
+            ORDER_API + "/id/" + order.databaseOrderId,
+            { method: "DELETE" }
+        );
+
+        if (!response.ok) {
+            var errorText = await response.text();
+            throw new Error("HTTP " + response.status + ": " + errorText);
+        }
+
+        await loadOrdersFromDatabase();
+        addAuditRecord("Order", "Order Deleted", "Whole order "+orderLabel+" was permanently deleted");
+        showToast("Order " + orderLabel + " deleted successfully.");
+
+    } catch (error) {
+        console.error("Delete whole order error:", error);
+        showToast("Failed to delete the order.", true);
+        await loadOrdersFromDatabase();
+    }
+}
+
+
+/* ================================
+   PAYMENT MANAGEMENT
+================================ */
+
+async function updatePaymentStatus(orderIndex) {
+    var order = sampleOrders[orderIndex];
+    if (!order || !order.orderId) {
+        showToast("Order not found.", true);
+        return;
+    }
+
+    var statusSelect = document.getElementById("paymentStatus-" + orderIndex);
+    var methodSelect = document.getElementById("paymentMethod-" + orderIndex);
+    var paymentStatus = statusSelect ? statusSelect.value : "PENDING";
+    var paymentMethod = methodSelect ? methodSelect.value : "CASH";
+
+    try {
+        var response = await fetch(ORDER_API + "/" + encodeURIComponent(order.orderId) + "/payment", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ paymentStatus: paymentStatus, paymentMethod: paymentMethod })
+        });
+
+        if (!response.ok) {
+            var errorText = await response.text();
+            throw new Error(errorText || "Payment update failed");
+        }
+
+        var updated = await response.json();
+        order.paymentStatus = updated.paymentStatus;
+        order.paymentMethod = updated.paymentMethod;
+        order.paymentTime = updated.paymentTime;
+        addAuditRecord("Payment", "Payment Status Changed", order.orderId + " → " + updated.paymentStatus + " via " + updated.paymentMethod);
+        addAdminNotification("Payment updated", order.orderId + " payment is " + updated.paymentStatus, "💳");
+        refreshOrders();
+        refreshDashboard();
+        showToast("Payment updated for " + order.orderId + ".");
+    } catch (error) {
+        console.error("Payment update error:", error);
+        showToast("Failed to update payment.", true);
+        await loadOrdersFromDatabase();
+    }
+}
+
+
+/* ================================
+   ORDER MODIFICATION
+================================ */
+
+async function changeItemQuantity(orderIndex, itemIndex, change) {
+
+    var order = sampleOrders[orderIndex];
+    var item = order && order.items ? order.items[itemIndex] : null;
+
+    if (!item || !item.orderItemId) {
+        showToast("Order item ID is missing.", true);
+        return;
+    }
+
+    if (Number(item.statusStage) === 3) {
+        showToast("Completed items cannot be modified.", true);
+        return;
+    }
+
+    var newQuantity = Number(item.quantity) + Number(change);
+
+    if (newQuantity < 1) {
+        showToast("Quantity cannot be less than 1.", true);
+        return;
+    }
+
+    try {
+        var response = await fetch(
+            ORDER_API + "/items/" + item.orderItemId + "/quantity",
+            {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ quantity: newQuantity })
+            }
+        );
+
+        if (!response.ok) {
+            var errorText = await response.text();
+            throw new Error("HTTP " + response.status + ": " + errorText);
+        }
+
+        await response.json();
+        await loadOrdersFromDatabase();
+        addAuditRecord("Order", "Quantity Changed", item.dishName+" in "+order.orderId+" changed to quantity "+newQuantity);
+        showToast(item.dishName + " quantity updated to " + newQuantity + ".");
+
+    } catch (error) {
+        console.error("Quantity update error:", error);
+        showToast("Failed to update item quantity.", true);
+        await loadOrdersFromDatabase();
+    }
+}
+
+async function removeOrderItem(orderIndex, itemIndex) {
+
+    var order = sampleOrders[orderIndex];
+    var item = order && order.items ? order.items[itemIndex] : null;
+
+    if (!item || !item.orderItemId) {
+        showToast("Order item ID is missing.", true);
+        return;
+    }
+
+    if (Number(item.statusStage) === 3) {
+        showToast("Completed items cannot be removed.", true);
+        return;
+    }
+
+    if (order.items.length <= 1) {
+        showToast("An order must contain at least one item.", true);
+        return;
+    }
+
+    if (!confirm("Remove " + item.dishName + " from this order?")) {
+        return;
+    }
+
+    try {
+        var response = await fetch(
+            ORDER_API + "/items/" + item.orderItemId,
+            { method: "DELETE" }
+        );
+
+        if (!response.ok) {
+            var errorText = await response.text();
+            throw new Error("HTTP " + response.status + ": " + errorText);
+        }
+
+        await response.json();
+        await loadOrdersFromDatabase();
+        addAuditRecord("Order", "Item Removed", item.dishName+" removed from "+order.orderId);
+        showToast(item.dishName + " removed from the order.");
+
+    } catch (error) {
+        console.error("Remove item error:", error);
+        showToast("Failed to remove item.", true);
+        await loadOrdersFromDatabase();
+    }
+}
+
+
+/* ================================
+   UPDATE ITEM STATUS
+================================ */
+
+function updateItemStatus(orderIndex, itemIndex){
+
+    var item =
+    sampleOrders[orderIndex].items[itemIndex];
+
+
+    if(item.statusStage < 4){
+
+        item.statusStage += 1;
+
+    }
+
+    else{
+
+        item.statusStage = 1;
+
+    }
+
+
+    showOrderTab(
+    window.currentTab
+    );
+
+}
+
+
+async function setItemStatus(orderIndex, itemIndex, stage) {
+
+    const order = sampleOrders[orderIndex];
+    const item = order.items[itemIndex];
+
+    let backendStatus;
+
+    switch (Number(stage)) {
+
+        case 1:
+            backendStatus = "PENDING";
+            break;
+
+        case 2:
+            backendStatus = "PREPARING";
+            break;
+
+        case 3:
+            backendStatus = "COMPLETED";
+            break;
+
+        default:
+            backendStatus = "PENDING";
+    }
+
+
+    // Make sure the unique database ID exists
+    if (!item.orderItemId) {
+
+        showToast(
+            "Order item ID is missing.",
+            true
+        );
+
+        console.error(
+            "Missing orderItemId:",
+            item
+        );
+
+        return;
+    }
+
+
+    console.log(
+        "Updating item:",
+        item.orderItemId,
+        "Status:",
+        backendStatus
+    );
+
+
+    try {
+
+        const response = await fetch(
+            ORDER_API +
+            "/items/" +
+            item.orderItemId +
+            "/status",
+            {
+                method: "PATCH",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    status: backendStatus
+                })
+            }
+        );
+
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            console.error(
+                "Server response:",
+                response.status,
+                errorText
+            );
+
+            throw new Error(
+                "HTTP " +
+                response.status +
+                ": " +
+                errorText
+            );
+        }
+
+
+        const updatedOrder =
+            await response.json();
+
+
+        console.log(
+            "Item status successfully updated:",
+            updatedOrder
+        );
+
+
+        // Reload orders from database
+        await loadOrdersFromDatabase();
+
+
+        addAuditRecord("Kitchen", "Item Status Updated", item.dishName+" in "+order.orderId+" changed to "+backendStatus);
+        showToast(
+            item.dishName +
+            " status updated to " +
+            backendStatus
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Item status update error:",
+            error
+        );
+
+
+        showToast(
+            "Failed to update item status.",
+            true
+        );
+
+
+        await loadOrdersFromDatabase();
+    }
+}
+async function refreshAdminDashboard() {
+    const button = event && event.currentTarget ? event.currentTarget : null;
+    if (button) {
+        button.disabled = true;
+        button.innerText = "⟳ Refreshing...";
+    }
+    try {
+        await loadOrdersFromDatabase();
+        showToast("Dashboard refreshed successfully.");
+    } catch (error) {
+        console.error("Dashboard refresh error:", error);
+        showToast("Failed to refresh dashboard.", true);
+    } finally {
+        if (button) {
+            button.disabled = false;
+            button.innerText = "🔄 Refresh";
+        }
+    }
+}
+
+function refreshDashboard() {
+    var pending = 0, preparing = 0, completed = 0, revenue = 0;
+    var categoryCounts = {};
+
+    var revenuePeriodElement = document.getElementById("dashboardRevenuePeriod");
+    var revenuePeriod = revenuePeriodElement ? revenuePeriodElement.value : "today";
+    var now = new Date();
+
+    function isOrderInRevenuePeriod(order) {
+        if (revenuePeriod === "all") return true;
+
+        var rawDate = order.orderDate || order.createdAt || order.createdDate || order.date;
+        var date = new Date(rawDate);
+        if (isNaN(date.getTime())) return false;
+
+        var start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        if (revenuePeriod === "today") {
+            return date >= start;
+        }
+
+        if (revenuePeriod === "month") {
+            start = new Date(now.getFullYear(), now.getMonth(), 1);
+            return date >= start;
+        }
+
+        var days = Number(revenuePeriod);
+        start.setDate(start.getDate() - (days - 1));
+        return date >= start;
+    }
+
+    sampleOrders.forEach(function(order) {
+        var status = calculateOrderStatus(order);
+
+        if (status === 1) pending++;
+        if (status === 2) preparing++;
+        if (status === 3 || status === 4) completed++;
+
+        if (isOrderInRevenuePeriod(order)) {
+            revenue += Number(calculateOrderTotal(order) || 0);
+        }
+
+        (order.items || []).forEach(function(item) {
+            var category = item.category || "Other";
+            categoryCounts[category] = (categoryCounts[category] || 0) + Number(item.quantity || 0);
+        });
+    });
+
+    document.getElementById("statTotalOrders").innerText = sampleOrders.length;
+    document.getElementById("statPendingOrders").innerText = pending;
+    document.getElementById("statPreparingOrders").innerText = preparing;
+    document.getElementById("statCompletedOrders").innerText = completed;
+
+    var periodLabels = {
+        today: "Revenue — Today",
+        "7": "Revenue — Last 7 Days",
+        month: "Revenue — This Month",
+        all: "Revenue — All Time"
+    };
+
+    var revenueLabel = document.getElementById("statRevenueLabel");
+    if (revenueLabel) {
+        revenueLabel.innerText = periodLabels[revenuePeriod] || "Revenue";
+    }
+
+    document.getElementById("statRevenue").innerText = "₹" + revenue.toFixed(2);
+
+    document.getElementById("recentOrders").innerHTML =
+        sampleOrders.slice().reverse().slice(0, 5).map(function(order) {
+            return "<div class='recent-order-item'>" +
+                   "<div class='recent-order-top'>" +
+                   "<span class='recent-order-id'>#" + escapeHtml(order.orderId) + "</span>" +
+                   "<span class='recent-order-customer' title='" + escapeHtml(order.customerName) + "'>" + escapeHtml(order.customerName) + "</span>" +
+                   "</div>" +
+                   "<div class='recent-order-status'>" + statusBadge(calculateOrderStatus(order)) + "</div>" +
+                   "</div>";
+        }).join("") || "<div class='empty-state'>No orders yet.</div>";
+
+    document.getElementById("homeCategorySummary").innerHTML =
+        Object.keys(categoryCounts).map(function(category) {
+            return "<div class='chart-row'><span>" + escapeHtml(category) + "</span><div class='chart-bar' style='width:" + (categoryCounts[category] * 28) + "px'></div><b>" + categoryCounts[category] + " items</b></div>";
+        }).join("") || "<div class='empty-state'>No kitchen data available.</div>";
+}
+
+function loadCustomers() {
+    var customers = {};
+    sampleOrders.forEach(function(order) {
+        if (!customers[order.customerPhone]) customers[order.customerPhone] = { name: order.customerName, phone: order.customerPhone, orders: 0, spent: 0 };
+        customers[order.customerPhone].orders++;
+        customers[order.customerPhone].spent += calculateOrderTotal(order);
+    });
+    var rows = Object.keys(customers).map(function(phone) { var customer = customers[phone]; return "<tr><td>👤 " + customer.name + "</td><td>" + customer.phone + "</td><td>" + customer.orders + "</td><td>₹" + customer.spent + "</td></tr>"; }).join("");
+    document.getElementById("customersBody").innerHTML = rows || "<tr><td colspan='4' class='empty-state'>No customers found.</td></tr>";
+}
+
+function loadAnalytics() {
+    var periodElement = document.getElementById("analyticsPeriod");
+    var period = periodElement ? periodElement.value : "all";
+    var now = new Date();
+    var filteredOrders = sampleOrders.filter(function(order) {
+        if (period === "all") return true;
+        var date = new Date(order.orderDate);
+        if (isNaN(date.getTime())) return false;
+        var start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        if (period === "today") return date >= start;
+        var days = Number(period);
+        start.setDate(start.getDate() - (days - 1));
+        return date >= start;
+    });
+
+    var revenue = 0, itemCount = 0;
+    var dishCounts = {}, kitchenCounts = {}, typeCounts = {};
+    var statusCounts = {"Order Received":0,"Preparing":0,"Completed":0,"Getting to You":0};
+    var dailyRevenue = {};
+
+    filteredOrders.forEach(function(order) {
+        var orderTotal = Number(calculateOrderTotal(order) || 0);
+        revenue += orderTotal;
+        var type = order.orderType || "Unknown";
+        typeCounts[type] = (typeCounts[type] || 0) + 1;
+
+        var statusNumber = calculateOrderStatus(order);
+        var statusName = statusNumber === 1 ? "Order Received" : statusNumber === 2 ? "Preparing" : statusNumber === 3 ? "Completed" : "Getting to You";
+        statusCounts[statusName] = (statusCounts[statusName] || 0) + 1;
+
+        var dateObject = new Date(order.orderDate);
+        var dayKey = isNaN(dateObject.getTime()) ? "Unknown" : dateObject.toISOString().slice(0,10);
+        dailyRevenue[dayKey] = (dailyRevenue[dayKey] || 0) + orderTotal;
+
+        (order.items || []).forEach(function(item) {
+            var quantity = Number(item.quantity || 0);
+            itemCount += quantity;
+            dishCounts[item.dishName] = (dishCounts[item.dishName] || 0) + quantity;
+            var section = item.category || "Other";
+            kitchenCounts[section] = (kitchenCounts[section] || 0) + quantity;
+        });
+    });
+
+    var orderCount = filteredOrders.length;
+    var average = orderCount ? revenue / orderCount : 0;
+    document.getElementById("analyticsOrders").innerText = orderCount;
+    document.getElementById("analyticsTotalRevenue").innerText = "₹" + revenue.toFixed(2);
+    document.getElementById("analyticsAverageOrder").innerText = "₹" + average.toFixed(2);
+    document.getElementById("analyticsItemsSold").innerText = itemCount;
+
+    var sortedDishes = Object.keys(dishCounts).sort(function(a,b){ return dishCounts[b] - dishCounts[a]; });
+    document.getElementById("analyticsTopDish").innerText = sortedDishes.length ? sortedDishes[0] : "—";
+    renderAnalyticsBars("popularDishesChart", sortedDishes.slice(0,5), dishCounts, "items", true);
+    renderAnalyticsBars("kitchenChart", Object.keys(kitchenCounts).sort(function(a,b){return kitchenCounts[b]-kitchenCounts[a];}).slice(0,7), kitchenCounts, "items", false);
+    renderAnalyticsBars("orderTypeChart", Object.keys(typeCounts).sort(function(a,b){return typeCounts[b]-typeCounts[a];}), typeCounts, "orders", false);
+
+    var revenueDays = Object.keys(dailyRevenue).filter(function(key){return key !== "Unknown";}).sort();
+    var revenueMax = Math.max.apply(null, revenueDays.map(function(key){return dailyRevenue[key];}).concat([1]));
+    var revenueHtml = revenueDays.length ? revenueDays.slice(-7).map(function(key){
+        var date = new Date(key + "T00:00:00");
+        var label = date.toLocaleDateString(undefined,{day:"2-digit",month:"short"});
+        var width = Math.max(3, (dailyRevenue[key] / revenueMax) * 100);
+        return "<div class='analytics-day-row'><span>" + label + "</span><div class='analytics-bar-track'><div class='analytics-bar-fill' style='width:" + width + "%'></div></div><b>₹" + dailyRevenue[key].toFixed(0) + "</b></div>";
+    }).join("") : "<div class='analytics-empty'>No revenue data for this period.</div>";
+    document.getElementById("revenueByDayChart").innerHTML = revenueHtml;
+
+    var statusOrder = ["Order Received","Preparing","Completed","Getting to You"];
+    document.getElementById("analyticsStatusSummary").innerHTML = statusOrder.map(function(status){
+        return "<div class='analytics-status-card'><div>" + status + "</div><div class='status-number'>" + (statusCounts[status] || 0) + "</div><small>orders</small></div>";
+    }).join("");
+}
+
+function renderAnalyticsBars(elementId, keys, values, suffix, ranked) {
+    var element = document.getElementById(elementId);
+    if (!element) return;
+    if (!keys.length) {
+        element.innerHTML = "<div class='analytics-empty'>No data available for this period.</div>";
+        return;
+    }
+    var max = Math.max.apply(null, keys.map(function(key){return values[key];}).concat([1]));
+    element.innerHTML = keys.map(function(key,index){
+        var width = Math.max(3, (values[key] / max) * 100);
+        var label = ranked ? "<span class='analytics-rank'>" + (index+1) + "</span>" : "";
+        return "<div class='analytics-bar-row'><span title='" + key.replace(/'/g,"&#39;") + "'>" + label + key + "</span><div class='analytics-bar-track'><div class='analytics-bar-fill' style='width:" + width + "%'></div></div><b>" + values[key] + "</b></div>";
+    }).join("");
+}
+
+async function refreshAnalyticsData() {
+    try {
+        await loadOrdersFromDatabase();
+        loadAnalytics();
+        showToast("Analytics refreshed successfully.");
+    } catch (error) {
+        console.error("Analytics refresh error:", error);
+        showToast("Failed to refresh analytics.", true);
+    }
+}
+
+/* ================================
+   MENU DATABASE API
+================================ */
+
+const MENU_API = "http://localhost:8080/api/menu";
+
+
+/* ================================
+   LOAD MENU TABLE FROM DATABASE
+================================ */
+
+async function loadMenuSettingsTable() {
+
+    const tbody = document.getElementById("menuSettingsBody");
+
+    if (!tbody) return;
+
+    tbody.innerHTML =
+        "<tr><td colspan='5' class='empty-state'>Loading menu...</td></tr>";
+
+    try {
+
+        const response = await fetch(MENU_API);
+
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
+
+        const menuItems = await response.json();
+
+        /* Keep a local copy for the rest of the admin page. */
+        sampleDishes = menuItems;
+
+        const searchInput = document.getElementById("menuSearch");
+        const categoryFilter = document.getElementById("menuCategoryFilter");
+
+        const search = searchInput
+            ? searchInput.value.toLowerCase().trim()
+            : "";
+
+        const selectedCategory = categoryFilter
+            ? categoryFilter.value
+            : "All";
+
+        tbody.innerHTML = "";
+
+        let visibleItems = 0;
+
+        menuItems.forEach(function(item) {
+
+            const dishName = String(item.dishName || "");
+            const itemCategory = String(item.category || "");
+
+            const matchesSearch =
+                dishName.toLowerCase().includes(search);
+
+            const matchesCategory =
+                selectedCategory === "All" ||
+                itemCategory === selectedCategory ||
+                itemCategory.startsWith(selectedCategory + " -");
+
+            if (!matchesSearch || !matchesCategory) return;
+
+            visibleItems++;
+
+            const row = tbody.insertRow();
+
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+            const cell4 = row.insertCell(3);
+            const cell5 = row.insertCell(4);
+
+            const isAvailable = item.available !== false;
+
+            cell1.innerText = dishName;
+            cell2.innerText = "₹ " + item.price;
+            cell3.innerText = itemCategory;
+
+            cell4.innerHTML = isAvailable
+                ? "<span class='availability-badge availability-available'>AVAILABLE</span>"
+                : "<span class='availability-badge availability-out'>OUT OF STOCK</span>";
+
+            cell5.innerHTML =
+    "<button class='availability-btn " + (isAvailable ? "available" : "out") + "' onclick='toggleMenuAvailability(" +
+    item.itemId +
+    ")'>" + (isAvailable ? "🔴 Mark Out of Stock" : "🟢 Mark Available") + "</button>" +
+    "<button class='action-btn edit-btn' onclick='editMenuItem(" +
+    item.itemId +
+    ")'>✏️ Edit</button>" +
+    "<button class='delete-btn' onclick='deleteMenuItem(" +
+    item.itemId +
+    ")'>🗑 Delete</button>";
+        });
+
+        if (visibleItems === 0) {
+            tbody.innerHTML =
+                "<tr><td colspan='5' class='empty-state'>" +
+                "No menu items match your search." +
+                "</td></tr>";
+        }
+
+    } catch (error) {
+
+        console.error("Error loading menu:", error);
+
+        tbody.innerHTML =
+            "<tr><td colspan='4' class='empty-state'>" +
+            "Unable to load menu from database." +
+            "</td></tr>";
+
+        showToast("Unable to load menu from database.", true);
+    }
+}
+
+
+/* ================================
+   ADD MENU ITEM
+================================ */
+
+async function addMenuItem() {
+
+    const name = document
+        .getElementById("newDishName")
+        .value
+        .trim();
+
+    const price = Number(document
+        .getElementById("newDishPrice")
+        .value);
+
+    const category = document
+        .getElementById("newDishCategory")
+        .value;
+
+    if (
+        name === "" ||
+        isNaN(price) ||
+        price <= 0 ||
+        category === ""
+    ) {
+        showToast("Please enter a valid dish name, price and category.", true);
+        return;
+    }
+
+    try {
+
+        const response = await fetch(MENU_API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                dishName: name,
+                price: price,
+                category: category
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
+
+        document.getElementById("newDishName").value = "";
+        document.getElementById("newDishPrice").value = "";
+
+        await loadMenuSettingsTable();
+
+        addAuditRecord("Menu", "Menu Item Added", name+" added to "+category+" at ₹"+price);
+        showToast("Menu item added successfully");
+
+    } catch (error) {
+
+        console.error("Add menu error:", error);
+        showToast("Failed to add menu item.", true);
+    }
+}
+
+
+/* ================================
+   EDIT MENU ITEM
+================================ */
+/* ================================
+   EDIT MENU ITEM
+================================ */
+
+async function editMenuItem(itemId) {
+    try {
+        const response = await fetch(MENU_API + "/" + itemId);
+        if (!response.ok) throw new Error("HTTP " + response.status);
+
+        const dish = await response.json();
+
+        const name = prompt("Dish name:", dish.dishName);
+        if (name === null) return;
+
+        const price = prompt("Price:", dish.price);
+        if (price === null) return;
+
+        const category = prompt("Category:\n\nExamples: Main Kitchen, Bakery, Beverages, Indian Breads, Desserts", dish.category);
+        if (category === null) return;
+
+        const cleanName = name.trim();
+        const cleanCategory = category.trim();
+        const numericPrice = Number(price);
+
+        if (!cleanName || !cleanCategory || !Number.isFinite(numericPrice) || numericPrice <= 0) {
+            showToast("Please enter a valid dish name, price and category.", true);
+            return;
+        }
+
+        const updateResponse = await fetch(MENU_API + "/" + itemId, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                dishName: cleanName,
+                price: numericPrice,
+                category: cleanCategory
+            })
+        });
+
+        if (!updateResponse.ok) throw new Error("HTTP " + updateResponse.status);
+
+        await loadMenuSettingsTable();
+        addAuditRecord("Menu", "Menu Item Updated", cleanName+" updated in "+cleanCategory+" at ₹"+numericPrice);
+        showToast("Menu item updated successfully");
+    } catch (error) {
+        console.error("Edit menu item error:", error);
+        showToast("Unable to edit menu item. Check the backend.", true);
+    }
+}
+
+/* ================================
+   TOGGLE MENU ITEM AVAILABILITY
+================================ */
+
+async function toggleMenuAvailability(id) {
+    try {
+        const dish = sampleDishes.find(function(item) {
+            return Number(item.itemId) === Number(id);
+        });
+
+        if (!dish) {
+            showToast("Menu item not found.", true);
+            return;
+        }
+
+        const currentlyAvailable = dish.available !== false;
+        const nextAvailable = !currentlyAvailable;
+        const actionText = nextAvailable ? "mark this item as AVAILABLE" : "mark this item as OUT OF STOCK";
+
+        if (!confirm("Do you want to " + actionText + "?\n\nDish: " + dish.dishName)) {
+            return;
+        }
+
+        const response = await fetch(MENU_API + "/" + id + "/availability", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ available: nextAvailable })
+        });
+
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
+
+        await loadMenuSettingsTable();
+        addAuditRecord("Menu", nextAvailable ? "Item Made Available" : "Item Marked Out of Stock", dish.dishName+" was "+(nextAvailable ? "made available" : "marked out of stock"));
+        showToast(dish.dishName + (nextAvailable ? " is now available." : " marked out of stock."));
+    } catch (error) {
+        console.error("Availability update error:", error);
+        showToast("Failed to update item availability.", true);
+    }
+}
+
+/* ================================
+   DELETE MENU ITEM
+================================ */
+
+async function deleteMenuItem(id) {
+    try {
+        const dish = sampleDishes.find(function(item) {
+            return Number(item.itemId) === Number(id);
+        });
+
+        const dishName = dish ? dish.dishName : "this menu item";
+
+        if (!confirm("Delete " + dishName + " from the menu?\n\nThis cannot be undone.")) {
+            return;
+        }
+
+        const response = await fetch(MENU_API + "/" + id, {
+            method: "DELETE"
+        });
+
+        if (!response.ok) {
+            if (response.status === 500 || response.status === 409) {
+                throw new Error("This menu item may already be used in an order. Remove the item from future ordering instead of deleting it.");
+            }
+            throw new Error("HTTP " + response.status);
+        }
+
+        await loadMenuSettingsTable();
+        addAuditRecord("Menu", "Menu Item Deleted", dishName+" was deleted from the menu");
+        showToast("Menu item deleted successfully");
+    } catch (error) {
+        console.error("Delete menu error:", error);
+        showToast(error.message || "Failed to delete menu item.", true);
+    }
+}
+
+
+/* ================================
+   TABLE MANAGEMENT
+================================ */
+
+const TABLE_API = "http://localhost:8080/api/tables";
+var restaurantTables = [];
+
+function tableStatusLabel(status) {
+    if (status === "OCCUPIED") return "Occupied";
+    if (status === "RESERVED") return "Reserved";
+    return "Available";
+}
+
+function tableStatusClass(status) {
+    if (status === "OCCUPIED") return "table-status-occupied";
+    if (status === "RESERVED") return "table-status-reserved";
+    return "table-status-available";
+}
+
+async function loadRestaurantTables() {
+    var container = document.getElementById("restaurantTablesContainer");
+    if (!container) return;
+
+    try {
+        var response = await fetch(TABLE_API);
+        if (!response.ok) throw new Error("HTTP " + response.status);
+
+        restaurantTables = await response.json();
+        renderRestaurantTables();
+    } catch (error) {
+        console.error("Load tables error:", error);
+        container.innerHTML = '<div class="tables-empty">Unable to load tables. Make sure Spring Boot is running.</div>';
+    }
+}
+
+function renderRestaurantTables() {
+    var container = document.getElementById("restaurantTablesContainer");
+    if (!container) return;
+
+    var available = restaurantTables.filter(function(t){ return t.status === "AVAILABLE"; }).length;
+    var occupied = restaurantTables.filter(function(t){ return t.status === "OCCUPIED"; }).length;
+    var reserved = restaurantTables.filter(function(t){ return t.status === "RESERVED"; }).length;
+
+    document.getElementById("availableTableCount").innerText = available;
+    document.getElementById("occupiedTableCount").innerText = occupied;
+    document.getElementById("reservedTableCount").innerText = reserved;
+
+    if (!restaurantTables.length) {
+        container.innerHTML = '<div class="tables-empty">No restaurant tables have been added yet.</div>';
+        return;
+    }
+
+    restaurantTables.sort(function(a,b){
+        return String(a.tableNumber).localeCompare(String(b.tableNumber), undefined, {numeric:true});
+    });
+
+    container.innerHTML = restaurantTables.map(function(table) {
+        var status = table.status || "AVAILABLE";
+        return '<div class="restaurant-table-card">' +
+            '<div class="restaurant-table-top">' +
+                '<div class="restaurant-table-number">🪑 ' + escapeHtml(table.tableNumber) + '</div>' +
+                '<span class="restaurant-table-status ' + tableStatusClass(status) + '">' + tableStatusLabel(status) + '</span>' +
+            '</div>' +
+            '<div class="restaurant-table-info">' +
+                '<div><span>CAPACITY</span><strong>👥 ' + escapeHtml(String(table.capacity)) + ' seats</strong></div>' +
+                '<div><span>SECTION</span><strong>📍 ' + escapeHtml(table.section) + '</strong></div>' +
+            '</div>' +
+            '<div class="restaurant-table-actions">' +
+                '<select class="table-status-select" onchange="changeTableStatus(' + table.tableId + ', this.value)">' +
+                    '<option value="AVAILABLE" ' + (status === "AVAILABLE" ? "selected" : "") + '>Available</option>' +
+                    '<option value="OCCUPIED" ' + (status === "OCCUPIED" ? "selected" : "") + '>Occupied</option>' +
+                    '<option value="RESERVED" ' + (status === "RESERVED" ? "selected" : "") + '>Reserved</option>' +
+                '</select>' +
+                '<button class="table-edit-btn" type="button" onclick="editRestaurantTable(' + table.tableId + ')">✏️ Edit</button>' +
+                '<button class="table-delete-btn" type="button" onclick="deleteRestaurantTable(' + table.tableId + ')">🗑️</button>' +
+            '</div>' +
+        '</div>';
+    }).join("");
+}
+
+function resetTableForm() {
+    var id = document.getElementById("editingTableId");
+    var number = document.getElementById("tableNumber");
+    var capacity = document.getElementById("tableCapacity");
+    var section = document.getElementById("tableSection");
+    var status = document.getElementById("tableStatus");
+    var title = document.getElementById("tableFormTitle");
+    var button = document.getElementById("saveTableButton");
+
+    if (id) id.value = "";
+    if (number) number.value = "";
+    if (capacity) capacity.value = "";
+    if (section) section.value = "";
+    if (status) status.value = "AVAILABLE";
+    if (title) title.innerText = "➕ Add New Table";
+    if (button) button.innerText = "💾 Save Table";
+}
+
+function editRestaurantTable(id) {
+    var table = restaurantTables.find(function(t){ return Number(t.tableId) === Number(id); });
+    if (!table) return;
+
+    document.getElementById("editingTableId").value = table.tableId;
+    document.getElementById("tableNumber").value = table.tableNumber || "";
+    document.getElementById("tableCapacity").value = table.capacity || "";
+    document.getElementById("tableSection").value = table.section || "";
+    document.getElementById("tableStatus").value = table.status || "AVAILABLE";
+    document.getElementById("tableFormTitle").innerText = "✏️ Edit Table";
+    document.getElementById("saveTableButton").innerText = "💾 Update Table";
+    document.getElementById("tableNumber").focus();
+}
+
+async function saveRestaurantTable() {
+    var editingId = document.getElementById("editingTableId").value;
+    var tableNumber = document.getElementById("tableNumber").value.trim();
+    var capacity = Number(document.getElementById("tableCapacity").value);
+    var section = document.getElementById("tableSection").value.trim();
+    var status = document.getElementById("tableStatus").value;
+
+    if (!tableNumber) {
+        showToast("Please enter a table number.", true);
+        return;
+    }
+    if (!Number.isInteger(capacity) || capacity <= 0) {
+        showToast("Please enter a valid seating capacity.", true);
+        return;
+    }
+    if (!section) {
+        showToast("Please enter the table section.", true);
+        return;
+    }
+
+    var data = {
+        tableNumber: tableNumber,
+        capacity: capacity,
+        section: section,
+        status: status
+    };
+
+    try {
+        var url = editingId ? TABLE_API + "/" + editingId : TABLE_API;
+        var method = editingId ? "PUT" : "POST";
+
+        var response = await fetch(url, {
+            method: method,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            var errorText = await response.text();
+            throw new Error(errorText || ("HTTP " + response.status));
+        }
+
+        var saved = await response.json();
+        var action = editingId ? "Table Updated" : "Table Added";
+        addAuditRecord("Table", action, saved.tableNumber + " · " + saved.capacity + " seats · " + saved.section);
+
+        resetTableForm();
+        await loadRestaurantTables();
+        showToast(editingId ? "Table updated successfully." : "Table added successfully.");
+    } catch (error) {
+        console.error("Save table error:", error);
+        showToast(error.message || "Failed to save table.", true);
+    }
+}
+
+async function changeTableStatus(id, status) {
+    var table = restaurantTables.find(function(t){ return Number(t.tableId) === Number(id); });
+    if (!table) return;
+
+    try {
+        var response = await fetch(TABLE_API + "/" + id + "/status", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: status })
+        });
+
+        if (!response.ok) {
+            var errorText = await response.text();
+            throw new Error(errorText || ("HTTP " + response.status));
+        }
+
+        var updated = await response.json();
+        addAuditRecord("Table", "Table Status Changed", updated.tableNumber + " changed to " + tableStatusLabel(updated.status));
+        await loadRestaurantTables();
+        showToast(updated.tableNumber + " is now " + tableStatusLabel(updated.status) + ".");
+    } catch (error) {
+        console.error("Table status error:", error);
+        showToast("Failed to update table status.", true);
+        await loadRestaurantTables();
+    }
+}
+
+async function deleteRestaurantTable(id) {
+    var table = restaurantTables.find(function(t){ return Number(t.tableId) === Number(id); });
+    if (!table) return;
+
+    if (!confirm("Delete table " + table.tableNumber + "?\n\nThis will permanently remove the table from Table Management.")) {
+        return;
+    }
+
+    try {
+        var response = await fetch(TABLE_API + "/" + id, { method: "DELETE" });
+        if (!response.ok) {
+            var errorText = await response.text();
+            throw new Error(errorText || ("HTTP " + response.status));
+        }
+
+        addAuditRecord("Table", "Table Deleted", table.tableNumber + " was deleted");
+        resetTableForm();
+        await loadRestaurantTables();
+        showToast(table.tableNumber + " deleted successfully.");
+    } catch (error) {
+        console.error("Delete table error:", error);
+        showToast("Failed to delete table.", true);
+    }
+}
+
+
+
+
+/* ================================
+   TABLE RESERVATIONS
+================================ */
+var TABLE_RESERVATION_API = "http://localhost:8080/api/table-reservations";
+var tableReservations = [];
+
+async function loadTableReservations() {
+    var body = document.getElementById("tableReservationsBody");
+    if (!body) return;
+    body.innerHTML = '<tr><td colspan="9" class="reservation-empty">Loading reservations...</td></tr>';
+
+    try {
+        var response = await fetch(TABLE_RESERVATION_API);
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        tableReservations = await response.json();
+        updateReservationSummary();
+        renderTableReservations();
+    } catch (error) {
+        console.error("Load reservations error:", error);
+        body.innerHTML = '<tr><td colspan="9" class="reservation-empty">Could not load reservations. Make sure Spring Boot is running.</td></tr>';
+    }
+}
+
+function updateReservationSummary() {
+    var counts = { CONFIRMED:0, ARRIVED:0, COMPLETED:0, CANCELLED:0 };
+    tableReservations.forEach(function(r){ if (counts.hasOwnProperty(r.status)) counts[r.status]++; });
+    document.getElementById("reservationConfirmedCount").textContent = counts.CONFIRMED;
+    document.getElementById("reservationArrivedCount").textContent = counts.ARRIVED;
+    document.getElementById("reservationCompletedCount").textContent = counts.COMPLETED;
+    document.getElementById("reservationCancelledCount").textContent = counts.CANCELLED;
+}
+
+function renderTableReservations() {
+    var body = document.getElementById("tableReservationsBody");
+    if (!body) return;
+
+    var dateFilter = document.getElementById("reservationDateFilter").value;
+    var statusFilter = document.getElementById("reservationStatusFilter").value;
+
+    var filtered = tableReservations.filter(function(r){
+        return (!dateFilter || r.reservationDate === dateFilter) &&
+               (statusFilter === "ALL" || r.status === statusFilter);
+    });
+
+    if (!filtered.length) {
+        body.innerHTML = '<tr><td colspan="9" class="reservation-empty">No reservations match the selected filters.</td></tr>';
+        return;
+    }
+
+    body.innerHTML = filtered.map(function(r){
+        var time = r.reservationTime ? String(r.reservationTime).slice(0,5) : "-";
+        var table = r.table ? r.table.tableNumber : "-";
+        var request = r.specialRequest ? escapeHtml(r.specialRequest) : "-";
+        return '<tr>' +
+            '<td><strong>' + escapeHtml(r.reservationNumber) + '</strong></td>' +
+            '<td>' + escapeHtml(r.customerName) + '<br><small>' + escapeHtml(r.phone) + '</small></td>' +
+            '<td><strong>' + escapeHtml(table) + '</strong><br><small>' + escapeHtml(r.table ? r.table.section : "") + '</small></td>' +
+            '<td>' + escapeHtml(r.reservationDate) + '</td>' +
+            '<td>' + escapeHtml(time) + '</td>' +
+            '<td>' + r.guestCount + '</td>' +
+            '<td>' + request + '</td>' +
+            '<td><select class="reservation-status-select" onchange="changeReservationStatus(' + r.reservationId + ', this.value)">' +
+                reservationStatusOption("CONFIRMED", r.status) +
+                reservationStatusOption("ARRIVED", r.status) +
+                reservationStatusOption("COMPLETED", r.status) +
+                reservationStatusOption("CANCELLED", r.status) +
+            '</select></td>' +
+            '<td><button class="action-btn" type="button" onclick="deleteTableReservation(' + r.reservationId + ')">Delete</button></td>' +
+            '</tr>';
+    }).join("");
+}
+
+function reservationStatusOption(value, current) {
+    return '<option value="' + value + '"' + (value === current ? ' selected' : '') + '>' + value + '</option>';
+}
+
+function clearReservationFilters() {
+    document.getElementById("reservationDateFilter").value = "";
+    document.getElementById("reservationStatusFilter").value = "ALL";
+    renderTableReservations();
+}
+
+async function changeReservationStatus(id, status) {
+    try {
+        var response = await fetch(TABLE_RESERVATION_API + "/" + id + "/status", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: status })
+        });
+        if (!response.ok) {
+            var text = await response.text();
+            throw new Error(text || "Could not update reservation");
+        }
+        var updated = await response.json();
+        addAuditRecord("Reservation", "Reservation Status Changed", updated.reservationNumber + " → " + updated.status);
+        await loadTableReservations();
+        showToast(updated.reservationNumber + " is now " + updated.status + ".");
+    } catch (error) {
+        console.error(error);
+        showToast(error.message || "Failed to update reservation.", true);
+        await loadTableReservations();
+    }
+}
+
+async function deleteTableReservation(id) {
+    var reservation = tableReservations.find(function(r){ return Number(r.reservationId) === Number(id); });
+    if (!reservation) return;
+    if (!confirm("Delete reservation " + reservation.reservationNumber + "?")) return;
+
+    try {
+        var response = await fetch(TABLE_RESERVATION_API + "/" + id, { method: "DELETE" });
+        if (!response.ok) {
+            var text = await response.text();
+            throw new Error(text || "Could not delete reservation");
+        }
+        addAuditRecord("Reservation", "Reservation Deleted", reservation.reservationNumber + " for " + reservation.customerName);
+        await loadTableReservations();
+        showToast(reservation.reservationNumber + " deleted successfully.");
+    } catch (error) {
+        console.error(error);
+        showToast("Failed to delete reservation.", true);
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", function(){ loadAdminNotifications(); renderAuditHistory(); });
+</script>
+
+</body>
+</html>

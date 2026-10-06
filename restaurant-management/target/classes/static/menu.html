@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gomantak Saguti Restaurant</title>
+
+    <style>
+        :root {
+            --bg: #fff7ef;
+            --card: #ffffff;
+            --burgundy: #70253a;
+            --burgundy2: #b14c4d;
+            --terracotta: #d96b4a;
+            --gold: #e5b65d;
+            --text: #38272a;
+            --muted: #78666a;
+            --border: #ead7cd;
+            --shadow: rgba(92, 45, 52, .13)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 8% 12%, rgba(225, 180, 91, .15) 0 2px, transparent 3px),
+                radial-gradient(circle at 92% 36%, rgba(123, 38, 57, .08) 0 2px, transparent 3px),
+                linear-gradient(180deg, #fff7ef 0%, #fffaf5 45%, #f7e7da 100%);
+            background-size: 34px 34px, 42px 42px, auto;
+            color: var(--text);
+            padding-bottom: 92px;
+        }
+
+        .header {
+            min-height: 150px;
+            background: linear-gradient(135deg, var(--burgundy), var(--burgundy2));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 24px;
+            box-shadow: 0 8px 28px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before,
+        .header::after {
+            content: '';
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 50%;
+            width: 180px;
+            height: 180px
+        }
+
+        .header::before {
+            left: -90px;
+            top: -90px
+        }
+
+        .header::after {
+            right: -100px;
+            bottom: -110px
+        }
+
+        .header h1 {
+            font: 700 clamp(28px, 4vw, 42px) Arial, sans-serif;
+            letter-spacing: .5px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, .18);
+            position: relative
+        }
+
+        .header h1::after {
+            content: 'Authentic coastal flavours';
+            display: block;
+            font: italic 15px Arial, sans-serif;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            color: #ffe3bb;
+            text-transform: uppercase
+        }
+
+        .nav {
+            min-height: 70px;
+            background: rgba(255, 255, 255, .9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 3px 12px rgba(80, 40, 40, .05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav button {
+            padding: 11px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #fff7f1;
+            color: var(--text);
+            font: 700 14px Arial, sans-serif;
+            letter-spacing: .3px;
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .nav button:hover,
+        .nav button:focus {
+            background: var(--terracotta);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(217, 107, 74, .22);
+            outline: none
+        }
+
+        #menuSection {
+            padding-bottom: 20px
+        }
+
+        .menu-tools {
+            width: 94%;
+            max-width: 1250px;
+            margin: 24px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap
+        }
+
+        .menu-tools h2 {
+            color: var(--burgundy);
+            font-size: 24px
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 260px;
+            max-width: 500px
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 18px 15px 46px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .95);
+            color: var(--text);
+            font: 15px Arial, sans-serif;
+            outline: none;
+            box-shadow: 0 8px 22px var(--shadow);
+            transition: .25s
+        }
+
+        .search-box input:focus {
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 4px rgba(217, 107, 74, .14)
+        }
+
+        .search-box::before {
+            content: '⌕';
+            position: absolute;
+            left: 17px;
+            top: 9px;
+            color: var(--terracotta);
+            font-size: 25px;
+            z-index: 1
+        }
+
+        .food-showcase {
+            width: 94%;
+            max-width: 1250px;
+            margin: 20px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px
+        }
+
+        .food-card {
+            position: relative;
+            min-height: 150px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 10px 24px var(--shadow);
+            isolation: isolate
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            transition: transform .45s
+        }
+
+        .food-card::after {
+            content: '';
+            position: absolute;
+            inset: 35% 0 0;
+            background: linear-gradient(transparent, rgba(41, 19, 20, .82));
+            z-index: -1
+        }
+
+        .food-card:hover img {
+            transform: scale(1.07)
+        }
+
+        .food-card span {
+            position: absolute;
+            left: 15px;
+            bottom: 13px;
+            color: white;
+            font: 700 15px Arial, sans-serif;
+            letter-spacing: .2px
+        }
+
+        .no-dishes {
+            display: none;
+            width: 94%;
+            max-width: 700px;
+            margin: 35px auto;
+            padding: 30px;
+            text-align: center;
+            border: 1px dashed var(--terracotta);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .75);
+            color: var(--muted);
+            font: 16px Arial, sans-serif
+        }
+
+        .no-dishes strong {
+            display: block;
+            color: var(--burgundy);
+            font-size: 21px;
+            margin-bottom: 7px
+        }
+
+        .loading-message {
+            width: 94%;
+            max-width: 800px;
+            margin: 35px auto;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            background: white;
+            color: var(--muted);
+            box-shadow: 0 8px 22px var(--shadow);
+        }
+
+        .error-message {
+            color: #a00000;
+        }
+
+        .menu-layout {
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr);
+            gap: 24px;
+            width: 94%;
+            max-width: 1250px;
+            margin: 26px auto 0;
+            align-items: start
+        }
+
+        .section-nav {
+            position: sticky;
+            top: 85px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px
+        }
+
+        .section-nav button {
+            border: 1px solid var(--border);
+            border-left: 5px solid transparent;
+            background: rgba(255, 255, 255, .86);
+            color: var(--text);
+            padding: 14px 16px;
+            text-align: left;
+            font: 700 14px Arial, sans-serif;
+            letter-spacing: .2px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 14px var(--shadow);
+            transition: .22s
+        }
+
+        .section-nav button:hover,
+        .section-nav button.active {
+            background: var(--burgundy);
+            border-left-color: var(--gold);
+            color: white;
+            transform: translateX(4px)
+        }
+
+        .section-content {
+            min-width: 0
+        }
+
+        .section-panel {
+            display: none
+        }
+
+        .section-panel.active {
+            display: block
+        }
+
+        .section-panel.search-visible {
+            display: block
+        }
+
+        .Sections {
+            min-height: 68px;
+            background: linear-gradient(100deg, #f2d5c5, #fff8f1 75%);
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            margin: 0 0 18px;
+            border-left: 7px solid var(--terracotta);
+            border-radius: 8px;
+            box-shadow: 0 8px 18px rgba(92, 45, 52, .09);
+            cursor: pointer;
+            user-select: none
+        }
+
+        .Sections:hover {
+            background: linear-gradient(100deg, #edc6b2, #fff8f1 75%)
+        }
+
+        .Sections h2 {
+            font-size: 23px;
+            letter-spacing: .2px
+        }
+
+        .Sections h2::after {
+            content: ' ▾';
+            font-size: 17px
+        }
+
+        .Sections.collapsed h2::after {
+            content: ' ▸'
+        }
+
+        .sub-category {
+            color: var(--burgundy);
+            margin: 18px 0 10px;
+            padding-left: 8px
+        }
+
+        table,
+        .menu-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, .94);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 28px var(--shadow);
+            margin-bottom: 20px
+        }
+
+        td,
+        th {
+            padding: 15px 16px;
+            text-align: left;
+            border-bottom: 1px solid #f0e5dc;
+            font: 15px Arial, sans-serif
+        }
+
+        tr:last-child td {
+            border-bottom: none
+        }
+
+        tr {
+            transition: background .2s, transform .2s
+        }
+
+        tr:hover {
+            background: #fff8f3
+        }
+
+        td:first-child {
+            font-weight: 600;
+            color: #473237
+        }
+
+        td:nth-child(2) {
+            color: var(--terracotta);
+            font-weight: bold;
+            width: 130px
+        }
+
+        .quantity-control {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .05)
+        }
+
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            border: 0;
+            background: #f7e1d5;
+            color: var(--burgundy);
+            font-size: 21px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0;
+            line-height: 1;
+            transition: .2s
+        }
+
+        .qty-btn:hover {
+            background: var(--terracotta);
+            color: white
+        }
+
+        .qty-input,
+        input[type='number'] {
+            width: 46px;
+            border: 0;
+            text-align: center;
+            padding: 7px;
+            outline: none;
+            background: white;
+            font-weight: bold;
+            color: var(--text)
+        }
+
+        .qty-input::-webkit-inner-spin-button,
+        .qty-input::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0
+        }
+
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            min-height: 78px;
+            background: rgba(112, 37, 58, .96);
+            backdrop-filter: blur(12px);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 14px;
+            padding: 10px 28px;
+            z-index: 100;
+            box-shadow: 0 -7px 22px rgba(70, 30, 35, .2);
+            font: 700 14px Arial, sans-serif
+        }
+
+        .bottom-bar span {
+            border: 1px solid rgba(255, 255, 255, .45);
+            border-radius: 6px;
+            padding: 9px 14px;
+            color: #fff4df
+        }
+
+        .cart-count {
+            color: #ffe3a2 !important
+        }
+
+        .bottom-bar button {
+            background: var(--gold);
+            color: var(--text);
+            border: 0;
+            border-radius: 6px;
+            font: bold 14px Arial, sans-serif;
+            padding: 13px 27px;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .bottom-bar button:hover {
+            background: white;
+            transform: translateY(-2px)
+        }
+
+        .popup-background {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(61, 43, 31, .52);
+            z-index: 200;
+            padding: 20px
+        }
+
+        .popup-box {
+            width: min(430px, 100%);
+            background: #fffdfb;
+            margin: 70px auto;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+            border-top: 6px solid var(--burgundy)
+        }
+
+        .popup-box h2 {
+            color: var(--burgundy);
+            margin-bottom: 14px
+        }
+
+        .popup-box input[type='text'],
+        .popup-box input[type='tel'] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none
+        }
+
+        .popup-box input:focus {
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(217, 107, 74, .12)
+        }
+
+        .popup-box button,
+        .check-order-box button {
+            background: var(--terracotta);
+            color: white;
+            border: 0;
+            border-radius: 9px;
+            padding: 11px 20px;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        .popup-box button:hover,
+        .check-order-box button:hover {
+            background: var(--burgundy)
+        }
+
+        .room-options {
+            display: none;
+            margin: 14px 0;
+            padding: 14px;
+            background: #fff7f1;
+            border: 1px solid var(--border);
+            border-radius: 10px
+        }
+
+        .room-options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer
+        }
+
+        .bill-breakdown {
+            margin: 14px 0;
+            padding: 12px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            line-height: 1.8
+        }
+
+        .bill-breakdown span {
+            float: right
+        }
+
+        .check-order-box {
+            width: min(430px, 90%);
+            margin: 42px auto;
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 28px var(--shadow)
+        }
+
+        .check-order-box h2 {
+            color: var(--burgundy);
+            margin-bottom: 16px
+        }
+
+        .check-order-box input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 12px
+        }
+
+        #trackResult {
+            width: min(650px, 90%);
+            margin: 20px auto;
+            background: white;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 8px 22px var(--shadow)
+        }
+
+        @media(max-width:900px) {
+            .food-showcase {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:760px) {
+            .header {
+                min-height: 92px
+            }
+
+            .header h1 {
+                font-size: 24px
+            }
+
+            .menu-tools {
+                margin-top: 16px
+            }
+
+            .menu-tools h2 {
+                font-size: 20px
+            }
+
+            .search-box {
+                min-width: 100%;
+                max-width: none
+            }
+
+            .food-showcase {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px
+            }
+
+            .food-card,
+            .food-card img {
+                min-height: 125px;
+                height: 125px
+            }
+
+            .menu-layout {
+                display: block;
+                width: 100%;
+                margin-top: 12px
+            }
+
+            .section-nav {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 10px 12px;
+                background: #fff7ef;
+                gap: 8px
+            }
+
+            .section-nav button {
+                white-space: nowrap;
+                padding: 10px 13px;
+                border-left: 1px solid var(--border)
+            }
+
+            .section-nav button:hover,
+            .section-nav button.active {
+                transform: none;
+                border-left-color: var(--gold)
+            }
+
+            .section-content {
+                padding: 0 10px
+            }
+
+            .Sections {
+                padding: 13px 16px
+            }
+
+            .Sections h2 {
+                font-size: 19px
+            }
+
+            td,
+            th {
+                padding: 11px 8px;
+                font-size: 13px
+            }
+
+            .bottom-bar {
+                justify-content: center;
+                padding: 9px 10px;
+                gap: 8px;
+                flex-wrap: wrap
+            }
+
+            .bottom-bar span {
+                padding: 7px 9px
+            }
+
+            .bottom-bar button {
+                padding: 10px 15px
+            }
+
+            .nav {
+                flex-wrap: wrap
+            }
+
+            .nav button {
+                padding: 9px 15px
+            }
+        }
+
+        /* =========================================
+           AC / NON-AC MENU MODE
+        ========================================= */
+        .menu-mode-selector {
+            max-width: 900px;
+            margin: 18px auto 0;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .menu-mode-selector .mode-label {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .mode-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mode-button {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text);
+            padding: 10px 18px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .mode-button.active {
+            background: #70253a;
+            color: #fff;
+            border-color: #70253a;
+        }
+
+        .mode-note {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        body.ac-mode {
+            --bg: #eef8ff;
+            --card: #ffffff;
+            --burgundy: #176b87;
+            --burgundy2: #2d9fbd;
+            --terracotta: #58b8d1;
+            --gold: #7bc8df;
+            --text: #173746;
+            --muted: #5c7580;
+            --border: #c9e6ef;
+            --shadow: rgba(31, 109, 135, .14);
+        }
+
+        body.ac-mode {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(123, 200, 223, .18) 0 2px, transparent 3px),
+                radial-gradient(circle at 92% 36%, rgba(23, 107, 135, .08) 0 2px, transparent 3px),
+                linear-gradient(180deg, #eef8ff 0%, #f7fcff 45%, #dff2fa 100%);
+            background-size: 34px 34px, 42px 42px, auto;
+        }
+
+        body.ac-mode .header h1::after {
+            content: 'Cool coastal dining experience';
+            color: #d9f7ff;
+        }
+
+        body.ac-mode .mode-button.active {
+            background: #176b87;
+            border-color: #176b87;
+        }
+
+        body.ac-mode .menu-mode-selector {
+            border-color: #b9deea;
+        }
+
+        /* AC mode: change the fixed bottom cart/footer bar to a cool blue */
+        body.ac-mode .bottom-bar {
+            background: rgba(23, 107, 135, .96);
+            box-shadow: 0 -7px 22px rgba(23, 107, 135, .20);
+        }
+
+        body.ac-mode .bottom-bar span {
+            color: #e9fbff;
+            border-color: rgba(255, 255, 255, .50);
+        }
+
+        body.ac-mode .bottom-bar .cart-count {
+            color: #d9f7ff !important;
+        }
+
+        body.ac-mode .bottom-bar button {
+            background: #7bc8df;
+            color: #173746;
+        }
+
+        body.ac-mode .bottom-bar button:hover {
+            background: #ffffff;
+            color: #176b87;
+        }
+
+        .ac-price-badge {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 6px;
+            background: #e3f6fc;
+            color: #176b87;
+            vertical-align: middle;
+        }
+
+    
+        /* OUT OF STOCK MENU ITEM */
+        .out-of-stock-row { opacity: .62; background: #f3eeee !important; }
+        .out-of-stock-label { display:inline-block; margin-left:10px; padding:5px 9px; border-radius:999px; background:#ffe0e0; color:#a12626; font:700 11px Arial,sans-serif; }
+        .out-of-stock-row .qty-btn, .out-of-stock-row .qty-input { opacity:.45; cursor:not-allowed; }
+
+
+/* ================================
+   TABLE BOOKING
+================================ */
+.booking-section {
+    max-width: 980px;
+    margin: 28px auto 110px;
+    padding: 0 20px;
+}
+.booking-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+}
+.booking-card h2 { margin-top: 0; }
+.booking-note { color: #666; margin-bottom: 22px; }
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 16px;
+}
+.booking-field { display:flex; flex-direction:column; gap:7px; }
+.booking-field label { font-weight:700; }
+.booking-field input, .booking-field select, .booking-field textarea {
+    width:100%; box-sizing:border-box; padding:12px 13px;
+    border:1px solid #d8d8d8; border-radius:10px; font-size:15px;
+}
+.booking-field textarea { min-height:90px; resize:vertical; }
+.booking-full { grid-column:1 / -1; }
+.booking-actions { margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; }
+.booking-actions button { border:0; border-radius:10px; padding:12px 18px; cursor:pointer; font-weight:700; }
+.booking-primary { background:#333; color:#fff; }
+.booking-secondary { background:#eee; color:#222; }
+.available-table-list { margin-top:22px; display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; }
+.available-table-option {
+    border:2px solid #ddd; border-radius:14px; padding:15px; cursor:pointer; background:#fff;
+}
+.available-table-option:hover { border-color:#333; }
+.available-table-option.selected { border-color:#222; box-shadow:0 0 0 3px rgba(0,0,0,.08); }
+.available-table-option strong { display:block; font-size:18px; margin-bottom:5px; }
+.booking-result { margin-top:20px; padding:16px; border-radius:12px; background:#f5f5f5; display:none; }
+.booking-result.success { background:#edf8ef; }
+.booking-error { color:#b00020; margin-top:12px; }
+.payment-box { max-width:520px; }
+.payment-total { margin:14px 0 18px; padding:14px; border-radius:12px; background:#f7f2ed; font-size:20px; font-weight:800; text-align:center; }
+.payment-methods { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:15px 0; }
+.payment-method { border:1px solid #ddd; border-radius:12px; padding:14px 10px; background:#fff; cursor:pointer; font-weight:700; text-align:center; }
+.payment-method:hover { border-color:#333; transform:translateY(-1px); }
+.payment-method.active { border:2px solid #333; background:#f4eee8; }
+.payment-note { color:#666; font-size:13px; line-height:1.6; margin:8px 0 15px; }
+.payment-status-line { margin-top:12px; padding:10px; border-radius:10px; background:#f5f5f5; }
+.bill-print-button { background:#333; color:#fff; border:0; border-radius:9px; padding:10px 15px; cursor:pointer; font-weight:700; margin-top:10px; }
+@media(max-width:520px){ .payment-methods { grid-template-columns:1fr; } }
+@media(max-width:700px){
+    .booking-form-grid { grid-template-columns:1fr; }
+    .booking-full { grid-column:auto; }
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Gomantak Saguti Restaurant</h1>
+    </div>
+
+    <!-- TOP NAVIGATION -->
+    <div class="nav">
+        <button class="nav-button" onclick="showMenu()">Menu</button>
+        <button onclick="showCheckOrder()">Check Order</button>
+        <button onclick="showTableBooking()">Book a Table</button>
+    </div>
+
+    <!-- ============================= -->
+    <!-- TABLE BOOKING SECTION -->
+    <!-- ============================= -->
+
+    <div id="tableBookingSection" class="booking-section" style="display:none;">
+        <div class="booking-card">
+            <h2>🪑 Book a Table</h2>
+            <p class="booking-note">Choose your date, time and number of guests. We will show only tables available for that time.</p>
+
+            <div class="booking-form-grid">
+                <div class="booking-field">
+                    <label for="bookingName">Your Name</label>
+                    <input id="bookingName" type="text" maxlength="100" placeholder="Enter your name">
+                </div>
+                <div class="booking-field">
+                    <label for="bookingPhone">Mobile Number</label>
+                    <input id="bookingPhone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number">
+                </div>
+                <div class="booking-field">
+                    <label for="bookingDate">Date</label>
+                    <input id="bookingDate" type="date">
+                </div>
+                <div class="booking-field">
+                    <label for="bookingTime">Time</label>
+                    <input id="bookingTime" type="time" min="11:00" max="22:00">
+                </div>
+                <div class="booking-field">
+                    <label for="bookingGuests">Number of Guests</label>
+                    <input id="bookingGuests" type="number" min="1" max="20" value="2">
+                </div>
+                <div class="booking-field">
+                    <label for="bookingTable">Preferred Table</label>
+                    <select id="bookingTable" disabled>
+                        <option value="">First check availability</option>
+                    </select>
+                </div>
+                <div class="booking-field booking-full">
+                    <label for="bookingRequest">Special Request (optional)</label>
+                    <textarea id="bookingRequest" maxlength="500" placeholder="Birthday setup, window seat, etc."></textarea>
+                </div>
+            </div>
+
+            <div class="booking-actions">
+                <button class="booking-primary" type="button" onclick="checkTableAvailability()">🔎 Check Available Tables</button>
+                <button class="booking-secondary" type="button" onclick="resetTableBookingForm()">Reset</button>
+            </div>
+
+            <div id="availableTableList" class="available-table-list"></div>
+            <div id="bookingError" class="booking-error"></div>
+
+            <div class="booking-actions">
+                <button class="booking-primary" type="button" onclick="confirmTableBooking()">✅ Confirm Table Booking</button>
+            </div>
+
+            <div id="bookingResult" class="booking-result"></div>
+        </div>
+    </div>
+
+    <!-- AC / NON-AC MENU SELECTOR -->
+    <div class="menu-mode-selector" id="menuModeSelector">
+        <span class="mode-label">Dining Menu:</span>
+        <div class="mode-buttons">
+            <button type="button" class="mode-button active" id="nonAcModeButton" onclick="setMenuMode('Non-AC')">
+                🌿 Non-AC
+            </button>
+            <button type="button" class="mode-button" id="acModeButton" onclick="setMenuMode('AC')">
+                ❄️ AC
+            </button>
+        </div>
+        <span class="mode-note" id="menuModeNote">Normal menu prices</span>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="menu-tools">
+        <h2>Explore Our Coastal Menu</h2>
+
+        <label class="search-box" for="dishSearch">
+            <input
+                type="search"
+                id="dishSearch"
+                placeholder="Search for a dish..."
+                autocomplete="off">
+        </label>
+    </div>
+
+    <!-- FEATURED FOOD -->
+    <div class="food-showcase" aria-label="Featured food categories">
+
+        <div class="food-card">
+            <img
+                src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=700&q=80"
+                alt="Fresh seafood dish">
+            <span>Fresh Seafood</span>
+        </div>
+
+        <div class="food-card">
+            <img
+                src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80"
+                alt="Indian meat dish">
+            <span>Malvani Specials</span>
+        </div>
+
+        <div class="food-card">
+            <img
+                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
+                alt="Fresh vegetarian dish">
+            <span>Vegetarian Favourites</span>
+        </div>
+
+        <div class="food-card">
+            <img
+                src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
+                alt="Dessert selection">
+            <span>Sweet Finishes</span>
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- MENU SECTION -->
+    <!-- ============================= -->
+
+    <div id="menuSection">
+
+        <div class="loading-message" id="loadingMessage">
+            Loading menu from database...
+        </div>
+
+        <div class="no-dishes" id="noDishesMessage">
+            <strong>No dishes found</strong>
+            Try another dish name or browse our categories.
+        </div>
+
+        <!-- MENU LAYOUT WILL BE CREATED HERE -->
+        <div class="menu-layout" id="menuLayout" style="display:none;">
+
+            <nav class="section-nav" id="sectionNav">
+            </nav>
+
+            <div class="section-content" id="sectionContent">
+            </div>
+
+        </div>
+
+
+        <!-- BOTTOM CART BAR -->
+        <div class="bottom-bar">
+
+            <span class="cart-count">
+                🛒 <b id="itemCount">0</b> Items
+            </span>
+
+            Total:
+            <span id="totalAmount">0</span>
+
+            <button onclick="showOrderSummary()">
+                Order
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- CHECK ORDER SECTION -->
+    <!-- ============================= -->
+
+    <div id="checkOrderSection" style="display:none;">
+
+        <div class="check-order-box">
+
+            <h2>Check Your Order</h2>
+
+            <p>Enter your order number below</p>
+
+            <br>
+
+            <input
+                type="text"
+                id="trackNumber"
+                placeholder="Enter order number">
+
+            <button onclick="trackOrder()">
+                Check
+            </button>
+
+        </div>
+
+        <div id="trackResult" style="text-align:center;"></div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- ORDER SUMMARY POPUP -->
+    <!-- ============================= -->
+
+    <div class="popup-background" id="summaryPopup">
+
+        <div class="popup-box">
+
+            <h2>Order Summary</h2>
+
+            <br>
+
+            <p id="summaryText"></p>
+
+            <br>
+
+            <p>
+                <strong>
+                    Total Amount:
+                    ₹<span id="summaryTotal">0</span>
+                </strong>
+            </p>
+
+            <br>
+
+            <input
+                type="radio"
+                name="orderType"
+                value="Dine In"
+                onchange="updateOrderTypeOptions()"
+                checked>
+            Dine In
+
+            <input
+                type="radio"
+                name="orderType"
+                value="Take Away"
+                onchange="updateOrderTypeOptions()">
+            Take Away
+
+
+            <!-- BILL -->
+
+            <div class="bill-breakdown">
+
+                <div>
+                    Food Subtotal:
+                    <span>
+                        ₹<b id="foodSubtotal">0</b>
+                    </span>
+                </div>
+
+                <div>
+                    Room Charge:
+                    <span>
+                        ₹<b id="roomCharge">0</b>
+                    </span>
+                </div>
+
+                <div>
+                    GST (5%):
+                    <span>
+                        ₹<b id="gstAmount">0</b>
+                    </span>
+                </div>
+
+            </div>
+
+
+            <br><br>
+
+            <button onclick="closeSummaryPopup()">
+                Cancel
+            </button>
+
+            <button onclick="openCustomerPopup()">
+                Confirm
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- CUSTOMER POPUP -->
+    <!-- ============================= -->
+
+    <div class="popup-background" id="customerPopup">
+
+        <div class="popup-box">
+
+            <h2>Enter Your Details</h2>
+
+            <br>
+
+            Name:
+
+            <input
+                type="text"
+                id="custName"
+                placeholder="Enter your name">
+
+            Phone Number:
+
+            <input
+                type="tel"
+                id="custPhone"
+                inputmode="numeric"
+                minlength="10"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                placeholder="10-digit phone number"
+                required>
+
+            Reservation Number (optional):
+
+            <input
+                type="text"
+                id="custReservationNumber"
+                maxlength="30"
+                placeholder="Example: TB-00001">
+
+            <p style="font-size:12px;color:#666;margin:6px 0 12px;line-height:1.5;">
+                If you booked a table, enter your reservation number. A ₹50 table booking charge will be added to this bill.
+            </p>
+
+            <button onclick="closeCustomerPopup()">
+                Back
+            </button>
+
+            <button onclick="placeOrder()">
+                Place Order
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- PAYMENT POPUP -->
+    <!-- ============================= -->
+
+    <div class="popup-background" id="paymentPopup">
+
+        <div class="popup-box payment-box">
+
+            <h2>💳 Payment</h2>
+
+            <p id="paymentOrderText" style="margin-top:8px;"></p>
+
+            <div class="payment-total">Total Payable: ₹<span id="paymentTotal">0.00</span></div>
+
+            <p><strong>Select Payment Method</strong></p>
+
+            <div class="payment-methods">
+                <button type="button" class="payment-method active" id="paymentCashButton" onclick="selectPaymentMethod('CASH')">💵 Cash</button>
+                <button type="button" class="payment-method" id="paymentUpiButton" onclick="selectPaymentMethod('UPI')">📱 UPI</button>
+                <button type="button" class="payment-method" id="paymentCardButton" onclick="selectPaymentMethod('CARD')">💳 Card</button>
+            </div>
+
+            <p class="payment-note">For this college project, UPI/Card payment is demonstrated inside the system. No real bank or payment-gateway transaction is performed.</p>
+
+            <div class="payment-status-line" id="paymentStatusLine">Payment Status: <strong>PENDING</strong></div>
+
+            <br>
+
+            <button type="button" onclick="payLater()">Pay Later</button>
+            <button type="button" onclick="completePayment()">✅ Confirm Payment</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- CONFIRMATION POPUP -->
+    <!-- ============================= -->
+
+    <div class="popup-background" id="confirmPopup">
+
+        <div class="popup-box">
+
+            <h2>Order Confirmed</h2>
+
+            <br>
+
+            <p id="confirmText"></p>
+
+            <br>
+
+            <button onclick="closeConfirmPopup()">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script src="menu.js"></script>
+
+</body>
+
+</html>

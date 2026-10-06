@@ -1,0 +1,15 @@
+# 1. Navigate to the project root
+    cd "/Volumes/SSD/Restaurant Final/restaurant-management/restaurant-management"
+
+# 2. Make sure MySQL service is running
+    brew services start mysql
+
+# 3. Start the Spring Boot application
+    mvn spring-boot:run
+
+http://localhost:8080/menu.html
+
+
+
+#To stop a running server:
+    kill -9 $(lsof -t -i:8080)
