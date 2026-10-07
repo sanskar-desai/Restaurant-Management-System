@@ -71,7 +71,7 @@
                  * Spring Boot API.
                  */
                 var response =
-                    await fetch("http://localhost:8080/api/menu");
+                    await fetch(API_BASE_URL + "/api/menu");
 
 
                 /*
@@ -1552,7 +1552,7 @@
            TABLE BOOKING
         ========================================= */
 
-        var TABLE_RESERVATION_API = "http://localhost:8080/api/table-reservations";
+        var TABLE_RESERVATION_API = API_BASE_URL + "/api/table-reservations";
         var availableBookingTables = [];
         var selectedBookingTableId = null;
         var bookingFormInitialized = false;
@@ -1791,7 +1791,7 @@
 
     try {
 
-        var response = await fetch("http://localhost:8080/api/orders", {
+        var response = await fetch(API_BASE_URL + "/api/orders", {
 
             method: "POST",
 
@@ -2000,9 +2000,7 @@
 
     try {
 
-        var response = await fetch(
-            "http://localhost:8080/api/orders/" + encodeURIComponent(enteredNumber)
-        );
+        var response = await fetch(API_BASE_URL + "/api/orders/" + encodeURIComponent(enteredNumber));
 
         if (!response.ok) {
 
